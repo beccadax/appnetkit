@@ -26,6 +26,8 @@ typedef enum {
 @property (readonly) NSDictionary * parameters;
 @property (readonly) ANRequestMethod method;
 
+@property (readonly) NSMutableURLRequest * URLRequest;
+
 - (void)sendRequestWithRepresentationCompletion:(void (^)(id rep, NSError * error))completion;
 
 @end

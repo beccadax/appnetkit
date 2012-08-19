@@ -81,7 +81,7 @@
     return [NSError errorWithDomain:ANErrorDomain code:res.statusCode userInfo:nil];
 }
 
-- (void)sendRequestWithRepresentationCompletion:(void (^)(id, NSError *))completion {
+- (NSMutableURLRequest *)URLRequest {
     NSAssert(self.session.accessToken, @"Session's access token has not been set");
     
     NSMutableURLRequest * req = [[NSMutableURLRequest alloc] initWithURL:self.fullURL];
@@ -93,6 +93,12 @@
     }
     
     [req setValue:[NSString stringWithFormat:@"Bearer %@", self.session.accessToken] forHTTPHeaderField:@"Authorization"];
+    
+    return req;
+}
+
+- (void)sendRequestWithRepresentationCompletion:(void (^)(id, NSError *))completion {
+    NSURLRequest * req = self.URLRequest;
     
     [ANSession beginNetworkActivity];
     
