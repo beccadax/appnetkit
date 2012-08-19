@@ -58,12 +58,12 @@ ANUserType ANUserTypeFromString(NSString * string);
 //- (void)mutingsWithCompletion:(ANUserListRequestCompletion)completion;
 
 //- (void)postsWithCompletion:(ANPostListRequestCompletion)completion;
-//- (void)postsBetweenID:(ANRepresentationID)sinceID andID:(ANRepresentationID)beforeID completion:(ANPostListRequestCompletion)completion;
+//- (void)postsBetweenID:(ANResourceID)sinceID andID:(ANResourceID)beforeID completion:(ANPostListRequestCompletion)completion;
 //
 //- (void)postsMentioningUserWithCompletion:(ANPostListRequestCompletion)completion;
-//- (void)postsMentioningUserBetweenID:(ANRepresentationID)sinceID andID:(ANRepresentationID)beforeID completion:(ANPostListRequestCompletion)completion;
+//- (void)postsMentioningUserBetweenID:(ANResourceID)sinceID andID:(ANResourceID)beforeID completion:(ANPostListRequestCompletion)completion;
 //
 //- (void)postsInStreamWithCompletion:(ANPostListRequestCompletion)completion;
-//- (void)postsInStreamBetweenID:(ANRepresentationID)sinceID andID:(ANRepresentationID)beforeID completion:(ANPostListRequestCompletion)completion;
+//- (void)postsInStreamBetweenID:(ANResourceID)sinceID andID:(ANResourceID)beforeID completion:(ANPostListRequestCompletion)completion;
 
 @end

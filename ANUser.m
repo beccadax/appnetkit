@@ -85,7 +85,7 @@ ANResourceSynthesizeBool(@"you_muted", youMuted, setYouMuted)
 //    [self postsBetweenID:ANUnspecifiedPostID andID:ANUnspecifiedPostID completion:completion];
 //}
 //
-//- (void)postsBetweenID:(ANRepresentationID)sinceID andID:(ANRepresentationID)beforeID completion:(ANPostListRequestCompletion)completion {
+//- (void)postsBetweenID:(ANResourceID)sinceID andID:(ANResourceID)beforeID completion:(ANPostListRequestCompletion)completion {
 //    [self.session postsForUserWithID:self.ID betweenID:sinceID andID:beforeID completion:completion];
 //}
 //
@@ -93,7 +93,7 @@ ANResourceSynthesizeBool(@"you_muted", youMuted, setYouMuted)
 //    [self postsMentioningUserBetweenID:ANUnspecifiedPostID andID:ANUnspecifiedPostID completion:completion];
 //}
 //
-//- (void)postsMentioningUserBetweenID:(ANRepresentationID)sinceID andID:(ANRepresentationID)beforeID completion:(ANPostListRequestCompletion)completion {
+//- (void)postsMentioningUserBetweenID:(ANResourceID)sinceID andID:(ANResourceID)beforeID completion:(ANPostListRequestCompletion)completion {
 //    [self.session postsMentioningUserWithID:self.ID betweenID:sinceID andID:beforeID completion:completion];
 //}
 //
@@ -101,7 +101,7 @@ ANResourceSynthesizeBool(@"you_muted", youMuted, setYouMuted)
 //    [self postsInStreamBetweenID:ANUnspecifiedPostID andID:ANUnspecifiedPostID completion:completion];
 //}
 //
-//- (void)postsInStreamBetweenID:(ANRepresentationID)sinceID andID:(ANRepresentationID)beforeID completion:(ANPostListRequestCompletion)completion {
+//- (void)postsInStreamBetweenID:(ANResourceID)sinceID andID:(ANResourceID)beforeID completion:(ANPostListRequestCompletion)completion {
 //    [self.session postsInStreamForUserWithID:self.ID betweenID:sinceID andID:beforeID completion:completion];
 //}
 

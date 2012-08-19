@@ -32,29 +32,29 @@ typedef enum {
 
 - (void)accessTokenInformationWithCompletion:(ANAccessTokenInformationRequestCompletion)completion;
 
-//- (void)userWithID:(ANRepresentationID)ID completion:(ANUserRequestCompletion)completion;
+//- (void)userWithID:(ANResourceID)ID completion:(ANUserRequestCompletion)completion;
 //
-//- (void)followUserWithID:(ANRepresentationID)ID completion:(ANUserRequestCompletion)completion;
-//- (void)unfollowUserWithID:(ANRepresentationID)ID completion:(ANUserRequestCompletion)completion;
-//- (void)followingsForUserWithID:(ANRepresentationID)ID completion:(ANUserListRequestCompletion)completion;
-//- (void)followersForUserWithID:(ANRepresentationID)ID completion:(ANUserListRequestCompletion)completion;
+//- (void)followUserWithID:(ANResourceID)ID completion:(ANUserRequestCompletion)completion;
+//- (void)unfollowUserWithID:(ANResourceID)ID completion:(ANUserRequestCompletion)completion;
+//- (void)followingsForUserWithID:(ANResourceID)ID completion:(ANUserListRequestCompletion)completion;
+//- (void)followersForUserWithID:(ANResourceID)ID completion:(ANUserListRequestCompletion)completion;
 //
-//- (void)muteUserWithID:(ANRepresentationID)ID completion:(ANUserRequestCompletion)completion;
-//- (void)unmuteUserWithID:(ANRepresentationID)ID completion:(ANUserRequestCompletion)completion;
-//- (void)mutingsForUserWithID:(ANRepresentationID)ID completion:(ANUserListRequestCompletion)completion;
+//- (void)muteUserWithID:(ANResourceID)ID completion:(ANUserRequestCompletion)completion;
+//- (void)unmuteUserWithID:(ANResourceID)ID completion:(ANUserRequestCompletion)completion;
+//- (void)mutingsForUserWithID:(ANResourceID)ID completion:(ANUserListRequestCompletion)completion;
 //
-//- (void)postWithID:(ANRepresentationID)ID completion:(ANPostRequestCompletion)completion;
+//- (void)postWithID:(ANResourceID)ID completion:(ANPostRequestCompletion)completion;
 
 - (void)createPost:(ANPost*)post completion:(ANPostRequestCompletion)completion;
-//- (void)deletePostWithID:(ANRepresentationID)ID completion:(ANPostRequestCompletion)completion;
+//- (void)deletePostWithID:(ANResourceID)ID completion:(ANPostRequestCompletion)completion;
 //
-//- (void)postsForUserWithID:(ANRepresentationID)ID betweenID:(ANRepresentationID)sinceID andID:(ANRepresentationID)beforeID completion:(ANPostListRequestCompletion)completion;
-//- (void)postsMentioningUserWithID:(ANRepresentationID)ID betweenID:(ANRepresentationID)sinceID andID:(ANRepresentationID)beforeID completion:(ANPostListRequestCompletion)completion;
-//- (void)postsInStreamForUserWithID:(ANRepresentationID)ID betweenID:(ANRepresentationID)sinceID andID:(ANRepresentationID)beforeID completion:(ANPostListRequestCompletion)completion;
+//- (void)postsForUserWithID:(ANResourceID)ID betweenID:(ANResourceID)sinceID andID:(ANResourceID)beforeID completion:(ANPostListRequestCompletion)completion;
+//- (void)postsMentioningUserWithID:(ANResourceID)ID betweenID:(ANResourceID)sinceID andID:(ANResourceID)beforeID completion:(ANPostListRequestCompletion)completion;
+//- (void)postsInStreamForUserWithID:(ANResourceID)ID betweenID:(ANResourceID)sinceID andID:(ANResourceID)beforeID completion:(ANPostListRequestCompletion)completion;
 //
-//- (void)postsInGlobalStreamBetweenID:(ANRepresentationID)sinceID andID:(ANRepresentationID)beforeID completion:(ANPostListRequestCompletion)completion;
-//- (void)postsWithTag:(NSString*)tag betweenID:(ANRepresentationID)sinceID andID:(ANRepresentationID)beforeID completion:(ANPostListRequestCompletion)completion;
+//- (void)postsInGlobalStreamBetweenID:(ANResourceID)sinceID andID:(ANResourceID)beforeID completion:(ANPostListRequestCompletion)completion;
+//- (void)postsWithTag:(NSString*)tag betweenID:(ANResourceID)sinceID andID:(ANResourceID)beforeID completion:(ANPostListRequestCompletion)completion;
 //
-//- (void)postsReplyingToPostWithID:(ANRepresentationID)ID betweenID:(ANRepresentationID)sinceID andID:(ANRepresentationID)beforeID completion:(ANPostListRequestCompletion)completion;
+//- (void)postsReplyingToPostWithID:(ANResourceID)ID betweenID:(ANResourceID)sinceID andID:(ANResourceID)beforeID completion:(ANPostListRequestCompletion)completion;
 
 @end
