@@ -91,7 +91,7 @@
     return req;
 }
 
-- (void)sendRequestWithRepresentationCompletion:(void (^)(id, NSError *))completion {
+- (void)sendRequestWithDataCompletion:(void (^)(NSData * body, NSError * error))completion {
     NSURLRequest * req = self.URLRequest;
     
     [ANSession beginNetworkActivity];
@@ -113,6 +113,12 @@
             return;
         }
         
+        completion(body, nil);
+    }];
+}
+
+- (void)sendRequestWithRepresentationCompletion:(void (^)(id, NSError *))completion {
+    [self sendRequestWithDataCompletion:^(NSData *body, NSError *error) {
         NSError * jsonError;
         id json = [NSJSONSerialization JSONObjectWithData:body options:NSJSONReadingMutableContainers error:&jsonError];
         completion(json, jsonError);

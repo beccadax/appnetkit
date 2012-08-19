@@ -28,6 +28,7 @@ typedef enum {
 
 @property (readonly) NSMutableURLRequest * URLRequest;
 
+- (void)sendRequestWithDataCompletion:(void (^)(NSData * body, NSError * error))completion;
 - (void)sendRequestWithRepresentationCompletion:(void (^)(id rep, NSError * error))completion;
 
 @end
