@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ANRepresentation.h"
+#import "ANResource.h"
 #import "ANCompletions.h"
 #import "AppNetKit.h"
 
@@ -21,7 +21,7 @@ typedef enum {
 NSString * ANUserTypeToString(ANUserType type);
 ANUserType ANUserTypeFromString(NSString * string);
 
-@interface ANUser : ANRepresentation
+@interface ANUser : ANResource
 
 @property (readonly) uint64_t ID;
 @property (copy) NSString * username;

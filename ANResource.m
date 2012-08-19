@@ -6,10 +6,10 @@
 //  Copyright (c) 2012 Architechies. All rights reserved.
 //
 
-#import "ANRepresentation.h"
+#import "ANResource.h"
 #import "ISO8601DateFormatter.h"
 
-@implementation ANRepresentation
+@implementation ANResource
 
 + (ISO8601DateFormatter *)dateFormatter {
     static ISO8601DateFormatter * singleton;

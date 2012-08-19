@@ -12,8 +12,8 @@
 @class ANUser;
 @class ANPost;
 
-extern const ANRepresentationID ANMeUserID;
-extern const ANRepresentationID ANUnspecifiedPostID;
+extern const ANResourceID ANMeUserID;
+extern const ANResourceID ANUnspecifiedPostID;
 
 typedef enum {
     ANStreamAPIVersion0

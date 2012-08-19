@@ -6,12 +6,12 @@
 //  Copyright (c) 2012 Architechies. All rights reserved.
 //
 
-#import "ANRepresentation.h"
+#import "ANResource.h"
 #import "ANSession.h"
 
-@interface ANPost : ANRepresentation
+@interface ANPost : ANResource
 
-@property (readonly) ANRepresentationID ID;
+@property (readonly) ANResourceID ID;
 
 @property (readonly) ANUser * user;
 @property (readonly) NSDictionary * userRepresentation;
@@ -22,11 +22,11 @@
 
 //@property (readonly) ANSource * source;
 
-@property (assign) ANRepresentationID replyToID;
+@property (assign) ANResourceID replyToID;
 //- (void)postRepliedToWithCompletion:(ANPostRequestCompletion)completion;
 //- (void)replyPostsWithCompletion:(ANPostListRequestCompletion)completion;
 
-@property (readonly) ANRepresentationID threadID;
+@property (readonly) ANResourceID threadID;
 @property (readonly) NSUInteger numberOfReplies;
 //- (void)postAtThreadRootWithCompletion:(ANPostRequestCompletion)completion;
 

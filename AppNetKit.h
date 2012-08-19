@@ -48,7 +48,7 @@ typedef enum {
     ANHTTPVersionNotSupportedError
 } ANErrorCode;
 
-typedef uint64_t ANRepresentationID;
+typedef uint64_t ANResourceID;
 
 #import "ANCompletions.h"
 #import "ANAuthenticator.h"

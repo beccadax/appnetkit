@@ -10,14 +10,14 @@
 
 @implementation ANPost
 
-ANRepresentationSynthesizeID(@"id", ID, setID)
-ANRepresentationSynthesizeDate(@"createdAt", createdAt, setCreatedAt)
-ANRepresentationSynthesizeString(@"text", text, setText);
-ANRepresentationSynthesizeString(@"html", HTML, setHTML)
-ANRepresentationSynthesizeID(@"reply_to", replyToID, setReplyToID)
-ANRepresentationSynthesizeID(@"thread_id", threadID, setThreadID)
-ANRepresentationSynthesizeNSUInteger(@"num_replies", numberOfReplies, setNumberOfReplies)
-ANRepresentationSynthesizeBool(@"is_deleted", isDeleted, setDeleted)
+ANResourceSynthesizeID(@"id", ID, setID)
+ANResourceSynthesizeDate(@"createdAt", createdAt, setCreatedAt)
+ANResourceSynthesizeString(@"text", text, setText);
+ANResourceSynthesizeString(@"html", HTML, setHTML)
+ANResourceSynthesizeID(@"reply_to", replyToID, setReplyToID)
+ANResourceSynthesizeID(@"thread_id", threadID, setThreadID)
+ANResourceSynthesizeNSUInteger(@"num_replies", numberOfReplies, setNumberOfReplies)
+ANResourceSynthesizeBool(@"is_deleted", isDeleted, setDeleted)
 
 //- (void)postRepliedToWithCompletion:(ANPostRequestCompletion)completion {
 //    [self.session postWithID:self.ID completion:completion];

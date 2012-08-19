@@ -10,8 +10,8 @@
 #import "ANAccessTokenInformationRequest.h"
 #import "ANCreatePostRequest.h"
 
-const ANRepresentationID ANMeUserID = 0;
-const ANRepresentationID ANUnspecifiedPostID = 0;
+const ANResourceID ANMeUserID = 0;
+const ANResourceID ANUnspecifiedPostID = 0;
 
 NSInteger NetworkActivityCount;
 

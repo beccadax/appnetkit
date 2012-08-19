@@ -44,16 +44,16 @@ ANUserType ANUserTypeFromString(NSString * string) {
 
 @implementation ANUser
 
-ANRepresentationSynthesizeID(@"id", ID, setID)
-ANRepresentationSynthesizeString(@"username", username, setUsername)
-ANRepresentationSynthesizeString(@"name", name, setName)
-ANRepresentationSynthesizeString(@"timezone", timezoneString, setTimezoneString)
-ANRepresentationSynthesizeString(@"locale", localeString, setLocaleString)
-ANRepresentationSynthesizeString(@"type", typeString, setTypeString)
-ANRepresentationSynthesizeDate(@"created_at", createdAt, setCreatedAt)
-ANRepresentationSynthesizeBool(@"follows_you", followsYou, setFollowsYou)
-ANRepresentationSynthesizeBool(@"you_follow", youFollow, setYouFollow)
-ANRepresentationSynthesizeBool(@"you_muted", youMuted, setYouMuted)
+ANResourceSynthesizeID(@"id", ID, setID)
+ANResourceSynthesizeString(@"username", username, setUsername)
+ANResourceSynthesizeString(@"name", name, setName)
+ANResourceSynthesizeString(@"timezone", timezoneString, setTimezoneString)
+ANResourceSynthesizeString(@"locale", localeString, setLocaleString)
+ANResourceSynthesizeString(@"type", typeString, setTypeString)
+ANResourceSynthesizeDate(@"created_at", createdAt, setCreatedAt)
+ANResourceSynthesizeBool(@"follows_you", followsYou, setFollowsYou)
+ANResourceSynthesizeBool(@"you_follow", youFollow, setYouFollow)
+ANResourceSynthesizeBool(@"you_muted", youMuted, setYouMuted)
 
 - (NSTimeZone *)timezone {
     return [NSTimeZone timeZoneWithName:self.timezoneString];

@@ -11,7 +11,7 @@
 
 @class ANSession;
 
-@interface ANRepresentation : NSObject
+@interface ANResource : NSObject
 
 + (ISO8601DateFormatter*)dateFormatter;
 - (id)initWithRepresentation:(NSDictionary*)rep session:(ANSession*)session;
@@ -25,22 +25,22 @@
 
 @end
 
-#define ANRepresentationSynthesizeString(KEY, GETTER_NAME, SETTER_NAME) \
+#define ANResourceSynthesizeString(KEY, GETTER_NAME, SETTER_NAME) \
 - (NSString*)GETTER_NAME { return self.representation[KEY]; } \
 - (void)SETTER_NAME:(NSString*)value { self.representation[KEY] = value.copy; }
 
-#define ANRepresentationSynthesizeDate(KEY, GETTER_NAME, SETTER_NAME) \
-- (NSDate*)GETTER_NAME { return [ANRepresentation.dateFormatter dateFromString:self.representation[KEY]]; } \
-- (void)SETTER_NAME:(NSDate*)value { self.representation[KEY] = [ANRepresentation.dateFormatter stringFromDate:value]; }
+#define ANResourceSynthesizeDate(KEY, GETTER_NAME, SETTER_NAME) \
+- (NSDate*)GETTER_NAME { return [ANResource.dateFormatter dateFromString:self.representation[KEY]]; } \
+- (void)SETTER_NAME:(NSDate*)value { self.representation[KEY] = [ANResource.dateFormatter stringFromDate:value]; }
 
-#define ANRepresentationSynthesizeBool(KEY, GETTER_NAME, SETTER_NAME) \
+#define ANResourceSynthesizeBool(KEY, GETTER_NAME, SETTER_NAME) \
 - (BOOL)GETTER_NAME { return [self.representation[KEY] boolValue]; } \
 - (void)SETTER_NAME:(BOOL)value { self.representation[KEY] = @(value); }
 
-#define ANRepresentationSynthesizeID(KEY, GETTER_NAME, SETTER_NAME) \
-- (ANRepresentationID)GETTER_NAME { return [self.representation[KEY] unsignedLongLongValue]; } \
-- (void)SETTER_NAME:(ANRepresentationID)value { self.representation[KEY] = @(value); }
+#define ANResourceSynthesizeID(KEY, GETTER_NAME, SETTER_NAME) \
+- (ANResourceID)GETTER_NAME { return [self.representation[KEY] unsignedLongLongValue]; } \
+- (void)SETTER_NAME:(ANResourceID)value { self.representation[KEY] = @(value); }
 
-#define ANRepresentationSynthesizeNSUInteger(KEY, GETTER_NAME, SETTER_NAME) \
+#define ANResourceSynthesizeNSUInteger(KEY, GETTER_NAME, SETTER_NAME) \
 - (NSUInteger)GETTER_NAME { return [self.representation[KEY] unsignedIntegerValue]; } \
 - (void)SETTER_NAME:(NSUInteger)value { self.representation[KEY] = @(value); }
