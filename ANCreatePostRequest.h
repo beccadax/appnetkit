@@ -6,12 +6,12 @@
 //  Copyright (c) 2012 Architechies. All rights reserved.
 //
 
-#import "ANRequest.h"
+#import "ANAuthenticatedRequest.h"
 #import "ANSession.h"
 
 @class ANPost;
 
-@interface ANCreatePostRequest : ANRequest
+@interface ANCreatePostRequest : ANAuthenticatedRequest
 
 @property (strong) ANPost * post;
 

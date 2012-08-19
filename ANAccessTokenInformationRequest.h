@@ -6,10 +6,10 @@
 //  Copyright (c) 2012 Architechies. All rights reserved.
 //
 
-#import "ANRequest.h"
+#import "ANAuthenticatedRequest.h"
 #import "ANSession.h"
 
-@interface ANAccessTokenInformationRequest : ANRequest
+@interface ANAccessTokenInformationRequest : ANAuthenticatedRequest
 
 - (void)sendRequestWithCompletion:(ANAccessTokenInformationRequestCompletion)completion;
 

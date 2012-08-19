@@ -1,14 +1,13 @@
 //
 //  ANRequest.m
-//  AppNetKit
+//  
 //
-//  Created by Brent Royal-Gordon on 8/18/12.
-//  Copyright (c) 2012 Architechies. All rights reserved.
+//  Created by Brent Royal-Gordon on 8/19/12.
+//
 //
 
 #import "ANRequest.h"
 #import "AppNetKit.h"
-#import "ANSession.h"
 #import "NSDictionary+Parameters.h"
 
 @interface ANRequest ()
@@ -59,7 +58,6 @@
     return [NSURL URLWithString:[NSString stringWithFormat:@"%@?%@", self.URL.absoluteString, params.queryString]];
 }
 
-
 - (NSData *)body {
     if(self.method == ANRequestMethodGet) {
         return nil;
@@ -82,8 +80,6 @@
 }
 
 - (NSMutableURLRequest *)URLRequest {
-    NSAssert(self.session.accessToken, @"Session's access token has not been set");
-    
     NSMutableURLRequest * req = [[NSMutableURLRequest alloc] initWithURL:self.fullURL];
     req.HTTPMethod = self.methodString;
     req.HTTPBody = self.body;
@@ -91,8 +87,6 @@
     if(req.HTTPBody) {
         [req setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     }
-    
-    [req setValue:[NSString stringWithFormat:@"Bearer %@", self.session.accessToken] forHTTPHeaderField:@"Authorization"];
     
     return req;
 }
@@ -118,7 +112,7 @@
             completion(nil, error);
             return;
         }
-     
+        
         NSError * jsonError;
         id json = [NSJSONSerialization JSONObjectWithData:body options:NSJSONReadingMutableContainers error:&jsonError];
         completion(json, jsonError);
