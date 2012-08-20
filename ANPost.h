@@ -32,7 +32,7 @@
 
 @property (copy) NSDictionary * annotations;
 //@property (readonly) NSArray * entities;
-//@property (readonly) NSMutableArray * links;
+//@property (copy) NSArray * links;
 
 @property (readonly,getter=isDeleted) BOOL deleted;
 

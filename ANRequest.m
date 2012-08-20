@@ -128,7 +128,7 @@
 - (void)sendRequestWithRepresentationCompletion:(void (^)(id, NSError *))completion {
     [self sendRequestWithDataCompletion:^(NSData *body, NSError *error) {
         NSError * jsonError;
-        id json = [NSJSONSerialization JSONObjectWithData:body options:NSJSONReadingMutableContainers error:&jsonError];
+        id json = [NSJSONSerialization JSONObjectWithData:body options:0 error:&jsonError];
         completion(json, jsonError);
     }];
 }

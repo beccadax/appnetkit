@@ -40,9 +40,9 @@ ANUserType ANUserTypeFromString(NSString * string);
 @property (copy) NSString * typeString;
 @property (assign) ANUserType type;
 
-@property (copy) NSDate * createdAt;
-//@property (copy) ANUserCounts * counts;
-//@property (copy) NSMutableDictionary * appData;
+@property (readonly) NSDate * createdAt;
+//@property (readonly) ANUserCounts * counts;
+//@property (copy) NSDictionary * appData;
 
 @property (readonly) BOOL followsYou;
 @property (readonly) BOOL youFollow;
