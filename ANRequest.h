@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "AppNetKit.h"
 
 @class ANSession;
 
@@ -27,6 +28,8 @@ typedef enum {
 @property (readonly) ANRequestMethod method;
 
 @property (readonly) NSMutableURLRequest * URLRequest;
+
+- (NSString*)pathWithFormat:(NSString*)format userID:(ANResourceID)ID;
 
 - (void)sendRequestWithDataCompletion:(void (^)(NSData * body, NSError * error))completion;
 - (void)sendRequestWithRepresentationCompletion:(void (^)(id rep, NSError * error))completion;

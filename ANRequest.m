@@ -91,6 +91,14 @@
     return req;
 }
 
+- (NSString*)pathWithFormat:(NSString*)format userID:(ANResourceID)ID {
+    NSString * IDString = @"me";
+    if(ID != ANMeUserID) {
+        IDString = [NSString stringWithFormat:@"%lld", ID];
+    }
+    return [NSString stringWithFormat:format, IDString];
+}
+
 - (void)sendRequestWithDataCompletion:(void (^)(NSData * body, NSError * error))completion {
     NSURLRequest * req = self.URLRequest;
     
