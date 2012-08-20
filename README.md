@@ -3,9 +3,39 @@ AppNetKit
 
 AppNetKit is an Objective-C library for communicating with the App.net Stream API. It is completely asynchronous, using blocks to notify you of completions.
 
-AppNetKit currently only supports a very few features, but the general outlines ought to be visible.  There are a *lot* of commented-out API calls that might give you an idea of the direction I'm going.
+AppNetKit covers the Token, Users, and Posts parts of the App.net API—all the portions available as of late August 2012.
 
-Some of the highlights:
+Synopsis
+------
+
+    ANSession.defaultSession.accessToken = myOAuthToken;
+    
+    // Get the latest posts in the user's incoming post stream...
+    [ANSession.defaultSession postsInStreamWithCompletion:^(NSArray * posts, NSError * error) {
+        if(!posts) {
+            [self showError:error];
+            return;
+        }
+        
+        // Grab the most recent post.
+        ANPost * latestPost = posts[0];
+        
+        // Compose a reply...
+        ANPost * newPost = [[ANPost alloc] initWithSession:ANSession.defaultSession];
+        newPost.text = [NSString stringWithFormat:@"@%@ Me too!", latestPost.user.username];
+        newPost.replyToID = latestPost.ID;
+        
+        // And post it.
+        [newPost createWithCompletion:^(ANPost * post, NSError * error) {
+            if(!post) {
+                [self showError:error];
+            }
+        }];
+    }];
+
+
+Quick Tour
+=========
 
 ANAuthenticator
 -------------
