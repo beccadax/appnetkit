@@ -27,7 +27,7 @@ NSString * const ANScopeExport = @"export";
 }
 
 - (NSURL *)URLToAuthenticateForScopes:(NSArray *)scopes {
-    NSString * urlStr = [NSString stringWithFormat:@"https://alpha.app.net/oauth/authenticate?client_id=%@&response_type=token&redirect_uri=%@&scope=%@", self.clientID, self.redirectURL.absoluteString, [scopes componentsJoinedByString:@" "]];
+    NSString * urlStr = [NSString stringWithFormat:@"https://alpha.app.net/oauth/authenticate?client_id=%@&response_type=token&redirect_uri=%@&scope=%@", self.clientID, self.redirectURL.absoluteString, [scopes componentsJoinedByString:@"%20"]];
     return [NSURL URLWithString:urlStr];
 }
 
