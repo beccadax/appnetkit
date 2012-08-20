@@ -22,6 +22,18 @@
     return singleton;
 }
 
++ (NSNumberFormatter *)IDFormatter {
+    static NSNumberFormatter * singleton;
+    static dispatch_once_t once;
+    
+    dispatch_once(&once, ^{
+        singleton = [NSNumberFormatter new];
+    });
+    
+    return singleton;
+
+}
+
 - (id)initWithSession:(ANSession *)session {
     return [self initWithRepresentation:nil session:session];
 }

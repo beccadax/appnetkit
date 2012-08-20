@@ -14,6 +14,7 @@
 @interface ANResource : NSObject
 
 + (ISO8601DateFormatter*)dateFormatter;
++ (NSNumberFormatter*)IDFormatter;
 - (id)initWithRepresentation:(NSDictionary*)rep session:(ANSession*)session;
 - (id)initWithSession:(ANSession*)session;
 
@@ -38,8 +39,8 @@
 - (void)SETTER_NAME:(BOOL)value { self.representation[KEY] = @(value); }
 
 #define ANResourceSynthesizeID(KEY, GETTER_NAME, SETTER_NAME) \
-- (ANResourceID)GETTER_NAME { return [self.representation[KEY] unsignedLongLongValue]; } \
-- (void)SETTER_NAME:(ANResourceID)value { self.representation[KEY] = @(value); }
+- (ANResourceID)GETTER_NAME { return [[ANResource.IDFormatter numberFromString:self.representation[KEY]] unsignedLongLongValue]; } \
+- (void)SETTER_NAME:(ANResourceID)value { self.representation[KEY] = [ANResource.IDFormatter stringFromNumber:@(value)]; }
 
 #define ANResourceSynthesizeNSUInteger(KEY, GETTER_NAME, SETTER_NAME) \
 - (NSUInteger)GETTER_NAME { return [self.representation[KEY] unsignedIntegerValue]; } \
