@@ -14,8 +14,8 @@
     NSMutableDictionary * dict = [NSMutableDictionary new];
     
     for(NSString * key in keys) {
-        if(self[key]) {
-            dict[key] = self[key];
+        if([self objectForKey:key]) {
+            [dict setObject:[self objectForKey:key] forKey:key];
         }
     }
     

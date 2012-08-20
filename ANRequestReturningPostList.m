@@ -28,20 +28,20 @@
 }
 
 - (NSDictionary *)parameters {
-    NSMutableDictionary * params = @{
-        @"include_user": [self stringForBoolean:self.includeUser],
-        @"include_annotations": [self stringForBoolean:self.includeAnnotations],
-        @"include_replies": [self stringForBoolean:self.includeReplies]
-    }.mutableCopy;
+    NSMutableDictionary * params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                    [self stringForBoolean:self.includeUser], @"include_user",
+                                    [self stringForBoolean:self.includeAnnotations], @"include_annotations",
+                                    [self stringForBoolean:self.includeReplies], @"include_replies",
+                                    nil];
     
     if(self.count) {
-        params[@"count"] = [NSString stringWithFormat:@"%d", self.count];
+        [params setObject:[NSString stringWithFormat:@"%d", self.count] forKey:@"count"];
     }
     if(self.beforeID) {
-        params[@"before_id"] = [NSString stringWithFormat:@"%lld", self.beforeID];
+        [params setObject:[NSString stringWithFormat:@"%lld", self.beforeID] forKey:@"before_id"];
     }
     if(self.sinceID) {
-        params[@"since_id"] = [NSString stringWithFormat:@"%lld", self.sinceID];
+        [params setObject:[NSString stringWithFormat:@"%lld", self.sinceID] forKey:@"since_id"];
     }
     
     return params.copy;

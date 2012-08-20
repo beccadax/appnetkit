@@ -40,15 +40,15 @@ NSString * const ANScopeExport = @"export";
     static dispatch_once_t once;
     
     dispatch_once(&once, ^{
-        singleton = @{
-            @"invalid_request": @(ANOAuthInvalidRequestError),
-            @"unauthorized_client": @(ANOAuthUnauthorizedClientError),
-            @"access_denied": @(ANOAuthAccessDeniedError),
-            @"unsupported_response_type": @(ANOAuthUnsupportedResponseTypeError),
-            @"invalid_scope": @(ANOAuthInvalidScopeError),
-            @"server_error": @(ANOAuthServerError),
-            @"temporarily_unavailable": @(ANOAuthTemporarilyUnavailableError)
-        };
+        singleton = [NSDictionary dictionaryWithObjectsAndKeys:
+                     [NSNumber numberWithInteger:ANOAuthInvalidRequestError], @"invalid_request",
+                     [NSNumber numberWithInteger:ANOAuthUnauthorizedClientError], @"unauthorized_client",
+                     [NSNumber numberWithInteger:ANOAuthAccessDeniedError], @"access_denied",
+                     [NSNumber numberWithInteger:ANOAuthUnsupportedResponseTypeError], @"unsupported_response_type",
+                     [NSNumber numberWithInteger:ANOAuthInvalidScopeError], @"invalid_scope",
+                     [NSNumber numberWithInteger:ANOAuthServerError], @"server_error",
+                     [NSNumber numberWithInteger:ANOAuthTemporarilyUnavailableError], @"temporarily_unavailable",                     
+                     nil];
     });
     
     return singleton;
@@ -56,22 +56,22 @@ NSString * const ANScopeExport = @"export";
 }
 
 - (ANErrorCode)errorCodeForDictionary:(NSDictionary*)dict {
-    NSString * errCodeString = dict[@"error"];
+    NSString * errCodeString = [dict objectForKey:@"error"];
     
-    return [self.errorCodeDictionary[errCodeString] integerValue];
+    return [[self.errorCodeDictionary objectForKey:errCodeString] integerValue];
 }
 
 - (NSString*)accessTokenFromRedirectURL:(NSURL*)redirectURL error:(NSError *__autoreleasing *)error {
     NSDictionary * dict = [[NSDictionary alloc] initWithQueryString:redirectURL.fragment];
     
     if(dict[@"access_token"]) {
-        return dict[@"access_token"];
+        return [dict objectForKey:@"access_token"];
     }
     
     if(error) {
         *error = [NSError errorWithDomain:ANErrorDomain code:[self errorCodeForDictionary:dict] userInfo:@{
-                NSLocalizedDescriptionKey: dict[@"error_description"],
-                ANExplanationURLKey: [NSURL URLWithString:dict[@"error_uri"]]
+                NSLocalizedDescriptionKey: [dict objectForKey:@"error_description"],
+                ANExplanationURLKey: [NSURL URLWithString:[dict objectForKey:@"error_uri"]]
                   }];
     }
     

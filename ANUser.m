@@ -14,15 +14,15 @@ NSString * ANUserTypeToString(ANUserType type) {
     static dispatch_once_t once;
     
     dispatch_once(&once, ^{
-        table = @{
-            @(ANUserTypeHuman): @"human",
-            @(ANUserTypeBot): @"bot",
-            @(ANUserTypeCorporate): @"corporate",
-            @(ANUserTypeFeed): @"feed"
-        };
+        table = [NSDictionary dictionaryWithObjectsAndKeys:
+                 @"human", [NSNumber numberWithInteger:ANUserTypeHuman],
+                 @"bot", [NSNumber numberWithInteger:ANUserTypeBot],
+                 @"corporate", [NSNumber numberWithInteger:ANUserTypeCorporate],
+                 @"feed", [NSNumber numberWithInteger:ANUserTypeFeed],
+                 nil];
     });
     
-    return table[@(type)];
+    return [table objectForKey:[NSNumber numberWithInteger:type]];
 }
 
 ANUserType ANUserTypeFromString(NSString * string) {
@@ -30,15 +30,15 @@ ANUserType ANUserTypeFromString(NSString * string) {
     static dispatch_once_t once;
     
     dispatch_once(&once, ^{
-        table = @{
-            @"human": @(ANUserTypeHuman),
-            @"bot": @(ANUserTypeBot),
-            @"corporate": @(ANUserTypeCorporate),
-            @"feed": @(ANUserTypeFeed)
-        };
+        table = [NSDictionary dictionaryWithObjectsAndKeys:
+                 [NSNumber numberWithInteger:ANUserTypeHuman], @"human",
+                 [NSNumber numberWithInteger:ANUserTypeBot], @"bot",
+                 [NSNumber numberWithInteger:ANUserTypeCorporate], @"corporate",
+                 [NSNumber numberWithInteger:ANUserTypeFeed], @"feed", 
+                 nil];
     });
     
-    return [table[string] integerValue];
+    return [[table objectForKey:string] integerValue];
 
 }
 
