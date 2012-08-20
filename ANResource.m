@@ -47,6 +47,18 @@
     return self;
 }
 
+- (NSUInteger)hash {
+    return (NSUInteger)self.originalRepresentation.hash ^ (NSUInteger)self.class;
+}
+
+- (BOOL)isEqual:(ANResource*)object {
+    if(self.class != object.class) {
+        return NO;
+    }
+    
+    return [self.originalRepresentation isEqual:object.originalRepresentation];
+}
+
 - (void)revert {
     _representation = _originalRepresentation.mutableCopy;
 }

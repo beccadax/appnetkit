@@ -79,6 +79,18 @@ ANResourceSynthesizeBool(@"you_muted", youMuted, setYouMuted)
     self.typeString = ANUserTypeToString(type);
 }
 
+- (NSUInteger)hash {
+    return (NSUInteger)self.ID ^ (NSUInteger)self.class;
+}
+
+- (BOOL)isEqual:(ANUser*)object {
+    if(self.class != object.class) {
+        return NO;
+    }
+    
+    return self.ID == object.ID;
+}
+
 - (void)followWithCompletion:(ANUserRequestCompletion)completion {
     [self.session followUserWithID:self.ID completion:completion];
 }
