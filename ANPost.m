@@ -17,6 +17,7 @@ ANResourceSynthesize(@"html", HTML, setHTML)
 ANResourceSynthesizeID(@"reply_to", replyToID, setReplyToID)
 ANResourceSynthesizeID(@"thread_id", threadID, setThreadID)
 ANResourceSynthesizeNSUInteger(@"num_replies", numberOfReplies, setNumberOfReplies)
+ANResourceSynthesize(@"annotations", annotations, setAnnotations)
 ANResourceSynthesizeBool(@"is_deleted", isDeleted, setDeleted)
 
 - (void)postRepliedToWithCompletion:(ANPostRequestCompletion)completion {

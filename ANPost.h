@@ -30,7 +30,7 @@
 @property (readonly) NSUInteger numberOfReplies;
 - (void)postAtThreadRootWithCompletion:(ANPostRequestCompletion)completion;
 
-//@property (readonly) NSMutableDictionary * annotations;
+@property (copy) NSDictionary * annotations;
 //@property (readonly) NSArray * entities;
 //@property (readonly) NSMutableArray * links;
 
