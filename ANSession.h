@@ -32,8 +32,8 @@ typedef enum {
 
 - (void)accessTokenInformationWithCompletion:(ANAccessTokenInformationRequestCompletion)completion;
 
-//- (void)userWithID:(ANResourceID)ID completion:(ANUserRequestCompletion)completion;
-//
+- (void)userWithID:(ANResourceID)ID completion:(ANUserRequestCompletion)completion;
+
 //- (void)followUserWithID:(ANResourceID)ID completion:(ANUserRequestCompletion)completion;
 //- (void)unfollowUserWithID:(ANResourceID)ID completion:(ANUserRequestCompletion)completion;
 //- (void)followingsForUserWithID:(ANResourceID)ID completion:(ANUserListRequestCompletion)completion;

@@ -17,6 +17,7 @@
 #import "ANPostsInGlobalStreamRequest.h"
 #import "ANPostsWithTagRequest.h"
 #import "ANPostRequest.h"
+#import "ANUserRequest.h"
 
 const ANResourceID ANMeUserID = 0;
 const ANResourceID ANUnspecifiedPostID = 0;
@@ -64,6 +65,13 @@ NSInteger NetworkActivityCount;
     [req sendRequestWithCompletion:completion];
 }
 
+- (void)userWithID:(ANResourceID)ID completion:(ANUserRequestCompletion)completion {
+    ANUserRequest * req = [[ANUserRequest alloc] initWithSession:self];
+    
+    req.userID = ID;
+    
+    [req sendRequestWithCompletion:completion];
+}
 
 
 - (void)postWithID:(ANResourceID)ID completion:(ANPostRequestCompletion)completion {
