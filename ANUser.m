@@ -79,6 +79,10 @@ ANResourceSynthesizeBool(@"you_muted", youMuted, setYouMuted)
     self.typeString = ANUserTypeToString(type);
 }
 
+- (void)followWithCompletion:(ANUserRequestCompletion)completion {
+    [self.session followUserWithID:self.ID completion:completion];
+}
+
 
 
 - (void)postsWithCompletion:(ANPostListRequestCompletion)completion {

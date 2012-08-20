@@ -48,7 +48,7 @@ ANUserType ANUserTypeFromString(NSString * string);
 @property (readonly) BOOL youFollow;
 @property (readonly) BOOL youMuted;
 
-//- (void)followWithCompletion:(ANUserRequestCompletion)completion;
+- (void)followWithCompletion:(ANUserRequestCompletion)completion;
 //- (void)unfollowWithCompletion:(ANUserRequestCompletion)completion;
 //- (void)followingsWithCompletion:(ANUserListRequestCompletion)completion;
 //- (void)followersWithCompletion:(ANUserListRequestCompletion)completion;
