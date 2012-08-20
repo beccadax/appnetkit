@@ -41,7 +41,8 @@ typedef enum {
 
 //- (void)muteUserWithID:(ANResourceID)ID completion:(ANUserRequestCompletion)completion;
 //- (void)unmuteUserWithID:(ANResourceID)ID completion:(ANUserRequestCompletion)completion;
-//- (void)mutingsForUserWithID:(ANResourceID)ID completion:(ANUserListRequestCompletion)completion;
+- (void)mutingsWithCompletion:(ANUserListRequestCompletion)completion;
+
 
 - (void)postWithID:(ANResourceID)ID completion:(ANPostRequestCompletion)completion;
 

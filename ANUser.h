@@ -55,7 +55,6 @@ ANUserType ANUserTypeFromString(NSString * string);
 
 //- (void)muteWithCompletion:(ANUserRequestCompletion)completion;
 //- (void)unmuteWithCompletion:(ANUserRequestCompletion)completion;
-//- (void)mutingsWithCompletion:(ANUserListRequestCompletion)completion;
 
 - (void)postsWithCompletion:(ANPostListRequestCompletion)completion;
 - (void)postsBetweenID:(ANResourceID)sinceID andID:(ANResourceID)beforeID completion:(ANPostListRequestCompletion)completion;
