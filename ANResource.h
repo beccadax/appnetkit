@@ -20,7 +20,9 @@
 
 @property (readonly,weak) ANSession * session;
 @property (readonly,strong) NSMutableDictionary * representation;
-@property (readonly,strong) NSDictionary * originalRepresentation;
+
+// Warning: Trying to use this setter is likely to cause AppNetKit to catch fire.
+@property (strong) NSDictionary * originalRepresentation;
 
 - (void)revert;
 

@@ -26,7 +26,7 @@
 
 - (void)sendRequestWithCompletion:(ANPostRequestCompletion)completion {
     [self sendRequestWithRepresentationCompletion:^(id rep, NSError *error) {
-        // XXX register .post as being the post with this ID?
+        [self.session updateResource:self.post withRepresentation:rep];
         [self.session completePostRequest:completion withRepresentation:rep error:error];
     }];
 }

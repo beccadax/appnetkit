@@ -8,6 +8,7 @@
 
 #import "ANResource.h"
 #import "ISO8601DateFormatter.h"
+#import "ANSession.h"
 
 @implementation ANResource
 
@@ -43,6 +44,8 @@
         _session = session;
         _originalRepresentation = rep.copy ?: @{};
         [self revert];
+        
+        self = [session uniqueResource:self];
     }
     return self;
 }

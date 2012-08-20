@@ -13,6 +13,13 @@ const ANResourceID ANUnspecifiedPostID = 0;
 
 NSInteger NetworkActivityCount;
 
+@interface ANSession ()
+
+@property (strong) NSMutableSet * resources;
+@property (strong) dispatch_queue_t resourceUniquingQueue;
+
+@end
+
 @implementation ANSession
 
 + (void)beginNetworkActivity {
@@ -24,6 +31,14 @@ NSInteger NetworkActivityCount;
     NetworkActivityCount--;
     NSAssert(NetworkActivityCount >= 0, @"Network activity count underflow");
     UIApplication.sharedApplication.networkActivityIndicatorVisible = (NetworkActivityCount > 0);
+}
+
+- (id)init {
+    if((self = [super init])) {
+        _resources = [NSMutableSet new];
+        _resourceUniquingQueue = dispatch_queue_create("ANSession resource uniquing queue", DISPATCH_QUEUE_SERIAL);
+    }
+    return self;
 }
 
 + (ANSession *)defaultSession {
@@ -96,6 +111,38 @@ NSInteger NetworkActivityCount;
     else {
         completion(nil, error);
     }
+}
+
+- (id)uniqueResource:(ANResource *)r {
+    __block ANResource * resource = r;
+    
+    // We do this in a queue so that only one thread can be adjusting the resource set at a time.
+    dispatch_sync(self.resourceUniquingQueue, ^{
+        ANResource * existingResource = [self.resources member:resource];
+        
+        if(existingResource) {
+            [self.resources removeObject:existingResource];
+            existingResource.originalRepresentation = resource.originalRepresentation;
+            resource = existingResource;
+        }
+        
+        [self.resources addObject:resource];
+    });
+    
+    return resource;
+}
+
+- (void)updateResource:(ANResource*)resource withRepresentation:(NSDictionary*)rep {
+    if(!rep) {
+        return;
+    }
+    
+    // We do this in a queue so that only one thread can be adjusting the resource set at a time.
+    dispatch_sync(self.resourceUniquingQueue, ^{
+        [self.resources removeObject:resource];
+        resource.originalRepresentation = rep;
+        [self.resources addObject:resource];
+    });
 }
 
 @end
