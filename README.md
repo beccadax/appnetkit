@@ -17,17 +17,17 @@ ANSession
 
 Basis of the API. Set the accessToken, then use the other methods to access parts of the API. +[ANSession defaultSession] is a convenience method for the common case where you're using only one session for the whole app; you can also allocate several different ANSessions and use them separately.
 
-ANSession also manages UIApplication's network activity indicator. This should probably be configurable in various ways, not the least because it's the only way in which this app depends on iOS-specific APIs.
+ANSession also manages UIApplication's network activity indicator. This should probably be configurable in various ways, not the least because it's the only way in which this library depends on iOS-specific APIs.
 
 ANResource, ANUser, and ANPost
 ----------------------------
 
-ANResource represents any server-side object represented by a JSON dictionary. ANUser and ANPost are subclasses for the Stream API's User and Post objects, respectively.
+ANResource represents anything the server sends as a JSON object. ANUser and ANPost are subclasses for the Stream API's User and Post objects, respectively.
 
 ANRequest and subclasses
 ---------------------
 
-Represent specific API requests. You don't normally have to use them--ANSession has APIs for common requests--but they are public API, and using them directly can give you finer control than ANSession allows.
+ANRequest subclasses represent specific API requests. You don't normally have to use them--ANSession has APIs for common requests--but they are public API, and using them directly can give you finer control than ANSession allows.
 
 Author
 ======
