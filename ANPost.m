@@ -19,6 +19,11 @@ ANResourceSynthesizeID(@"thread_id", threadID, setThreadID)
 ANResourceSynthesizeNSUInteger(@"num_replies", numberOfReplies, setNumberOfReplies)
 ANResourceSynthesize(@"annotations", annotations, setAnnotations)
 ANResourceSynthesizeBool(@"is_deleted", isDeleted, setDeleted)
+ANResourceSynthesize(@"user", userRepresentation, setUserRepresentation)
+
+- (ANUser *)user {
+    return [[ANUser alloc] initWithRepresentation:self.userRepresentation session:self.session];
+}
 
 - (void)postRepliedToWithCompletion:(ANPostRequestCompletion)completion {
     [self.session postWithID:self.ID completion:completion];
