@@ -11,6 +11,7 @@
 #import "ANCreatePostRequest.h"
 #import "ANDeletePostRequest.h"
 #import "ANUserPostListRequest.h"
+#import "ANRepliesToPostRequest.h"
 
 const ANResourceID ANMeUserID = 0;
 const ANResourceID ANUnspecifiedPostID = 0;
@@ -80,6 +81,16 @@ NSInteger NetworkActivityCount;
     ANUserPostListRequest * req = [[ANUserPostListRequest alloc] initWithSession:self];
     
     req.userID = ID;
+    req.sinceID = sinceID;
+    req.beforeID = beforeID;
+    
+    [req sendRequestWithCompletion:completion];
+}
+
+- (void)postsReplyingToPostWithID:(ANResourceID)ID betweenID:(ANResourceID)sinceID andID:(ANResourceID)beforeID completion:(ANPostListRequestCompletion)completion {
+    ANRepliesToPostRequest * req = [[ANRepliesToPostRequest alloc] initWithSession:self];
+    
+    req.postID = ID;
     req.sinceID = sinceID;
     req.beforeID = beforeID;
     

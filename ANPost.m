@@ -22,11 +22,11 @@ ANResourceSynthesizeBool(@"is_deleted", isDeleted, setDeleted)
 //- (void)postRepliedToWithCompletion:(ANPostRequestCompletion)completion {
 //    [self.session postWithID:self.ID completion:completion];
 //}
-//
-//- (void)replyPostsWithCompletion:(ANPostListRequestCompletion)completion {
-//    [self.session postsReplyingToPostWithID:self.ID betweenID:ANUnspecifiedPostID andID:ANUnspecifiedPostID completion:completion];
-//}
-//
+
+- (void)replyPostsWithCompletion:(ANPostListRequestCompletion)completion {
+    [self.session postsReplyingToPostWithID:self.ID betweenID:ANUnspecifiedPostID andID:ANUnspecifiedPostID completion:completion];
+}
+
 //- (void)postAtThreadRootWithCompletion:(ANPostRequestCompletion)completion {
 //    [self.session postWithID:self.ID completion:completion];
 //}

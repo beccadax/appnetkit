@@ -24,7 +24,7 @@
 
 @property (assign) ANResourceID replyToID;
 //- (void)postRepliedToWithCompletion:(ANPostRequestCompletion)completion;
-//- (void)replyPostsWithCompletion:(ANPostListRequestCompletion)completion;
+- (void)replyPostsWithCompletion:(ANPostListRequestCompletion)completion;
 
 @property (readonly) ANResourceID threadID;
 @property (readonly) NSUInteger numberOfReplies;
