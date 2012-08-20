@@ -57,9 +57,9 @@ ANUserType ANUserTypeFromString(NSString * string);
 //- (void)unmuteWithCompletion:(ANUserRequestCompletion)completion;
 //- (void)mutingsWithCompletion:(ANUserListRequestCompletion)completion;
 
-//- (void)postsWithCompletion:(ANPostListRequestCompletion)completion;
-//- (void)postsBetweenID:(ANResourceID)sinceID andID:(ANResourceID)beforeID completion:(ANPostListRequestCompletion)completion;
-//
+- (void)postsWithCompletion:(ANPostListRequestCompletion)completion;
+- (void)postsBetweenID:(ANResourceID)sinceID andID:(ANResourceID)beforeID completion:(ANPostListRequestCompletion)completion;
+
 //- (void)postsMentioningUserWithCompletion:(ANPostListRequestCompletion)completion;
 //- (void)postsMentioningUserBetweenID:(ANResourceID)sinceID andID:(ANResourceID)beforeID completion:(ANPostListRequestCompletion)completion;
 //

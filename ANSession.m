@@ -10,6 +10,7 @@
 #import "ANAccessTokenInformationRequest.h"
 #import "ANCreatePostRequest.h"
 #import "ANDeletePostRequest.h"
+#import "ANUserPostListRequest.h"
 
 const ANResourceID ANMeUserID = 0;
 const ANResourceID ANUnspecifiedPostID = 0;
@@ -71,6 +72,16 @@ NSInteger NetworkActivityCount;
     ANDeletePostRequest * req = [[ANDeletePostRequest alloc] initWithSession:self];
     
     req.postID = ID;
+    
+    [req sendRequestWithCompletion:completion];
+}
+
+- (void)postsForUserWithID:(ANResourceID)ID betweenID:(ANResourceID)sinceID andID:(ANResourceID)beforeID completion:(ANPostListRequestCompletion)completion {
+    ANUserPostListRequest * req = [[ANUserPostListRequest alloc] initWithSession:self];
+    
+    req.userID = ID;
+    req.sinceID = sinceID;
+    req.beforeID = beforeID;
     
     [req sendRequestWithCompletion:completion];
 }
