@@ -19,6 +19,7 @@
 #import "ANPostRequest.h"
 #import "ANUserRequest.h"
 #import "ANFollowUserRequest.h"
+#import "ANUnfollowUserRequest.h"
 
 const ANResourceID ANMeUserID = 0;
 const ANResourceID ANUnspecifiedPostID = 0;
@@ -76,6 +77,14 @@ NSInteger NetworkActivityCount;
 
 - (void)followUserWithID:(ANResourceID)ID completion:(ANUserRequestCompletion)completion {
     ANFollowUserRequest * req = [[ANFollowUserRequest alloc] initWithSession:self];
+    
+    req.userID = ID;
+    
+    [req sendRequestWithCompletion:completion];
+}
+
+- (void)unfollowUserWithID:(ANResourceID)ID completion:(ANUserRequestCompletion)completion {
+    ANUnfollowUserRequest * req = [[ANUnfollowUserRequest alloc] initWithSession:self];
     
     req.userID = ID;
     

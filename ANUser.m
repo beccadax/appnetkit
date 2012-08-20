@@ -83,6 +83,9 @@ ANResourceSynthesizeBool(@"you_muted", youMuted, setYouMuted)
     [self.session followUserWithID:self.ID completion:completion];
 }
 
+- (void)unfollowWithCompletion:(ANUserRequestCompletion)completion {
+    [self.session unfollowUserWithID:self.ID completion:completion];
+}
 
 
 - (void)postsWithCompletion:(ANPostListRequestCompletion)completion {
