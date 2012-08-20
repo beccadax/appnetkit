@@ -19,17 +19,17 @@ ANResourceSynthesizeID(@"thread_id", threadID, setThreadID)
 ANResourceSynthesizeNSUInteger(@"num_replies", numberOfReplies, setNumberOfReplies)
 ANResourceSynthesizeBool(@"is_deleted", isDeleted, setDeleted)
 
-//- (void)postRepliedToWithCompletion:(ANPostRequestCompletion)completion {
-//    [self.session postWithID:self.ID completion:completion];
-//}
+- (void)postRepliedToWithCompletion:(ANPostRequestCompletion)completion {
+    [self.session postWithID:self.ID completion:completion];
+}
 
 - (void)replyPostsWithCompletion:(ANPostListRequestCompletion)completion {
     [self.session postsReplyingToPostWithID:self.ID betweenID:ANUnspecifiedPostID andID:ANUnspecifiedPostID completion:completion];
 }
 
-//- (void)postAtThreadRootWithCompletion:(ANPostRequestCompletion)completion {
-//    [self.session postWithID:self.ID completion:completion];
-//}
+- (void)postAtThreadRootWithCompletion:(ANPostRequestCompletion)completion {
+    [self.session postWithID:self.ID completion:completion];
+}
 
 - (void)createWithCompletion:(ANPostRequestCompletion)completion {
     [self.session createPost:self completion:completion];

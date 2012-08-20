@@ -23,12 +23,12 @@
 //@property (readonly) ANSource * source;
 
 @property (assign) ANResourceID replyToID;
-//- (void)postRepliedToWithCompletion:(ANPostRequestCompletion)completion;
+- (void)postRepliedToWithCompletion:(ANPostRequestCompletion)completion;
 - (void)replyPostsWithCompletion:(ANPostListRequestCompletion)completion;
 
 @property (readonly) ANResourceID threadID;
 @property (readonly) NSUInteger numberOfReplies;
-//- (void)postAtThreadRootWithCompletion:(ANPostRequestCompletion)completion;
+- (void)postAtThreadRootWithCompletion:(ANPostRequestCompletion)completion;
 
 //@property (readonly) NSMutableDictionary * annotations;
 //@property (readonly) NSArray * entities;

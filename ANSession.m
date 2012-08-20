@@ -16,6 +16,7 @@
 #import "ANPostsMentioningUserRequest.h"
 #import "ANPostsInGlobalStreamRequest.h"
 #import "ANPostsWithTagRequest.h"
+#import "ANPostRequest.h"
 
 const ANResourceID ANMeUserID = 0;
 const ANResourceID ANUnspecifiedPostID = 0;
@@ -59,6 +60,16 @@ NSInteger NetworkActivityCount;
 
 - (void)accessTokenInformationWithCompletion:(ANAccessTokenInformationRequestCompletion)completion {
     ANAccessTokenInformationRequest * req = [[ANAccessTokenInformationRequest alloc] initWithSession:self];
+    
+    [req sendRequestWithCompletion:completion];
+}
+
+
+
+- (void)postWithID:(ANResourceID)ID completion:(ANPostRequestCompletion)completion {
+    ANPostRequest * req = [[ANPostRequest alloc] initWithSession:self];
+    
+    req.postID = ID;
     
     [req sendRequestWithCompletion:completion];
 }
