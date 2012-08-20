@@ -37,6 +37,6 @@
 @property (readonly,getter=isDeleted) BOOL deleted;
 
 - (void)createWithCompletion:(ANPostRequestCompletion)completion;
-//- (void)deleteWithCompletion:(ANPostRequestCompletion)completion;
+- (void)deleteWithCompletion:(ANPostRequestCompletion)completion;
 
 @end

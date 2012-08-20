@@ -35,8 +35,8 @@ ANResourceSynthesizeBool(@"is_deleted", isDeleted, setDeleted)
     [self.session createPost:self completion:completion];
 }
 
-//- (void)deleteWithCompletion:(ANPostRequestCompletion)completion {
-//    [self.session deletePostWithID:self.ID completion:completion];
-//}
+- (void)deleteWithCompletion:(ANPostRequestCompletion)completion {
+    [self.session deletePostWithID:self.ID completion:completion];
+}
 
 @end
