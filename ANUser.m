@@ -99,7 +99,9 @@ ANResourceSynthesizeBool(@"you_muted", youMuted, setYouMuted)
     [self.session muteUserWithID:self.ID completion:completion];
 }
 
-
+- (void)unmuteWithCompletion:(ANUserRequestCompletion)completion {
+    [self.session unmuteUserWithID:self.ID completion:completion];
+}
 
 - (void)postsWithCompletion:(ANPostListRequestCompletion)completion {
     [self postsBetweenID:ANUnspecifiedPostID andID:ANUnspecifiedPostID completion:completion];

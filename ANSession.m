@@ -24,6 +24,7 @@
 #import "ANFollowersForUserRequest.h"
 #import "ANMutingsForUserRequest.h"
 #import "ANMuteUserRequest.h"
+#import "ANUnmuteUserRequest.h"
 
 const ANResourceID ANMeUserID = 0;
 const ANResourceID ANUnspecifiedPostID = 0;
@@ -113,6 +114,14 @@ NSInteger NetworkActivityCount;
 
 - (void)muteUserWithID:(ANResourceID)ID completion:(ANUserRequestCompletion)completion {
     ANMuteUserRequest * req = [[ANMuteUserRequest alloc] initWithSession:self];
+    
+    req.userID = ID;
+    
+    [req sendRequestWithCompletion:completion];
+}
+
+- (void)unmuteUserWithID:(ANResourceID)ID completion:(ANUserRequestCompletion)completion {
+    ANUnmuteUserRequest * req = [[ANUnmuteUserRequest alloc] initWithSession:self];
     
     req.userID = ID;
     

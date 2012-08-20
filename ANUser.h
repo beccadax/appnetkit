@@ -54,7 +54,7 @@ ANUserType ANUserTypeFromString(NSString * string);
 - (void)followersWithCompletion:(ANUserListRequestCompletion)completion;
 
 - (void)muteWithCompletion:(ANUserRequestCompletion)completion;
-//- (void)unmuteWithCompletion:(ANUserRequestCompletion)completion;
+- (void)unmuteWithCompletion:(ANUserRequestCompletion)completion;
 
 - (void)postsWithCompletion:(ANPostListRequestCompletion)completion;
 - (void)postsBetweenID:(ANResourceID)sinceID andID:(ANResourceID)beforeID completion:(ANPostListRequestCompletion)completion;
