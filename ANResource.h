@@ -26,9 +26,9 @@
 
 @end
 
-#define ANResourceSynthesizeString(KEY, GETTER_NAME, SETTER_NAME) \
-- (NSString*)GETTER_NAME { return self.representation[KEY]; } \
-- (void)SETTER_NAME:(NSString*)value { self.representation[KEY] = value.copy; }
+#define ANResourceSynthesize(KEY, GETTER_NAME, SETTER_NAME) \
+- (id)GETTER_NAME { return self.representation[KEY]; } \
+- (void)SETTER_NAME:(id)value { self.representation[KEY] = [value copy]; }
 
 #define ANResourceSynthesizeDate(KEY, GETTER_NAME, SETTER_NAME) \
 - (NSDate*)GETTER_NAME { return [ANResource.dateFormatter dateFromString:self.representation[KEY]]; } \

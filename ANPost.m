@@ -12,8 +12,8 @@
 
 ANResourceSynthesizeID(@"id", ID, setID)
 ANResourceSynthesizeDate(@"createdAt", createdAt, setCreatedAt)
-ANResourceSynthesizeString(@"text", text, setText);
-ANResourceSynthesizeString(@"html", HTML, setHTML)
+ANResourceSynthesize(@"text", text, setText);
+ANResourceSynthesize(@"html", HTML, setHTML)
 ANResourceSynthesizeID(@"reply_to", replyToID, setReplyToID)
 ANResourceSynthesizeID(@"thread_id", threadID, setThreadID)
 ANResourceSynthesizeNSUInteger(@"num_replies", numberOfReplies, setNumberOfReplies)

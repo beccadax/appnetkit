@@ -45,11 +45,11 @@ ANUserType ANUserTypeFromString(NSString * string) {
 @implementation ANUser
 
 ANResourceSynthesizeID(@"id", ID, setID)
-ANResourceSynthesizeString(@"username", username, setUsername)
-ANResourceSynthesizeString(@"name", name, setName)
-ANResourceSynthesizeString(@"timezone", timezoneString, setTimezoneString)
-ANResourceSynthesizeString(@"locale", localeString, setLocaleString)
-ANResourceSynthesizeString(@"type", typeString, setTypeString)
+ANResourceSynthesize(@"username", username, setUsername)
+ANResourceSynthesize(@"name", name, setName)
+ANResourceSynthesize(@"timezone", timezoneString, setTimezoneString)
+ANResourceSynthesize(@"locale", localeString, setLocaleString)
+ANResourceSynthesize(@"type", typeString, setTypeString)
 ANResourceSynthesizeDate(@"created_at", createdAt, setCreatedAt)
 ANResourceSynthesizeBool(@"follows_you", followsYou, setFollowsYou)
 ANResourceSynthesizeBool(@"you_follow", youFollow, setYouFollow)
