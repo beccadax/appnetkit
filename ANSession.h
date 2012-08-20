@@ -54,7 +54,10 @@ typedef enum {
 - (void)postsInStreamWithCompletion:(ANPostListRequestCompletion)completion;
 - (void)postsInStreamBetweenID:(ANResourceID)sinceID andID:(ANResourceID)beforeID completion:(ANPostListRequestCompletion)completion;
 
+//- (void)postsInGlobalStreamWithCompletion:(ANPostListRequestCompletion)completion;
 //- (void)postsInGlobalStreamBetweenID:(ANResourceID)sinceID andID:(ANResourceID)beforeID completion:(ANPostListRequestCompletion)completion;
+
+//- - (void)postsWithTag:(NSString*)tag completion:(ANPostListRequestCompletion)completion;
 //- (void)postsWithTag:(NSString*)tag betweenID:(ANResourceID)sinceID andID:(ANResourceID)beforeID completion:(ANPostListRequestCompletion)completion;
 
 - (void)postsReplyingToPostWithID:(ANResourceID)ID betweenID:(ANResourceID)sinceID andID:(ANResourceID)beforeID completion:(ANPostListRequestCompletion)completion;
