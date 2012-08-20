@@ -1,5 +1,5 @@
 //
-//  ANRepliesToPostRequest.h
+//  ANUserPostListRequest.h
 //  AppNetKit
 //
 //  Created by Brent Royal-Gordon on 8/19/12.
@@ -9,8 +9,8 @@
 #import "ANRequestReturningPostList.h"
 #import "AppNetKit.h"
 
-@interface ANRepliesToPostRequest : ANRequestReturningPostList
+@interface ANPostsByUserRequest : ANRequestReturningPostList
 
-@property (assign) ANResourceID postID;
+@property (assign) ANResourceID userID;
 
 @end

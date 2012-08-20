@@ -10,9 +10,9 @@
 #import "ANAccessTokenInformationRequest.h"
 #import "ANCreatePostRequest.h"
 #import "ANDeletePostRequest.h"
-#import "ANUserPostListRequest.h"
-#import "ANRepliesToPostRequest.h"
-#import "ANUserPostStreamRequest.h"
+#import "ANPostsByUserRequest.h"
+#import "ANPostsReplyingToPostRequest.h"
+#import "ANPostsInUserStreamRequest.h"
 #import "ANPostsMentioningUserRequest.h"
 #import "ANPostsInGlobalStreamRequest.h"
 #import "ANPostsWithTagRequest.h"
@@ -82,7 +82,7 @@ NSInteger NetworkActivityCount;
 }
 
 - (void)postsForUserWithID:(ANResourceID)ID betweenID:(ANResourceID)sinceID andID:(ANResourceID)beforeID completion:(ANPostListRequestCompletion)completion {
-    ANUserPostListRequest * req = [[ANUserPostListRequest alloc] initWithSession:self];
+    ANPostsByUserRequest * req = [[ANPostsByUserRequest alloc] initWithSession:self];
     
     req.userID = ID;
     req.sinceID = sinceID;
@@ -92,7 +92,7 @@ NSInteger NetworkActivityCount;
 }
 
 - (void)postsReplyingToPostWithID:(ANResourceID)ID betweenID:(ANResourceID)sinceID andID:(ANResourceID)beforeID completion:(ANPostListRequestCompletion)completion {
-    ANRepliesToPostRequest * req = [[ANRepliesToPostRequest alloc] initWithSession:self];
+    ANPostsReplyingToPostRequest * req = [[ANPostsReplyingToPostRequest alloc] initWithSession:self];
     
     req.postID = ID;
     req.sinceID = sinceID;
@@ -106,7 +106,7 @@ NSInteger NetworkActivityCount;
 }
 
 - (void)postsInStreamBetweenID:(ANResourceID)sinceID andID:(ANResourceID)beforeID completion:(ANPostListRequestCompletion)completion {
-    ANUserPostStreamRequest * req = [[ANUserPostStreamRequest alloc] initWithSession:self];
+    ANPostsInUserStreamRequest * req = [[ANPostsInUserStreamRequest alloc] initWithSession:self];
     
     req.sinceID = sinceID;
     req.beforeID = beforeID;

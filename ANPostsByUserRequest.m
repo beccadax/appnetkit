@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 Architechies. All rights reserved.
 //
 
-#import "ANUserPostListRequest.h"
+#import "ANPostsByUserRequest.h"
 
-@implementation ANUserPostListRequest
+@implementation ANPostsByUserRequest
 
 - (NSURL *)URL {
     return [NSURL URLWithString:[self pathWithFormat:@"users/%@/posts" userID:self.userID] relativeToURL:[self.session URLForStreamAPIVersion:ANStreamAPIVersion0]];

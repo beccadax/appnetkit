@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 Architechies. All rights reserved.
 //
 
-#import "ANRepliesToPostRequest.h"
+#import "ANPostsReplyingToPostRequest.h"
 
-@implementation ANRepliesToPostRequest
+@implementation ANPostsReplyingToPostRequest
 
 - (NSURL *)URL {
     return [NSURL URLWithString:[NSString stringWithFormat:@"posts/%lld/replies", self.postID] relativeToURL:[self.session URLForStreamAPIVersion:ANStreamAPIVersion0]];

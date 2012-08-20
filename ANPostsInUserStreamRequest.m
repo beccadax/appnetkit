@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 Architechies. All rights reserved.
 //
 
-#import "ANUserPostStreamRequest.h"
+#import "ANPostsInUserStreamRequest.h"
 
-@implementation ANUserPostStreamRequest
+@implementation ANPostsInUserStreamRequest
 
 - (NSURL *)URL {
     return [NSURL URLWithString:@"posts/stream" relativeToURL:[self.session URLForStreamAPIVersion:ANStreamAPIVersion0]];
