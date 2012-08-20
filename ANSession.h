@@ -39,7 +39,7 @@ typedef enum {
 - (void)followingsForUserWithID:(ANResourceID)ID completion:(ANUserListRequestCompletion)completion;
 - (void)followersForUserWithID:(ANResourceID)ID completion:(ANUserListRequestCompletion)completion;
 
-//- (void)muteUserWithID:(ANResourceID)ID completion:(ANUserRequestCompletion)completion;
+- (void)muteUserWithID:(ANResourceID)ID completion:(ANUserRequestCompletion)completion;
 //- (void)unmuteUserWithID:(ANResourceID)ID completion:(ANUserRequestCompletion)completion;
 - (void)mutingsWithCompletion:(ANUserListRequestCompletion)completion;
 

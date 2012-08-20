@@ -53,7 +53,7 @@ ANUserType ANUserTypeFromString(NSString * string);
 - (void)followingsWithCompletion:(ANUserListRequestCompletion)completion;
 - (void)followersWithCompletion:(ANUserListRequestCompletion)completion;
 
-//- (void)muteWithCompletion:(ANUserRequestCompletion)completion;
+- (void)muteWithCompletion:(ANUserRequestCompletion)completion;
 //- (void)unmuteWithCompletion:(ANUserRequestCompletion)completion;
 
 - (void)postsWithCompletion:(ANPostListRequestCompletion)completion;

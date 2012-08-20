@@ -95,6 +95,9 @@ ANResourceSynthesizeBool(@"you_muted", youMuted, setYouMuted)
     [self.session followersForUserWithID:self.ID completion:completion];
 }
 
+- (void)muteWithCompletion:(ANUserRequestCompletion)completion {
+    [self.session muteUserWithID:self.ID completion:completion];
+}
 
 
 
