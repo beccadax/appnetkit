@@ -91,6 +91,12 @@ ANResourceSynthesizeBool(@"you_muted", youMuted, setYouMuted)
     [self.session followingsForUserWithID:self.ID completion:completion];
 }
 
+- (void)followersWithCompletion:(ANUserListRequestCompletion)completion {
+    [self.session followersForUserWithID:self.ID completion:completion];
+}
+
+
+
 
 - (void)postsWithCompletion:(ANPostListRequestCompletion)completion {
     [self postsBetweenID:ANUnspecifiedPostID andID:ANUnspecifiedPostID completion:completion];
