@@ -89,12 +89,12 @@ ANResourceSynthesizeBool(@"you_muted", youMuted, setYouMuted)
     [self.session postsForUserWithID:self.ID betweenID:sinceID andID:beforeID completion:completion];
 }
 
-//- (void)postsMentioningUserWithCompletion:(ANPostListRequestCompletion)completion {
-//    [self postsMentioningUserBetweenID:ANUnspecifiedPostID andID:ANUnspecifiedPostID completion:completion];
-//}
-//
-//- (void)postsMentioningUserBetweenID:(ANResourceID)sinceID andID:(ANResourceID)beforeID completion:(ANPostListRequestCompletion)completion {
-//    [self.session postsMentioningUserWithID:self.ID betweenID:sinceID andID:beforeID completion:completion];
-//}
+- (void)postsMentioningUserWithCompletion:(ANPostListRequestCompletion)completion {
+    [self postsMentioningUserBetweenID:ANUnspecifiedPostID andID:ANUnspecifiedPostID completion:completion];
+}
+
+- (void)postsMentioningUserBetweenID:(ANResourceID)sinceID andID:(ANResourceID)beforeID completion:(ANPostListRequestCompletion)completion {
+    [self.session postsMentioningUserWithID:self.ID betweenID:sinceID andID:beforeID completion:completion];
+}
 
 @end

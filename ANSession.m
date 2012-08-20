@@ -13,6 +13,7 @@
 #import "ANUserPostListRequest.h"
 #import "ANRepliesToPostRequest.h"
 #import "ANUserPostStreamRequest.h"
+#import "ANPostsMentioningUserRequest.h"
 
 const ANResourceID ANMeUserID = 0;
 const ANResourceID ANUnspecifiedPostID = 0;
@@ -98,7 +99,6 @@ NSInteger NetworkActivityCount;
     [req sendRequestWithCompletion:completion];
 }
 
-
 - (void)postsInStreamWithCompletion:(ANPostListRequestCompletion)completion {
     [self postsInStreamBetweenID:ANUnspecifiedPostID andID:ANUnspecifiedPostID completion:completion];
 }
@@ -106,6 +106,16 @@ NSInteger NetworkActivityCount;
 - (void)postsInStreamBetweenID:(ANResourceID)sinceID andID:(ANResourceID)beforeID completion:(ANPostListRequestCompletion)completion {
     ANUserPostStreamRequest * req = [[ANUserPostStreamRequest alloc] initWithSession:self];
     
+    req.sinceID = sinceID;
+    req.beforeID = beforeID;
+    
+    [req sendRequestWithCompletion:completion];
+}
+
+- (void)postsMentioningUserWithID:(ANResourceID)ID betweenID:(ANResourceID)sinceID andID:(ANResourceID)beforeID completion:(ANPostListRequestCompletion)completion {
+    ANPostsMentioningUserRequest * req = [[ANPostsMentioningUserRequest alloc] initWithSession:self];
+    
+    req.userID = ID;
     req.sinceID = sinceID;
     req.beforeID = beforeID;
     
