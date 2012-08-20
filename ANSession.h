@@ -19,6 +19,8 @@ typedef enum {
     ANStreamAPIVersion0
 } ANStreamAPIVersion;
 
+// NOTE: Most of the methods you'll actually want to use are implemented in the Requests category (ANSession+Requests.h).
+
 @interface ANSession : NSObject
 
 + (void)beginNetworkActivity;
@@ -30,42 +32,11 @@ typedef enum {
 
 - (NSURL*)URLForStreamAPIVersion:(ANStreamAPIVersion)version;
 
-- (void)accessTokenInformationWithCompletion:(ANAccessTokenInformationRequestCompletion)completion;
-
-- (void)userWithID:(ANResourceID)ID completion:(ANUserRequestCompletion)completion;
-
-- (void)followUserWithID:(ANResourceID)ID completion:(ANUserRequestCompletion)completion;
-- (void)unfollowUserWithID:(ANResourceID)ID completion:(ANUserRequestCompletion)completion;
-- (void)followingsForUserWithID:(ANResourceID)ID completion:(ANUserListRequestCompletion)completion;
-- (void)followersForUserWithID:(ANResourceID)ID completion:(ANUserListRequestCompletion)completion;
-
-- (void)muteUserWithID:(ANResourceID)ID completion:(ANUserRequestCompletion)completion;
-- (void)unmuteUserWithID:(ANResourceID)ID completion:(ANUserRequestCompletion)completion;
-- (void)mutingsWithCompletion:(ANUserListRequestCompletion)completion;
-
-
-- (void)postWithID:(ANResourceID)ID completion:(ANPostRequestCompletion)completion;
-
-- (void)createPost:(ANPost*)post completion:(ANPostRequestCompletion)completion;
-- (void)deletePostWithID:(ANResourceID)ID completion:(ANPostRequestCompletion)completion;
-
-- (void)postsForUserWithID:(ANResourceID)ID betweenID:(ANResourceID)sinceID andID:(ANResourceID)beforeID completion:(ANPostListRequestCompletion)completion;
-- (void)postsMentioningUserWithID:(ANResourceID)ID betweenID:(ANResourceID)sinceID andID:(ANResourceID)beforeID completion:(ANPostListRequestCompletion)completion;
-
-- (void)postsInStreamWithCompletion:(ANPostListRequestCompletion)completion;
-- (void)postsInStreamBetweenID:(ANResourceID)sinceID andID:(ANResourceID)beforeID completion:(ANPostListRequestCompletion)completion;
-
-- (void)postsInGlobalStreamWithCompletion:(ANPostListRequestCompletion)completion;
-- (void)postsInGlobalStreamBetweenID:(ANResourceID)sinceID andID:(ANResourceID)beforeID completion:(ANPostListRequestCompletion)completion;
-
-- (void)postsWithTag:(NSString*)tag completion:(ANPostListRequestCompletion)completion;
-- (void)postsWithTag:(NSString*)tag betweenID:(ANResourceID)sinceID andID:(ANResourceID)beforeID completion:(ANPostListRequestCompletion)completion;
-
-- (void)postsReplyingToPostWithID:(ANResourceID)ID betweenID:(ANResourceID)sinceID andID:(ANResourceID)beforeID completion:(ANPostListRequestCompletion)completion;
-
 - (void)completeUserRequest:(ANUserRequestCompletion)completion withRepresentation:(NSDictionary*)rep error:(NSError*)error;
 - (void)completeUserListRequest:(ANUserListRequestCompletion)completion withRepresentation:(NSArray*)rep error:(NSError*)error;
 - (void)completePostRequest:(ANPostRequestCompletion)completion withRepresentation:(NSDictionary*)rep error:(NSError*)error;
 - (void)completePostListRequest:(ANPostListRequestCompletion)completion withRepresentation:(NSArray*)rep error:(NSError*)error;
 
 @end
+
+#import "ANSession+Requests.h"
