@@ -26,13 +26,8 @@
 
 - (void)sendRequestWithCompletion:(ANPostRequestCompletion)completion {
     [self sendRequestWithRepresentationCompletion:^(id rep, NSError *error) {
-        if(!rep) {
-            completion(nil, error);
-        }
-        else {
-            ANPost * post = [[ANPost alloc] initWithRepresentation:rep session:self.session];
-            completion(post, nil);
-        }
+        // XXX register .post as being the post with this ID?
+        [self.session completePostRequest:completion withRepresentation:rep error:error];
     }];
 }
 

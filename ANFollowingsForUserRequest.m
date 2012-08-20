@@ -24,16 +24,7 @@
 
 - (void)sendRequestWithCompletion:(ANUserListRequestCompletion)completion {
     [self sendRequestWithRepresentationCompletion:^(id rep, NSError *error) {
-        if(rep) {
-            NSMutableArray * users = [NSMutableArray new];
-            for(NSDictionary * userRep in rep) {
-                [users addObject:[[ANUser alloc] initWithRepresentation:userRep session:self.session]];
-            }
-            completion(users, nil);
-        }
-        else {
-            completion(nil, error);
-        }
+        [self.session completeUserListRequest:completion withRepresentation:rep error:error];
     }];
 }
 

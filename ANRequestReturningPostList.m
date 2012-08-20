@@ -53,18 +53,7 @@
 
 - (void)sendRequestWithCompletion:(ANPostListRequestCompletion)completion {
     [self sendRequestWithRepresentationCompletion:^(id rep, NSError *error) {
-        if(rep) {
-            NSMutableArray * posts = [NSMutableArray new];
-            
-            for(NSDictionary * postRep in rep) {
-                [posts addObject:[[ANPost alloc] initWithRepresentation:postRep session:self.session]];
-            }
-            
-            completion(posts, nil);
-        }
-        else {
-            completion(nil, error);
-        }
+        [self.session completePostListRequest:completion withRepresentation:rep error:error];
     }];
 }
 

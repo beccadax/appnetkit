@@ -24,13 +24,7 @@
 
 - (void)sendRequestWithCompletion:(ANUserRequestCompletion)completion {
     [self sendRequestWithRepresentationCompletion:^(id rep, NSError *error) {
-        if(rep) {
-            ANUser * user = [[ANUser alloc] initWithRepresentation:rep session:self.session];
-            completion(user, nil);
-        }
-        else {
-            completion(nil, error);
-        }
+        [self.session completeUserRequest:completion withRepresentation:rep error:error];
     }];
 }
 

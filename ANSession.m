@@ -66,6 +66,56 @@ NSInteger NetworkActivityCount;
     }
 }
 
+- (void)completeUserRequest:(ANUserRequestCompletion)completion withRepresentation:(NSDictionary*)rep error:(NSError*)error {
+    if(rep) {
+        ANUser * user = [[ANUser alloc] initWithRepresentation:rep session:self];
+        completion(user, nil);
+    }
+    else {
+        completion(nil, error);
+    }
+}
+
+- (void)completeUserListRequest:(ANUserListRequestCompletion)completion withRepresentation:(NSArray*)rep error:(NSError*)error {
+    if(rep) {
+        NSMutableArray * users = [[NSMutableArray alloc] initWithCapacity:rep.count];
+        for(NSDictionary * userRep in rep) {
+            ANUser * user = [[ANUser alloc] initWithRepresentation:userRep session:self];
+            [users addObject:user];
+        }
+        
+        completion(users.copy, nil);
+    }
+    else {
+        completion(nil, error);
+    }
+}
+
+- (void)completePostRequest:(ANPostRequestCompletion)completion withRepresentation:(NSDictionary*)rep error:(NSError*)error {
+    if(rep) {
+        ANPost * post = [[ANPost alloc] initWithRepresentation:rep session:self];
+        completion(post, nil);
+    }
+    else {
+        completion(nil, error);
+    }
+}
+
+- (void)completePostListRequest:(ANPostListRequestCompletion)completion withRepresentation:(NSArray*)rep error:(NSError*)error {
+    if(rep) {
+        NSMutableArray * posts = [[NSMutableArray alloc] initWithCapacity:rep.count];
+        for(NSDictionary * postRep in rep) {
+            ANPost * post = [[ANPost alloc] initWithRepresentation:postRep session:self];
+            [posts addObject:post];
+        }
+        
+        completion(posts.copy, nil);
+    }
+    else {
+        completion(nil, error);
+    }
+}
+
 - (void)accessTokenInformationWithCompletion:(ANAccessTokenInformationRequestCompletion)completion {
     ANAccessTokenInformationRequest * req = [[ANAccessTokenInformationRequest alloc] initWithSession:self];
     
