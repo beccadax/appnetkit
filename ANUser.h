@@ -50,7 +50,7 @@ ANUserType ANUserTypeFromString(NSString * string);
 
 - (void)followWithCompletion:(ANUserRequestCompletion)completion;
 - (void)unfollowWithCompletion:(ANUserRequestCompletion)completion;
-//- (void)followingsWithCompletion:(ANUserListRequestCompletion)completion;
+- (void)followingsWithCompletion:(ANUserListRequestCompletion)completion;
 //- (void)followersWithCompletion:(ANUserListRequestCompletion)completion;
 //
 //- (void)muteWithCompletion:(ANUserRequestCompletion)completion;
