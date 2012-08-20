@@ -3,9 +3,39 @@ AppNetKit
 
 AppNetKit is an Objective-C library for communicating with the App.net Stream API. It is completely asynchronous, using blocks to notify you of completions.
 
-AppNetKit currently only supports a very few features, but the general outlines ought to be visible.  There are a *lot* of commented-out API calls that might give you an idea of the direction I'm going.
+AppNetKit covers the Token, Users, and Posts parts of the App.net API—all the portions available as of late August 2012.
 
-Some of the highlights:
+Synopsis
+------
+
+    ANSession.defaultSession.accessToken = myOAuthToken;
+    
+    // Get the latest posts in the user's incoming post stream...
+    [ANSession.defaultSession postsInStreamWithCompletion:^(NSArray * posts, NSError * error) {
+        if(!posts) {
+            [self showError:error];
+            return;
+        }
+        
+        // Grab the most recent post.
+        ANPost * latestPost = posts[0];
+        
+        // Compose a reply...
+        ANPost * newPost = [[ANPost alloc] initWithSession:ANSession.defaultSession];
+        newPost.text = [NSString stringWithFormat:@"@%@ Me too!", latestPost.user.username];
+        newPost.replyToID = latestPost.ID;
+        
+        // And post it.
+        [newPost createWithCompletion:^(ANPost * post, NSError * error) {
+            if(!post) {
+                [self showError:error];
+            }
+        }];
+    }];
+
+
+Quick Tour
+=========
 
 ANAuthenticator
 -------------
@@ -34,10 +64,14 @@ Author
 
 Brent Royal-Gordon, Architechies <brent@architechies.com>.
 
-Patches
-======
+Bugs
+====
 
-Will ultimately be welcome, but this early on I'd just like bug fixes and reorganization (this is begging for an ANErrors.h), because I want to direct the design of the API a little more. If you're *really* sure you know what I would do, feel free to submit a pull request.
+A lot of the code in this library has never actually been run as I write this, so it's likely to have plenty of bugs. If you want to write unit tests to exercise all this code, I'll be happy to pull them in. (Packaging this mess as an Xcode project might be a good idea, too...)
+
+Also note that my own development is for iOS 6; I don't believe there are any iOS 6-only APIs in AppNetKit, but it's possible a call or two snuck in. Again, patches are welcome.
+
+If you find a problem, file an issue or write a patch and send it to me (preferably as a pull request, but I'm not picky).
 
 Copyright
 ========

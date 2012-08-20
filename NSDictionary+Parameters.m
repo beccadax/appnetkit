@@ -15,10 +15,10 @@
     for(NSString * key in self) {
         NSString * name = [self _escapedString:key forBody:body];
         
-        id value = self[key];
+        id value = [self objectForKey:key];
         if(![value isKindOfClass:NSString.class]) {
             value = [NSJSONSerialization dataWithJSONObject:value options:0 error:NULL];
-            NSAssert(value, @"Value %@ (in key %@) is not JSON serializable", self[key], key);
+            NSAssert(value, @"Value %@ (in key %@) is not JSON serializable", [self objectForKey:key], key);
             value = [[NSString alloc] initWithData:value encoding:NSUTF8StringEncoding];
         }
         value = [self _escapedString:value forBody:body];
@@ -47,8 +47,8 @@
     
     for(NSString * pair in [string componentsSeparatedByCharactersInSet:seps]) {
         NSArray * parts = [pair componentsSeparatedByString:@"="];
-        [keys addObject:[self _unescapedString:parts[0] forBody:body]];
-        [values addObject:[self _unescapedString:parts[1] forBody:body]];
+        [keys addObject:[self _unescapedString:[parts objectAtIndex:0] forBody:body]];
+        [values addObject:[self _unescapedString:[parts objectAtIndex:1] forBody:body]];
     }
     
     return [self initWithObjects:values forKeys:keys];

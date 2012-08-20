@@ -17,7 +17,7 @@
 }
 
 - (NSDictionary *)parameters {
-    return [self.post.representation dictionaryWithObjectsForKeys:@[ @"text", @"reply_to", @"annotations", @"links" ]];
+    return [self.post.representation dictionaryWithObjectsForKeys:[NSArray arrayWithObjects:@"text", @"reply_to", @"annotations", @"links", nil]];
 }
 
 - (ANRequestMethod)method {
