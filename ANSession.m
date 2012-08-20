@@ -14,6 +14,7 @@
 #import "ANRepliesToPostRequest.h"
 #import "ANUserPostStreamRequest.h"
 #import "ANPostsMentioningUserRequest.h"
+#import "ANPostsInGlobalStreamRequest.h"
 
 const ANResourceID ANMeUserID = 0;
 const ANResourceID ANUnspecifiedPostID = 0;
@@ -116,6 +117,19 @@ NSInteger NetworkActivityCount;
     ANPostsMentioningUserRequest * req = [[ANPostsMentioningUserRequest alloc] initWithSession:self];
     
     req.userID = ID;
+    req.sinceID = sinceID;
+    req.beforeID = beforeID;
+    
+    [req sendRequestWithCompletion:completion];
+}
+
+- (void)postsInGlobalStreamWithCompletion:(ANPostListRequestCompletion)completion {
+    [self postsInGlobalStreamBetweenID:ANUnspecifiedPostID andID:ANUnspecifiedPostID completion:completion];
+}
+
+- (void)postsInGlobalStreamBetweenID:(ANResourceID)sinceID andID:(ANResourceID)beforeID completion:(ANPostListRequestCompletion)completion {
+    ANPostsInGlobalStreamRequest * req = [[ANPostsInGlobalStreamRequest alloc] initWithSession:self];
+    
     req.sinceID = sinceID;
     req.beforeID = beforeID;
     
