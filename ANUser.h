@@ -10,6 +10,7 @@
 #import "ANResource.h"
 #import "ANCompletions.h"
 #import "AppNetKit.h"
+#import "ANUserDescription.h"
 
 typedef enum {
     ANUserTypeHuman,
@@ -26,7 +27,8 @@ ANUserType ANUserTypeFromString(NSString * string);
 @property (readonly) ANResourceID ID;
 @property (readonly) NSString * username;
 @property (readonly) NSString * name;
-//@property (readonly) ANUserDescription * description;
+@property (readonly) ANUserDescription * description;
+@property (readonly) NSDictionary * descriptionRepresentation;
 
 @property (readonly) NSString * timezoneString;
 @property (readonly) NSTimeZone * timezone;
