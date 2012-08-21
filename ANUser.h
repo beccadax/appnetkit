@@ -37,7 +37,9 @@ ANUserType ANUserTypeFromString(NSString * string);
 @property (readonly) NSLocale * locale;
 
 //@property (readonly) ANImage * avatarImage;
+@property (readonly) NSDictionary * avatarImageRepresentation;
 //@property (readonly) ANImage * coverImage;
+@property (readonly) NSDictionary * coverImageRepresentation;
 
 @property (readonly) NSString * typeString;
 @property (assign) ANUserType type;
