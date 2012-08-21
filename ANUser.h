@@ -11,6 +11,7 @@
 #import "ANCompletions.h"
 #import "AppNetKit.h"
 #import "ANUserDescription.h"
+#import "ANImage.h"
 
 typedef enum {
     ANUserTypeHuman,
@@ -36,9 +37,9 @@ ANUserType ANUserTypeFromString(NSString * string);
 @property (readonly) NSString * localeString;
 @property (readonly) NSLocale * locale;
 
-//@property (readonly) ANImage * avatarImage;
+@property (readonly) ANImage * avatarImage;
 @property (readonly) NSDictionary * avatarImageRepresentation;
-//@property (readonly) ANImage * coverImage;
+@property (readonly) ANImage * coverImage;
 @property (readonly) NSDictionary * coverImageRepresentation;
 
 @property (readonly) NSString * typeString;
