@@ -11,6 +11,15 @@
 
 @class ANSession;
 
+@protocol ANTextualResource <NSObject>
+
+@property (readonly,copy) NSString * text;
+@property (readonly) NSString * HTML;
+//@property (readonly) NSArray * entities;
+@property (readonly) NSArray * entitiesRepresentation;
+
+@end
+
 @interface ANResource : NSObject
 
 + (ISO8601DateFormatter*)dateFormatter;

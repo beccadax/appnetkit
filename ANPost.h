@@ -9,30 +9,28 @@
 #import "ANResource.h"
 #import "ANSession.h"
 
-@interface ANPost : ANResource
+@interface ANPost : ANResource <ANTextualResource>
 
 @property (readonly) ANResourceID ID;
 
+// Editable:
+@property (readwrite,copy) NSString * text;
+//@property (copy) NSArray * links;
+@property (assign) ANResourceID replyToID;
+@property (copy) NSDictionary * annotations;
+
 @property (readonly) ANUser * user;
 @property (readonly) NSDictionary * userRepresentation;
-
 @property (readonly) NSDate * createdAt;
-@property (copy) NSString * text;
-@property (readonly) NSString * HTML;
 
 //@property (readonly) ANSource * source;
 
-@property (assign) ANResourceID replyToID;
 - (void)postRepliedToWithCompletion:(ANPostRequestCompletion)completion;
 - (void)replyPostsWithCompletion:(ANPostListRequestCompletion)completion;
 
 @property (readonly) ANResourceID threadID;
 @property (readonly) NSUInteger numberOfReplies;
 - (void)postAtThreadRootWithCompletion:(ANPostRequestCompletion)completion;
-
-@property (copy) NSDictionary * annotations;
-//@property (readonly) NSArray * entities;
-//@property (copy) NSArray * links;
 
 @property (readonly,getter=isDeleted) BOOL deleted;
 
