@@ -86,6 +86,14 @@ ANResourceSynthesizeBool(@"you_muted", youMuted, setYouMuted)
     return [[ANUserDescription alloc] initWithRepresentation:self.descriptionRepresentation session:self.session];
 }
 
+- (ANImage *)avatarImage {
+    return [[ANImage alloc] initWithRepresentation:self.avatarImageRepresentation session:self.session];
+}
+
+- (ANImage *)coverImage {
+    return [[ANImage alloc] initWithRepresentation:self.coverImageRepresentation session:self.session];
+}
+
 - (NSUInteger)hash {
     return (NSUInteger)self.ID ^ (NSUInteger)self.class;
 }
