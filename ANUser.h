@@ -12,6 +12,7 @@
 #import "AppNetKit.h"
 #import "ANUserDescription.h"
 #import "ANImage.h"
+#import "ANUserCounts.h"
 
 typedef enum {
     ANUserTypeHuman,
@@ -46,7 +47,8 @@ ANUserType ANUserTypeFromString(NSString * string);
 @property (assign) ANUserType type;
 
 @property (readonly) NSDate * createdAt;
-//@property (readonly) ANUserCounts * counts;
+@property (readonly) ANUserCounts * counts;
+@property (readonly) NSDictionary * countsRepresentation;
 //@property (copy) NSDictionary * appData;
 
 @property (readonly) BOOL followsYou;

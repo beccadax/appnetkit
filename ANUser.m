@@ -54,6 +54,7 @@ ANResourceSynthesize(@"type", typeString, setTypeString)
 ANResourceSynthesize(@"avatar_image", avatarImageRepresentation, setAvatarImageRepresentation)
 ANResourceSynthesize(@"cover_image", coverImageRepresentation, setCoverImageRepresentation)
 ANResourceSynthesizeDate(@"created_at", createdAt, setCreatedAt)
+ANResourceSynthesize(@"counts", countsRepresentation, setCountsRepresentation)
 ANResourceSynthesizeBool(@"follows_you", followsYou, setFollowsYou)
 ANResourceSynthesizeBool(@"you_follow", youFollow, setYouFollow)
 ANResourceSynthesizeBool(@"you_muted", youMuted, setYouMuted)
@@ -92,6 +93,10 @@ ANResourceSynthesizeBool(@"you_muted", youMuted, setYouMuted)
 
 - (ANImage *)coverImage {
     return [[ANImage alloc] initWithRepresentation:self.coverImageRepresentation session:self.session];
+}
+
+- (ANUserCounts *)counts {
+    return [[ANUserCounts alloc] initWithRepresentation:self.countsRepresentation session:self.session];
 }
 
 - (NSUInteger)hash {
