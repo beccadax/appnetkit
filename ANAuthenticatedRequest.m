@@ -11,6 +11,16 @@
 
 @implementation ANAuthenticatedRequest
 
+- (id)mutableCopyWithZone:(NSZone *)zone {
+    ANMutableRequest * req = [[ANMutableRequest alloc] initWithSession:self.session];
+    
+    req.URL = self.URL;
+    req.parameters = self.parameters;
+    req.method = self.method;
+    
+    return req;
+}
+
 - (NSMutableURLRequest *)URLRequest {
     NSAssert(self.session.accessToken, @"Session's access token has not been set");
     
@@ -22,3 +32,5 @@
 }
 
 @end
+
+@implementation ANMutableAuthenticatedRequest @end
