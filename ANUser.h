@@ -23,7 +23,7 @@ ANUserType ANUserTypeFromString(NSString * string);
 
 @interface ANUser : ANResource
 
-@property (readonly) uint64_t ID;
+@property (readonly) ANResourceID ID;
 @property (readonly) NSString * username;
 @property (readonly) NSString * name;
 //@property (readonly) ANUserDescription * description;
