@@ -47,9 +47,12 @@ ANUserType ANUserTypeFromString(NSString * string) {
 ANResourceSynthesizeID(@"id", ID, setID)
 ANResourceSynthesize(@"username", username, setUsername)
 ANResourceSynthesize(@"name", name, setName)
+ANResourceSynthesize(@"description", descriptionRepresentation, setDescriptionRepresentation);
 ANResourceSynthesize(@"timezone", timezoneString, setTimezoneString)
 ANResourceSynthesize(@"locale", localeString, setLocaleString)
 ANResourceSynthesize(@"type", typeString, setTypeString)
+ANResourceSynthesize(@"avatar_image", avatarImageRepresentation, setAvatarImageRepresentation)
+ANResourceSynthesize(@"cover_image", coverImageRepresentation, setCoverImageRepresentation)
 ANResourceSynthesizeDate(@"created_at", createdAt, setCreatedAt)
 ANResourceSynthesizeBool(@"follows_you", followsYou, setFollowsYou)
 ANResourceSynthesizeBool(@"you_follow", youFollow, setYouFollow)
@@ -78,8 +81,6 @@ ANResourceSynthesizeBool(@"you_muted", youMuted, setYouMuted)
 - (void)setType:(ANUserType)type {
     self.typeString = ANUserTypeToString(type);
 }
-
-ANResourceSynthesize(@"description", descriptionRepresentation, setDescriptionRepresentation);
 
 - (ANUserDescription *)description {
     return [[ANUserDescription alloc] initWithRepresentation:self.descriptionRepresentation session:self.session];
