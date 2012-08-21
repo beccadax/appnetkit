@@ -64,7 +64,7 @@ NSString * const ANScopeExport = @"export";
 - (NSString*)accessTokenFromRedirectURL:(NSURL*)redirectURL error:(NSError *__autoreleasing *)error {
     NSDictionary * dict = [[NSDictionary alloc] initWithQueryString:redirectURL.fragment];
     
-    if(dict[@"access_token"]) {
+    if([dict objectForKey:@"access_token"]) {
         return [dict objectForKey:@"access_token"];
     }
     
