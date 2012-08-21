@@ -24,20 +24,20 @@ ANUserType ANUserTypeFromString(NSString * string);
 @interface ANUser : ANResource
 
 @property (readonly) uint64_t ID;
-@property (copy) NSString * username;
-@property (copy) NSString * name;
-//@property (copy) ANUserDescription * description;
+@property (readonly) NSString * username;
+@property (readonly) NSString * name;
+//@property (readonly) ANUserDescription * description;
 
-@property (copy) NSString * timezoneString;
-@property (copy) NSTimeZone * timezone;
+@property (readonly) NSString * timezoneString;
+@property (readonly) NSTimeZone * timezone;
 
-@property (copy) NSString * localeString;
-@property (copy) NSLocale * locale;
+@property (readonly) NSString * localeString;
+@property (readonly) NSLocale * locale;
 
-//@property (copy) ANImage * avatarImage;
-//@property (copy) ANImage * coverImage;
+//@property (readonly) ANImage * avatarImage;
+//@property (readonly) ANImage * coverImage;
 
-@property (copy) NSString * typeString;
+@property (readonly) NSString * typeString;
 @property (assign) ANUserType type;
 
 @property (readonly) NSDate * createdAt;
