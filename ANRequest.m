@@ -26,6 +26,16 @@
     return self;
 }
 
+- (id)mutableCopyWithZone:(NSZone *)zone {
+    ANMutableRequest * req = [[ANMutableRequest alloc] initWithSession:self.session];
+    
+    req.URL = self.URL;
+    req.parameters = self.parameters;
+    req.method = self.method;
+    
+    return req;
+}
+
 @dynamic URL, parameters, method;
 
 - (NSString*)methodString {
@@ -139,3 +149,5 @@
 }
 
 @end
+
+@implementation ANMutableRequest @end

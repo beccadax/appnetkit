@@ -10,7 +10,12 @@
 
 #import "ANRequest.h"
 
-@interface ANAuthenticatedRequest : ANRequest
+@interface ANAuthenticatedRequest : ANRequest <NSMutableCopying> @end
 
+@interface ANMutableAuthenticatedRequest : ANRequest
+
+@property (readwrite,strong) NSURL * URL;
+@property (readwrite,strong) NSDictionary * parameters;
+@property (readwrite,assign) ANRequestMethod method;
 
 @end
