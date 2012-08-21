@@ -79,6 +79,12 @@ ANResourceSynthesizeBool(@"you_muted", youMuted, setYouMuted)
     self.typeString = ANUserTypeToString(type);
 }
 
+ANResourceSynthesize(@"description", descriptionRepresentation, setDescriptionRepresentation);
+
+- (ANUserDescription *)description {
+    return [[ANUserDescription alloc] initWithRepresentation:self.descriptionRepresentation session:self.session];
+}
+
 - (NSUInteger)hash {
     return (NSUInteger)self.ID ^ (NSUInteger)self.class;
 }
