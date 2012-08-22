@@ -30,6 +30,7 @@ typedef enum {
 @property (readonly) NSMutableURLRequest * URLRequest;
 
 - (NSString*)pathWithFormat:(NSString*)format userID:(ANResourceID)ID;
+- (NSString*)pathWithFormat:(NSString*)format username:(NSString*)username;
 
 - (void)sendRequestWithDataCompletion:(void (^)(NSData * body, NSError * error))completion;
 - (void)sendRequestWithRepresentationCompletion:(void (^)(id rep, NSError * error))completion;

@@ -109,6 +109,11 @@
     return [NSString stringWithFormat:format, IDString];
 }
 
+- (NSString*)pathWithFormat:(NSString*)format username:(NSString*)username {
+    username = [@"@" stringByAppendingString:username];
+    return [NSString stringWithFormat:format, username];
+}
+
 - (void)sendRequestWithDataCompletion:(void (^)(NSData * body, NSError * error))completion {
     NSURLRequest * req = self.URLRequest;
     
