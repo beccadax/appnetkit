@@ -29,8 +29,8 @@ ANUserType ANUserTypeFromString(NSString * string);
 @property (readonly) ANResourceID ID;
 @property (readonly) NSString * username;
 @property (readonly) NSString * name;
-@property (readonly) ANUserDescription * description;
-@property (readonly) NSDictionary * descriptionRepresentation;
+@property (readonly) ANUserDescription * userDescription;
+@property (readonly) NSDictionary * userDescriptionRepresentation;
 
 @property (readonly) NSString * timezoneString;
 @property (readonly) NSTimeZone * timezone;
