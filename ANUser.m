@@ -111,6 +111,10 @@ ANResourceSynthesizeBool(@"you_muted", youMuted, setYouMuted)
     return self.ID == object.ID;
 }
 
+- (void)reloadWithCompletion:(ANUserRequestCompletion)completion {
+    [self.session userWithID:self.ID completion:completion];
+}
+
 - (void)followWithCompletion:(ANUserRequestCompletion)completion {
     [self.session followUserWithID:self.ID completion:completion];
 }
