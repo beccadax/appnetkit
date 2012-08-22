@@ -150,4 +150,8 @@
 
 @end
 
-@implementation ANMutableRequest @end
+@implementation ANMutableRequest
+
+@synthesize URL, parameters, method;
+
+@end
