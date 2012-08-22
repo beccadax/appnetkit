@@ -25,6 +25,7 @@
 #import "ANMutingsForUserRequest.h"
 #import "ANMuteUserRequest.h"
 #import "ANUnmuteUserRequest.h"
+#import "ANUsernameRequest.h"
 
 @implementation ANSession (Requests)
 
@@ -38,6 +39,14 @@
     ANUserRequest * req = [[ANUserRequest alloc] initWithSession:self];
     
     req.userID = ID;
+    
+    [req sendRequestWithCompletion:completion];
+}
+
+- (void)userWithUsername:(NSString *)username completion:(ANUserRequestCompletion)completion {
+    ANUsernameRequest * req = [[ANUsernameRequest alloc] initWithSession:self];
+    
+    req.username = username;
     
     [req sendRequestWithCompletion:completion];
 }

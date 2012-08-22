@@ -13,6 +13,7 @@
 - (void)accessTokenInformationWithCompletion:(ANAccessTokenInformationRequestCompletion)completion;
 
 - (void)userWithID:(ANResourceID)ID completion:(ANUserRequestCompletion)completion;
+- (void)userWithUsername:(NSString*)username completion:(ANUserRequestCompletion)completion;
 
 - (void)followUserWithID:(ANResourceID)ID completion:(ANUserRequestCompletion)completion;
 - (void)unfollowUserWithID:(ANResourceID)ID completion:(ANUserRequestCompletion)completion;
