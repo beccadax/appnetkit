@@ -17,9 +17,14 @@
         
         id value = [self objectForKey:key];
         if(![value isKindOfClass:NSString.class]) {
-            value = [NSJSONSerialization dataWithJSONObject:value options:0 error:NULL];
-            NSAssert(value, @"Value %@ (in key %@) is not JSON serializable", [self objectForKey:key], key);
-            value = [[NSString alloc] initWithData:value encoding:NSUTF8StringEncoding];
+            if([value isKindOfClass:NSNumber.class]) {
+                value = [value description];
+            }
+            else {
+                value = [NSJSONSerialization dataWithJSONObject:value options:0 error:NULL];
+                NSAssert(value, @"Value %@ (in key %@) is not JSON serializable", [self objectForKey:key], key);
+                value = [[NSString alloc] initWithData:value encoding:NSUTF8StringEncoding];
+            }
         }
         value = [self _escapedString:value forBody:body];
         
