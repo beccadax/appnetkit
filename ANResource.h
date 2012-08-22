@@ -31,7 +31,7 @@
 @property (readonly,strong) NSMutableDictionary * representation;
 
 // Warning: Trying to use this setter is likely to cause AppNetKit to catch fire.
-@property (strong) NSDictionary * originalRepresentation;
+@property (strong,nonatomic) NSDictionary * originalRepresentation;
 
 - (void)revert;
 

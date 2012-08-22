@@ -66,4 +66,9 @@
     _representation = _originalRepresentation.mutableCopy;
 }
 
+- (void)setOriginalRepresentation:(NSDictionary *)originalRepresentation {
+    _originalRepresentation = originalRepresentation;
+    [self revert];
+}
+
 @end
