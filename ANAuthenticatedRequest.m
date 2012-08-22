@@ -33,4 +33,8 @@
 
 @end
 
-@implementation ANMutableAuthenticatedRequest @end
+@implementation ANMutableAuthenticatedRequest
+
+@synthesize URL, parameters, method;
+
+@end
