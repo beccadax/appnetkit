@@ -36,15 +36,15 @@
 }
 
 - (void)imageWithCompletion:(ANImageCompletion)completion {
-    return [self imageAtSize:self.nativeSize completion:completion];
+    return [self imageAtSize:CGSizeZero completion:completion];
 }
 
 - (void)imageAtWidth:(CGFloat)width completion:(ANImageCompletion)completion {
-    return [self imageAtSize:CGSizeMake(width, self.nativeSize.height) completion:completion];
+    return [self imageAtSize:CGSizeMake(width, 0) completion:completion];
 }
 
 - (void)imageAtHeight:(CGFloat)height completion:(ANImageCompletion)completion {
-    return [self imageAtSize:CGSizeMake(self.nativeSize.width, height) completion:completion];
+    return [self imageAtSize:CGSizeMake(0, height) completion:completion];
 }
 
 - (void)imageAtSize:(CGSize)size completion:(ANImageCompletion)completion {
@@ -56,10 +56,10 @@
     
     NSMutableDictionary * params = [NSMutableDictionary new];
     
-    if(size.width != self.nativeSize.width) {
+    if(size.width) {
         [params setObject:[NSNumber numberWithDouble:size.width] forKey:@"w"];
     }
-    if(size.height != self.nativeSize.height) {
+    if(size.height) {
         [params setObject:[NSNumber numberWithDouble:size.height] forKey:@"h"];
     }
     
