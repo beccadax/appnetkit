@@ -73,20 +73,12 @@
 }
 
 - (NSUInteger)hash {
-    if(self.ID == ANUnspecifiedPostID) {
-        return (NSUInteger)self;
-    }
-    
     return (NSUInteger)self.ID ^ (NSUInteger)self.class;
 }
 
 - (BOOL)isEqual:(ANPost*)object {
     if(self.class != object.class) {
         return NO;
-    }
-    
-    if(self.ID == ANUnspecifiedPostID || object.ID == ANUnspecifiedPostID) {
-        return self == object;
     }
     
     return self.ID == object.ID;
