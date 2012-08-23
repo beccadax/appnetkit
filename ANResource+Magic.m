@@ -110,6 +110,10 @@ static Class ANClassFromObjectTypeEncoding(NSString * encoding) {
 }
 
 static NSString * ANTypeEncodingForIMPReturningType(NSString * returnEncoding) {
+    if([returnEncoding hasPrefix:@"@\""]) {
+        returnEncoding = @"@";
+    }
+    
     return [NSString stringWithFormat:@"%@%s%s", returnEncoding, @encode(id), @encode(SEL)];
 }
 
