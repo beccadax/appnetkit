@@ -11,6 +11,8 @@
 #import "ANSession.h"
 #import "ANSession+ANResource_Private.h"
 
+NSString * const ANResourceDidUpdateNotification = @"ANResourceDidUpdate";
+
 @implementation ANResource
 
 + (ISO8601DateFormatter *)dateFormatter {
@@ -46,6 +48,24 @@
         self = [session uniqueResource:self];
     }
     return self;
+}
+
+- (void)setRepresentation:(NSDictionary *)representation {
+    if([representation isEqualToDictionary:_representation]) {
+        return;
+    }
+    
+    [self willChangeValueForKey:@"representation"];
+    _representation = representation;
+    [NSNotificationCenter.defaultCenter postNotificationName:ANResourceDidUpdateNotification object:self];
+    [self didChangeValueForKey:@"representation"];
+}
+
++ (BOOL)automaticallyNotifiesObserversForKey:(NSString *)key {
+    if([key isEqualToString:@"representation"]) {
+        return NO;
+    }
+    return [super automaticallyNotifiesObserversForKey:key];
 }
 
 - (NSUInteger)hash {

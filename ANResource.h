@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "ISO8601DateFormatter.h"
 
+// Sent when the resource is updated; the resource is the object, and there is no userInfo.
+extern NSString * const ANResourceDidUpdateNotification;
+
 @class ANSession;
 @class ANEntitySet;
 
