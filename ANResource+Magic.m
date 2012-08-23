@@ -203,7 +203,6 @@ static id ANBlockForGetterReturningType(NSString * name, NSString * propType) {
     }
     
     id block = ANBlockForGetterReturningType(selString, propType);
-    
     if(!block) {
         return NO;
     }
@@ -212,6 +211,14 @@ static id ANBlockForGetterReturningType(NSString * name, NSString * propType) {
     class_addMethod(self, sel, imp_implementationWithBlock(block), IMPType.UTF8String);
     
     return YES;
+}
+
++ (NSSet *)keyPathsForValuesAffectingValueForKey:(NSString *)key {
+    NSSet * keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
+    if(ANPropertyNamed(self, key)) {
+        keyPaths = [[NSSet setWithObject:@"representation"] setByAddingObjectsFromSet:keyPaths];
+    }
+    return keyPaths;
 }
 
 @end

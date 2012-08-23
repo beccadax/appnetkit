@@ -10,4 +10,7 @@
 
 @interface ANResource (Magic)
 
++ (BOOL)resolveInstanceMethod:(SEL)sel;
++ (NSSet *)keyPathsForValuesAffectingValueForKey:(NSString *)key;
+
 @end
