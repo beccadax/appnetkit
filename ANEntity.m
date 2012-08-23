@@ -20,9 +20,9 @@
 
 @implementation ANEntitySet
 
-ANResourceSynthesize(@"mentions", mentionRepresentations, setMentionRepresentations)
-ANResourceSynthesize(@"tags", tagRepresentations, setTagRepresentations)
-ANResourceSynthesize(@"links", linkRepresentations, setLinkRepresentations)
+@dynamic mentionRepresentations;
+@dynamic tagRepresentations;
+@dynamic linkRepresentations;
 
 - (NSArray *)mentions {
     return [ANMentionEntity entitiesWithRepresentations:self.mentionRepresentations session:self.session];
@@ -71,12 +71,11 @@ ANResourceSynthesize(@"links", linkRepresentations, setLinkRepresentations)
     return NSMakeRange([self.representation[@"pos"] unsignedIntegerValue], [self.representation[@"len"] unsignedIntegerValue]);
 }
 
-ANResourceSynthesize(@"name", name, setName)
-ANResourceSynthesizeID(@"id", userID, setUserID)
-ANResourceSynthesize(@"text", text, setText)
+@dynamic name;
+@dynamic text;
 
-- (NSURL *)URL {
-    return [NSURL URLWithString:self.representation[@"url"]];
+- (ANResourceID)userID {
+    return [(id)self ID];
 }
 
 @end

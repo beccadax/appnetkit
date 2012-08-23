@@ -24,9 +24,7 @@
     return self;
 }
 
-- (NSURL *)URL {
-    return [NSURL URLWithString:[self.representation objectForKey:@"url"]];
-}
+@dynamic URL;
 
 - (CGSize)nativeSize {
     CGSize size;

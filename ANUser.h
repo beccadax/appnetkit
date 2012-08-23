@@ -48,7 +48,7 @@ ANUserType ANUserTypeFromString(NSString * string);
 @property (readonly) NSDictionary * coverImageRepresentation;
 
 @property (readonly) NSString * typeString;
-@property (assign) ANUserType type;
+@property (readonly) ANUserType type;
 
 @property (readonly) NSDate * createdAt;
 @property (readonly) ANUserCounts * counts;

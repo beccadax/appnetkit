@@ -16,7 +16,7 @@
 // Editable:
 @property (readwrite,copy) NSString * text;
 //@property (copy) NSArray * links;
-@property (assign) ANResourceID replyToID;
+@property (assign) ANResourceID replyTo;
 @property (copy) NSDictionary * annotations;
 
 @property (readonly) ANUser * user;

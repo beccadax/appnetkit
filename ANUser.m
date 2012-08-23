@@ -44,44 +44,28 @@ ANUserType ANUserTypeFromString(NSString * string) {
 
 @implementation ANUser
 
-ANResourceSynthesizeID(@"id", ID, setID)
-ANResourceSynthesize(@"username", username, setUsername)
-ANResourceSynthesize(@"name", name, setName)
-ANResourceSynthesize(@"description", userDescriptionRepresentation, setUserDescriptionRepresentation);
-ANResourceSynthesize(@"timezone", timezoneString, setTimezoneString)
-ANResourceSynthesize(@"locale", localeString, setLocaleString)
-ANResourceSynthesize(@"type", typeString, setTypeString)
-ANResourceSynthesize(@"avatar_image", avatarImageRepresentation, setAvatarImageRepresentation)
-ANResourceSynthesize(@"cover_image", coverImageRepresentation, setCoverImageRepresentation)
-ANResourceSynthesizeDate(@"created_at", createdAt, setCreatedAt)
-ANResourceSynthesize(@"counts", countsRepresentation, setCountsRepresentation)
-ANResourceSynthesizeBool(@"follows_you", followsYou, setFollowsYou)
-ANResourceSynthesizeBool(@"you_follow", youFollow, setYouFollow)
-ANResourceSynthesizeBool(@"you_muted", youMuted, setYouMuted)
-
-- (NSTimeZone *)timezone {
-    return [NSTimeZone timeZoneWithName:self.timezoneString];
-}
-
-- (void)setTimezone:(NSTimeZone *)timezone {
-    self.timezoneString = timezone.name;
-}
-
-- (NSLocale *)locale {
-    return [[NSLocale alloc] initWithLocaleIdentifier:self.localeString];
-}
-
-- (void)setLocale:(NSLocale *)locale {
-    self.localeString = locale.localeIdentifier;
-}
+@dynamic ID;
+@dynamic username;
+@dynamic name;
+@dynamic userDescription;
+@dynamic timezoneString;
+@dynamic localeString;
+@dynamic typeString;
+@dynamic avatarImageRepresentation;
+@dynamic coverImageRepresentation;
+@dynamic createdAt;
+@dynamic countsRepresentation;
+@dynamic followsYou;
+@dynamic youFollow;
+@dynamic youMuted;
 
 - (ANUserType)type {
     return ANUserTypeFromString(self.typeString);
 }
 
-- (void)setType:(ANUserType)type {
-    self.typeString = ANUserTypeToString(type);
-}
+//- (void)setType:(ANUserType)type {
+//    self.typeString = ANUserTypeToString(type);
+//}
 
 - (ANUserDescription *)userDescription {
     return [[ANUserDescription alloc] initWithRepresentation:self.userDescriptionRepresentation session:self.session];

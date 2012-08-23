@@ -10,8 +10,8 @@
 
 @implementation ANUserCounts
 
-ANResourceSynthesizeNSUInteger(@"follows", follows, setFollows)
-ANResourceSynthesizeNSUInteger(@"followed_by", followedBy, setFollowedBy)
-ANResourceSynthesizeNSUInteger(@"posts", posts, setPosts)
+@dynamic follows;
+@dynamic followedBy;
+@dynamic posts;
 
 @end

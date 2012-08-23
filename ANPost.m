@@ -10,17 +10,17 @@
 
 @implementation ANPost
 
-ANResourceSynthesizeID(@"id", ID, setID)
-ANResourceSynthesizeDate(@"created_at", createdAt, setCreatedAt)
-ANResourceSynthesize(@"text", text, setText);
-ANResourceSynthesize(@"html", HTML, setHTML)
-ANResourceSynthesize(@"entities", entitiesRepresentation, setEntitiesRepresentation)
-ANResourceSynthesizeID(@"reply_to", replyToID, setReplyToID)
-ANResourceSynthesizeID(@"thread_id", threadID, setThreadID)
-ANResourceSynthesizeNSUInteger(@"num_replies", numberOfReplies, setNumberOfReplies)
-ANResourceSynthesize(@"annotations", annotations, setAnnotations)
-ANResourceSynthesizeBool(@"is_deleted", isDeleted, setDeleted)
-ANResourceSynthesize(@"user", userRepresentation, setUserRepresentation)
+@dynamic ID;
+@dynamic createdAt;
+@dynamic text;
+@dynamic HTML;
+@dynamic entitiesRepresentation;
+@dynamic replyTo;
+@dynamic threadID;
+@dynamic numberOfReplies;
+@dynamic annotations;
+@dynamic deleted;
+@dynamic userRepresentation;
 
 - (ANEntitySet *)entities {
     return [[ANEntitySet alloc] initWithRepresentation:self.entitiesRepresentation session:self.session];

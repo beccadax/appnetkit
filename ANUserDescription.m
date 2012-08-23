@@ -10,9 +10,9 @@
 
 @implementation ANUserDescription
 
-ANResourceSynthesize(@"text", text, setText);
-ANResourceSynthesize(@"html", HTML, setHTML);
-ANResourceSynthesize(@"entities", entitiesRepresentation, setEntitiesRepresentation)
+@dynamic text;
+@dynamic HTML;
+@dynamic entitiesRepresentation;
 
 - (ANEntitySet *)entities {
     return [[ANEntitySet alloc] initWithRepresentation:self.entitiesRepresentation session:self.session];
