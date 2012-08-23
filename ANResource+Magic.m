@@ -201,7 +201,7 @@ static id ANBlockForGetterReturningType(NSString * name, NSString * propType) {
     
     NSString * selString = NSStringFromSelector(sel);
     
-    NSString * propType = ANTypeEncodingForPropertyNamed(self.class, selString);
+    NSString * propType = ANTypeEncodingForPropertyNamed(self, selString);
     if(!propType) {
         return NO;
     }
