@@ -25,13 +25,17 @@ NSInteger NetworkActivityCount;
 
 + (void)beginNetworkActivity {
     NetworkActivityCount++;
+#if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
     UIApplication.sharedApplication.networkActivityIndicatorVisible = self.isUsingNetwork;
+#endif
 }
 
 + (void)endNetworkActivity {
     NetworkActivityCount--;
     NSAssert(NetworkActivityCount >= 0, @"Network activity count underflow");
+#if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
     UIApplication.sharedApplication.networkActivityIndicatorVisible = self.isUsingNetwork;
+#endif
 }
 
 + (BOOL)isUsingNetwork {
