@@ -17,7 +17,7 @@
 }
 
 - (NSDictionary *)parameters {
-    return [self.post.representation dictionaryWithObjectsForKeys:[NSArray arrayWithObjects:@"text", @"reply_to", @"annotations", @"links", nil]];
+    return self.draft.representation;
 }
 
 - (ANRequestMethod)method {
@@ -26,7 +26,6 @@
 
 - (void)sendRequestWithCompletion:(ANPostRequestCompletion)completion {
     [self sendRequestWithRepresentationCompletion:^(id rep, NSError *error) {
-        [self.session updateResource:self.post withRepresentation:rep];
         [self.session completePostRequest:completion withRepresentation:rep error:error];
     }];
 }

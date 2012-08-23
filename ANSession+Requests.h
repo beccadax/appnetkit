@@ -26,7 +26,7 @@
 
 - (void)postWithID:(ANResourceID)ID completion:(ANPostRequestCompletion)completion;
 
-- (void)createPost:(ANPost*)post completion:(ANPostRequestCompletion)completion;
+- (void)createPostFromDraft:(ANDraft*)draft completion:(ANPostRequestCompletion)completion;
 - (void)deletePostWithID:(ANResourceID)ID completion:(ANPostRequestCompletion)completion;
 
 - (void)postsForUserWithID:(ANResourceID)ID betweenID:(ANResourceID)sinceID andID:(ANResourceID)beforeID completion:(ANPostListRequestCompletion)completion;

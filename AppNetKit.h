@@ -55,3 +55,4 @@ typedef uint64_t ANResourceID;
 #import "ANSession.h"
 #import "ANUser.h"
 #import "ANPost.h"
+#import "ANDraft.h"

@@ -113,10 +113,10 @@
     [req sendRequestWithCompletion:completion];
 }
 
-- (void)createPost:(ANPost *)post completion:(ANPostRequestCompletion)completion {
+- (void)createPostFromDraft:(ANDraft *)draft completion:(ANPostRequestCompletion)completion {
     ANCreatePostRequest * req = [[ANCreatePostRequest alloc] initWithSession:self];
     
-    req.post = post;
+    req.draft = draft;
     
     [req sendRequestWithCompletion:completion];
 }

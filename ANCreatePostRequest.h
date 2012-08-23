@@ -9,11 +9,11 @@
 #import "ANAuthenticatedRequest.h"
 #import "ANSession.h"
 
-@class ANPost;
+@class ANDraft;
 
 @interface ANCreatePostRequest : ANAuthenticatedRequest
 
-@property (strong) ANPost * post;
+@property (strong) ANDraft * draft;
 
 - (void)sendRequestWithCompletion:(ANPostRequestCompletion)completion;
 

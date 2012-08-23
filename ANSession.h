@@ -12,6 +12,7 @@
 @class ANUser;
 @class ANPost;
 @class ANResource;
+@class ANDraft;
 
 extern const ANResourceID ANMeUserID;
 extern const ANResourceID ANUnspecifiedPostID;
