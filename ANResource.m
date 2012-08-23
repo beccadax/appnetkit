@@ -9,6 +9,7 @@
 #import "ANResource.h"
 #import "ISO8601DateFormatter.h"
 #import "ANSession.h"
+#import "ANSession+ANResource_Private.h"
 
 @implementation ANResource
 
@@ -35,15 +36,13 @@
 
 }
 
-- (id)initWithSession:(ANSession *)session {
-    return [self initWithRepresentation:nil session:session];
-}
-
 - (id)initWithRepresentation:(NSDictionary *)rep session:(ANSession *)session {
+    NSParameterAssert(rep);
+    NSParameterAssert(session);
+    
     if((self = [super init])) {
         _session = session;
-        _originalRepresentation = rep.copy ?: @{};
-        [self revert];
+        _representation = rep.copy;
         
         self = [session uniqueResource:self];
     }
@@ -51,7 +50,7 @@
 }
 
 - (NSUInteger)hash {
-    return (NSUInteger)self.originalRepresentation.hash ^ (NSUInteger)self.class;
+    return (NSUInteger)self.representation.hash ^ (NSUInteger)self.class;
 }
 
 - (BOOL)isEqual:(ANResource*)object {
@@ -59,16 +58,7 @@
         return NO;
     }
     
-    return [self.originalRepresentation isEqual:object.originalRepresentation];
-}
-
-- (void)revert {
-    _representation = _originalRepresentation.mutableCopy;
-}
-
-- (void)setOriginalRepresentation:(NSDictionary *)originalRepresentation {
-    _originalRepresentation = originalRepresentation;
-    [self revert];
+    return [self.representation isEqual:object.representation];
 }
 
 @end

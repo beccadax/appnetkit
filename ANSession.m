@@ -7,6 +7,7 @@
 //
 
 #import "ANSession.h"
+#import "ANSession+ANResource_Private.h"
 
 const ANResourceID ANMeUserID = 0;
 const ANResourceID ANUnspecifiedPostID = 0;
@@ -15,8 +16,8 @@ NSInteger NetworkActivityCount;
 
 @interface ANSession ()
 
-@property (strong) NSMutableSet * resources;
-@property (strong) dispatch_queue_t resourceUniquingQueue;
+@property (strong,nonatomic) NSMutableSet * resources;
+@property (strong,nonatomic) dispatch_queue_t resourceUniquingQueue;
 
 @end
 
@@ -122,7 +123,7 @@ NSInteger NetworkActivityCount;
         
         if(existingResource) {
             [self.resources removeObject:existingResource];
-            existingResource.originalRepresentation = resource.originalRepresentation;
+            existingResource.representation = resource.representation;
             resource = existingResource;
         }
         
@@ -130,19 +131,6 @@ NSInteger NetworkActivityCount;
     });
     
     return resource;
-}
-
-- (void)updateResource:(ANResource*)resource withRepresentation:(NSDictionary*)rep {
-    if(!rep) {
-        return;
-    }
-    
-    // We do this in a queue so that only one thread can be adjusting the resource set at a time.
-    dispatch_sync(self.resourceUniquingQueue, ^{
-        [self.resources removeObject:resource];
-        resource.originalRepresentation = rep;
-        [self.resources addObject:resource];
-    });
 }
 
 @end

@@ -23,18 +23,13 @@
 
 @interface ANResource : NSObject
 
+- (id)initWithRepresentation:(NSDictionary*)rep session:(ANSession*)session;
+
+@property (readonly,weak,nonatomic) ANSession * session;
+@property (readonly,strong,nonatomic) NSDictionary * representation;
+
 + (ISO8601DateFormatter*)dateFormatter;
 + (NSNumberFormatter*)IDFormatter;
-- (id)initWithRepresentation:(NSDictionary*)rep session:(ANSession*)session;
-- (id)initWithSession:(ANSession*)session;
-
-@property (readonly,weak) ANSession * session;
-@property (readonly,strong) NSMutableDictionary * representation;
-
-// Warning: Trying to use this setter is likely to cause AppNetKit to catch fire.
-@property (strong,nonatomic) NSDictionary * originalRepresentation;
-
-- (void)revert;
 
 @end
 
