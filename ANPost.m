@@ -11,7 +11,7 @@
 @implementation ANPost
 
 ANResourceSynthesizeID(@"id", ID, setID)
-ANResourceSynthesizeDate(@"createdAt", createdAt, setCreatedAt)
+ANResourceSynthesizeDate(@"created_at", createdAt, setCreatedAt)
 ANResourceSynthesize(@"text", text, setText);
 ANResourceSynthesize(@"html", HTML, setHTML)
 ANResourceSynthesize(@"entities", entitiesRepresentation, setEntitiesRepresentation)
