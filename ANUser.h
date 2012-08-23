@@ -27,6 +27,7 @@ ANUserType ANUserTypeFromString(NSString * string);
 @class ANUserDescription;
 @class ANImage;
 @class ANUserCounts;
+@class ANDraft;
 
 @interface ANUser : ANResource
 
@@ -58,6 +59,8 @@ ANUserType ANUserTypeFromString(NSString * string);
 @property (readonly) BOOL followsYou;
 @property (readonly) BOOL youFollow;
 @property (readonly) BOOL youMuted;
+
+- (ANDraft*)draftMention;
 
 - (void)reloadWithCompletion:(ANUserRequestCompletion)completion;
 

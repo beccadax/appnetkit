@@ -22,6 +22,32 @@
 @dynamic deleted;
 @dynamic userRepresentation;
 
+- (ANDraft*)draftForward {
+    ANDraft * draft = [ANDraft new];
+    
+    draft.text = [NSString stringWithFormat:@"» @%@ %@", self.user.username, self.text];
+    
+    return draft;
+}
+
+- (ANDraft*)draftReply {
+    ANDraft * draft = [self.user draftMention];
+    
+    draft.replyTo = self.ID;
+    
+    return draft;
+}
+
+- (ANDraft*)draftCopy {
+    ANDraft * draft = [ANDraft new];
+    
+    draft.text = self.text;
+    draft.replyTo = self.replyTo;
+    [draft.annotations setDictionary:self.annotations];
+    
+    return draft;
+}
+
 - (ANEntitySet *)entities {
     return [[ANEntitySet alloc] initWithRepresentation:self.entitiesRepresentation session:self.session];
 }

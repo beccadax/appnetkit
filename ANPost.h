@@ -9,6 +9,8 @@
 #import "ANResource.h"
 #import "ANSession.h"
 
+@class ANDraft;
+
 @interface ANPost : ANResource <ANTextualResource>
 
 @property (readonly) ANResourceID ID;
@@ -30,5 +32,9 @@
 
 @property (readonly,getter=isDeleted) BOOL deleted;
 - (void)deleteWithCompletion:(ANPostRequestCompletion)completion;
+
+- (ANDraft*)draftForward;
+- (ANDraft*)draftReply;
+- (ANDraft*)draftCopy;
 
 @end

@@ -83,6 +83,14 @@ ANUserType ANUserTypeFromString(NSString * string) {
     return [[ANUserCounts alloc] initWithRepresentation:self.countsRepresentation session:self.session];
 }
 
+- (ANDraft *)draftMention {
+    ANDraft * draft = [ANDraft new];
+    
+    draft.text = [NSString stringWithFormat:@"@%@ ", self.username];
+    
+    return draft;
+}
+
 - (NSUInteger)hash {
     return (NSUInteger)self.ID ^ (NSUInteger)self.class;
 }
