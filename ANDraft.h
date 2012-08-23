@@ -18,4 +18,6 @@
 
 @property (readonly) NSDictionary * representation;
 
+- (void)createPostViaSession:(ANSession*)session completion:(ANPostRequestCompletion)completion;
+
 @end

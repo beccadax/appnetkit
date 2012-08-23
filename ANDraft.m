@@ -31,4 +31,8 @@
     return dict.copy;
 }
 
+- (void)createPostViaSession:(ANSession*)session completion:(ANPostRequestCompletion)completion {
+    [session createPostFromDraft:self completion:completion];
+}
+
 @end
