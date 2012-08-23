@@ -10,7 +10,7 @@
 
 // ANFrameworkImage is the same as NSImage on the Mac or UIImage on the iPhone.
 // (It just so happens that ANImage only needs to call -initWithData: which is present in both.)
-#if defined(TARGET_OS_IPHONE) || defined(TARGET_IPHONE_SIMULATOR)
+#if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
 @compatibility_alias ANFrameworkImage UIImage;
 #else
 @compatibility_alias ANFrameworkImage NSImage;
