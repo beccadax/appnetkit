@@ -20,6 +20,7 @@
 //   - NSTimeZone
 //   - NSLocale
 //   - NSURL
+//   - ANResource subclasses
 // - BOOL
 // - ANResourceID (in the form of unsigned long long)
 // - NSUInteger (in the form of unsigned long and unsigned int)
@@ -140,6 +141,12 @@ static id ANBlockForGetterReturningType(NSString * name, NSString * propType) {
             return ^NSURL*(ANResource * self) {
                 id object = [self.representation objectForKey:key];
                 return [NSURL URLWithString:object];
+            };
+        }
+        else if([class isSubclassOfClass:ANResource.class]) {
+            return ^ANResource*(ANResource * self) {
+                id object = [self.representation objectForKey:key];
+                return [[class alloc] initWithRepresentation:object session:self.session];
             };
         }
         else {

@@ -14,12 +14,14 @@
 @dynamic createdAt;
 @dynamic text;
 @dynamic HTML;
+@dynamic entities;
 @dynamic entitiesRepresentation;
 @dynamic replyTo;
 @dynamic threadID;
 @dynamic numberOfReplies;
 @dynamic annotations;
 @dynamic deleted;
+@dynamic user;
 @dynamic userRepresentation;
 
 - (ANDraft*)draftForward {
@@ -46,14 +48,6 @@
     [draft.annotations setDictionary:self.annotations];
     
     return draft;
-}
-
-- (ANEntitySet *)entities {
-    return [[ANEntitySet alloc] initWithRepresentation:self.entitiesRepresentation session:self.session];
-}
-
-- (ANUser *)user {
-    return [[ANUser alloc] initWithRepresentation:self.userRepresentation session:self.session];
 }
 
 - (void)postRepliedToWithCompletion:(ANPostRequestCompletion)completion {

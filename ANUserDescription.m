@@ -13,9 +13,6 @@
 @dynamic text;
 @dynamic HTML;
 @dynamic entitiesRepresentation;
-
-- (ANEntitySet *)entities {
-    return [[ANEntitySet alloc] initWithRepresentation:self.entitiesRepresentation session:self.session];
-}
+@dynamic entities;
 
 @end

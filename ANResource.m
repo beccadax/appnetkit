@@ -33,7 +33,6 @@
     });
     
     return singleton;
-
 }
 
 - (id)initWithRepresentation:(NSDictionary *)rep session:(ANSession *)session {

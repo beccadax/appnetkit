@@ -66,13 +66,12 @@
 
 @dynamic entityType;
 @dynamic URL;
+@dynamic name;
+@dynamic text;
 
 - (NSRange)range {
     return NSMakeRange([self.representation[@"pos"] unsignedIntegerValue], [self.representation[@"len"] unsignedIntegerValue]);
 }
-
-@dynamic name;
-@dynamic text;
 
 - (ANResourceID)userID {
     return [(id)self ID];

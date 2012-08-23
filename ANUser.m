@@ -47,14 +47,18 @@ ANUserType ANUserTypeFromString(NSString * string) {
 @dynamic ID;
 @dynamic username;
 @dynamic name;
+@dynamic userDescriptionRepresentation;
 @dynamic userDescription;
 @dynamic timezoneString;
 @dynamic localeString;
 @dynamic typeString;
 @dynamic avatarImageRepresentation;
+@dynamic avatarImage;
 @dynamic coverImageRepresentation;
+@dynamic coverImage;
 @dynamic createdAt;
 @dynamic countsRepresentation;
+@dynamic counts;
 @dynamic followsYou;
 @dynamic youFollow;
 @dynamic youMuted;
@@ -66,22 +70,6 @@ ANUserType ANUserTypeFromString(NSString * string) {
 //- (void)setType:(ANUserType)type {
 //    self.typeString = ANUserTypeToString(type);
 //}
-
-- (ANUserDescription *)userDescription {
-    return [[ANUserDescription alloc] initWithRepresentation:self.userDescriptionRepresentation session:self.session];
-}
-
-- (ANImage *)avatarImage {
-    return [[ANImage alloc] initWithRepresentation:self.avatarImageRepresentation session:self.session];
-}
-
-- (ANImage *)coverImage {
-    return [[ANImage alloc] initWithRepresentation:self.coverImageRepresentation session:self.session];
-}
-
-- (ANUserCounts *)counts {
-    return [[ANUserCounts alloc] initWithRepresentation:self.countsRepresentation session:self.session];
-}
 
 - (ANDraft *)draftMention {
     ANDraft * draft = [ANDraft new];
