@@ -32,8 +32,6 @@ typedef enum {
 
 @interface ANEntity : ANResource
 
-// XXX should some of this be mutable for specifying links in new posts?
-
 @property (readonly) ANEntityType entityType;
 @property (readonly) NSRange range;
 

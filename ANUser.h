@@ -53,7 +53,7 @@ ANUserType ANUserTypeFromString(NSString * string);
 @property (readonly) NSDate * createdAt;
 @property (readonly) ANUserCounts * counts;
 @property (readonly) NSDictionary * countsRepresentation;
-//@property (copy) NSDictionary * appData;
+//@property (readonly???) NSDictionary * appData;
 
 @property (readonly) BOOL followsYou;
 @property (readonly) BOOL youFollow;

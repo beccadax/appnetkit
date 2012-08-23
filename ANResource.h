@@ -14,7 +14,7 @@
 
 @protocol ANTextualResource <NSObject>
 
-@property (readonly,copy) NSString * text;
+@property (readonly) NSString * text;
 @property (readonly) NSString * HTML;
 @property (readonly) ANEntitySet * entities;
 @property (readonly) NSDictionary * entitiesRepresentation;
