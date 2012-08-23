@@ -13,18 +13,14 @@
 
 @property (readonly) ANResourceID ID;
 
-// Editable:
-@property (readwrite,copy) NSString * text;
-//@property (copy) NSArray * links;
-@property (assign) ANResourceID replyTo;
-@property (copy) NSDictionary * annotations;
-
 @property (readonly) ANUser * user;
 @property (readonly) NSDictionary * userRepresentation;
 @property (readonly) NSDate * createdAt;
 
+@property (readonly) NSDictionary * annotations;
 //@property (readonly) ANSource * source;
 
+@property (readonly) ANResourceID replyTo;
 - (void)postRepliedToWithCompletion:(ANPostRequestCompletion)completion;
 - (void)replyPostsWithCompletion:(ANPostListRequestCompletion)completion;
 
@@ -33,8 +29,6 @@
 - (void)postAtThreadRootWithCompletion:(ANPostRequestCompletion)completion;
 
 @property (readonly,getter=isDeleted) BOOL deleted;
-
-- (void)createWithCompletion:(ANPostRequestCompletion)completion;
 - (void)deleteWithCompletion:(ANPostRequestCompletion)completion;
 
 @end

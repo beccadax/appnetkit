@@ -42,10 +42,6 @@
     [self.session postWithID:self.ID completion:completion];
 }
 
-- (void)createWithCompletion:(ANPostRequestCompletion)completion {
-    [self.session createPost:self completion:completion];
-}
-
 - (void)deleteWithCompletion:(ANPostRequestCompletion)completion {
     [self.session deletePostWithID:self.ID completion:completion];
 }
