@@ -27,6 +27,7 @@ typedef enum {
 
 + (void)beginNetworkActivity;
 + (void)endNetworkActivity;
++ (BOOL)isUsingNetwork;
 
 + (ANSession*)defaultSession;
 
