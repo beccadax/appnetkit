@@ -10,13 +10,14 @@
 #import "ISO8601DateFormatter.h"
 
 @class ANSession;
+@class ANEntitySet;
 
 @protocol ANTextualResource <NSObject>
 
 @property (readonly,copy) NSString * text;
 @property (readonly) NSString * HTML;
-//@property (readonly) NSArray * entities;
-@property (readonly) NSArray * entitiesRepresentation;
+@property (readonly) ANEntitySet * entities;
+@property (readonly) NSDictionary * entitiesRepresentation;
 
 @end
 
@@ -36,6 +37,8 @@
 - (void)revert;
 
 @end
+
+#import "ANEntity.h"
 
 #define ANResourceSynthesize(KEY, GETTER_NAME, SETTER_NAME) \
 - (id)GETTER_NAME { return [self.representation objectForKey:KEY]; } \

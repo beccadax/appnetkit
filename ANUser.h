@@ -24,6 +24,10 @@ typedef enum {
 NSString * ANUserTypeToString(ANUserType type);
 ANUserType ANUserTypeFromString(NSString * string);
 
+@class ANUserDescription;
+@class ANImage;
+@class ANUserCounts;
+
 @interface ANUser : ANResource
 
 @property (readonly) ANResourceID ID;

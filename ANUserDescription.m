@@ -14,4 +14,8 @@ ANResourceSynthesize(@"text", text, setText);
 ANResourceSynthesize(@"html", HTML, setHTML);
 ANResourceSynthesize(@"entities", entitiesRepresentation, setEntitiesRepresentation)
 
+- (ANEntitySet *)entities {
+    return [[ANEntitySet alloc] initWithRepresentation:self.entitiesRepresentation session:self.session];
+}
+
 @end

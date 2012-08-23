@@ -22,6 +22,10 @@ ANResourceSynthesize(@"annotations", annotations, setAnnotations)
 ANResourceSynthesizeBool(@"is_deleted", isDeleted, setDeleted)
 ANResourceSynthesize(@"user", userRepresentation, setUserRepresentation)
 
+- (ANEntitySet *)entities {
+    return [[ANEntitySet alloc] initWithRepresentation:self.entitiesRepresentation session:self.session];
+}
+
 - (ANUser *)user {
     return [[ANUser alloc] initWithRepresentation:self.userRepresentation session:self.session];
 }
