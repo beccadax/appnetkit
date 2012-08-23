@@ -1,6 +1,6 @@
 //
 //  ANDraft.h
-//  Appdate
+//  AppNetKit
 //
 //  Created by Brent Royal-Gordon on 8/23/12.
 //  Copyright (c) 2012 Architechies. All rights reserved.
