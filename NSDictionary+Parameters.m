@@ -110,7 +110,7 @@
                 else {
                     NSData * data = [chr dataUsingEncoding:NSUTF8StringEncoding];
                     for(NSUInteger j = 0; j < data.length; j++) {
-                        [e appendFormat:@"%%%02X", ((char*)data.bytes)[j]];
+                        [e appendFormat:@"%%%02X", ((unsigned char*)data.bytes)[j]];
                     }
                 }
             }
