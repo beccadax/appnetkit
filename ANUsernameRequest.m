@@ -23,7 +23,15 @@
 }
 
 - (void)sendRequestWithCompletion:(ANUserRequestCompletion)completion {
+    NSString * username = self.username;
+    
     [self sendRequestWithRepresentationCompletion:^(id rep, NSError *error) {
+        if(!rep) {
+            if(error.code == ANNotFoundError && [error.domain isEqualToString:ANErrorDomain]) {
+                NSString * message = [NSString stringWithFormat:NSLocalizedString(@"@%@ has not been registered by an App.net user.", @""), username];
+                error = [NSError errorWithDomain:ANErrorDomain code:ANNotFoundError userInfo:@{ NSLocalizedDescriptionKey: message, NSUnderlyingErrorKey: error }];
+            }
+        }
         [self.session completeUserRequest:completion withRepresentation:rep error:error];
     }];
 }
