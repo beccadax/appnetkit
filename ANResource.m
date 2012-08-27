@@ -38,8 +38,11 @@ NSString * const ANResourceDidUpdateNotification = @"ANResourceDidUpdate";
 }
 
 - (id)initWithRepresentation:(NSDictionary *)rep session:(ANSession *)session {
-    NSParameterAssert(rep);
     NSParameterAssert(session);
+    
+    if(!rep) {
+        self = nil;
+    }
     
     if((self = [super init])) {
         _session = session;
