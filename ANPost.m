@@ -23,6 +23,8 @@
 @dynamic deleted;
 @dynamic user;
 @dynamic userRepresentation;
+@dynamic source;
+@dynamic sourceRepresentation;
 
 - (ANDraft*)draftForward {
     ANDraft * draft = [ANDraft new];

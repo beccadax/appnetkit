@@ -10,6 +10,7 @@
 #import "ANSession.h"
 
 @class ANDraft;
+@class ANSource;
 
 @interface ANPost : ANResource <ANTextualResource>
 
@@ -20,7 +21,8 @@
 @property (readonly) NSDate * createdAt;
 
 @property (readonly) NSDictionary * annotations;
-//@property (readonly) ANSource * source;
+@property (readonly) ANSource * source;
+@property (readonly) NSDictionary * sourceRepresentation;
 
 @property (readonly) ANResourceID replyTo;
 - (void)postRepliedToWithCompletion:(ANPostRequestCompletion)completion;
