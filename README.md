@@ -54,7 +54,7 @@ ANResource, ANUser, and ANPost
 
 ANResource represents anything the server sends as a JSON object. ANUser and ANPost are subclasses for the Stream API's User and Post objects, respectively.
 
-ANResources are uniqued--only one instance of a given resource (per session) exists at a time. So if you make two different requests that end up giving you the same ANUser, you'll end up with two pointers to the same ANUser instance. This also means that one call may update ANResource instances returned by an earlier call. [NOTE: ANResource is not KVO-compliant, but it really should be. Patches welcome.]
+ANResources are uniqued--only one instance of a given resource (per session) exists at a time. So if you make two different requests that end up giving you the same ANUser, you'll end up with two pointers to the same ANUser instance. This also means that one call may update ANResource instances returned by an earlier call.
 
 ANRequest and subclasses
 ---------------------
