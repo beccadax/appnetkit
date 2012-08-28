@@ -13,7 +13,7 @@ Synopsis
     // Get the latest posts in the user's incoming post stream...
     [ANSession.defaultSession postsInStreamWithCompletion:^(NSArray * posts, NSError * error) {
         if(!posts) {
-            [self showError:error];
+            [self doSomethingWithError:error];
             return;
         }
         
@@ -21,14 +21,13 @@ Synopsis
         ANPost * latestPost = posts[0];
         
         // Compose a reply...
-        ANPost * newPost = [[ANPost alloc] initWithSession:ANSession.defaultSession];
-        newPost.text = [NSString stringWithFormat:@"@%@ Me too!", latestPost.user.username];
-        newPost.replyToID = latestPost.ID;
+        ANDraft * newPost = [latestPost draftReply];
+        newPost.text = [newPost.text appendString:@"Me too!"];  // The default text includes an @mention
         
         // And post it.
-        [newPost createWithCompletion:^(ANPost * post, NSError * error) {
+        [newPost createPostViaSession:ANSession.defaultSession completion:^(ANPost * post, NSError * error) {
             if(!post) {
-                [self showError:error];
+                [self doSomethingWithError:error];
             }
         }];
     }];
