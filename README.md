@@ -64,7 +64,7 @@ ANRequest subclasses represent specific API requests. You don't normally have to
 Author
 ======
 
-Brent Royal-Gordon, Architechies <brent@architechies.com>.
+Brent Royal-Gordon, Architechies <brent@architechies.com>, @brent on App.net.
 
 Bugs
 ====
