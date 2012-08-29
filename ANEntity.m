@@ -46,11 +46,11 @@
     if(!ret) {
         NSMutableArray * allEntities = [NSMutableArray new];
         
-        NSMutableArray * groupedEntities = @[
-            self.mentions.mutableCopy,
-            self.tags.mutableCopy,
-            self.links.mutableCopy,
-        ].mutableCopy;
+        NSMutableArray * groupedEntities = [NSMutableArray arrayWithObjects:
+                                            self.mentions.mutableCopy,
+                                            self.tags.mutableCopy,
+                                            self.links.mutableCopy,
+                                            nil];
         
         for(NSMutableArray * someEntities in groupedEntities.copy) {
             if(someEntities.count == 0) {
@@ -66,13 +66,13 @@
                     nextEntityArray = someEntities;
                     continue;
                 }
-                if([nextEntityArray[0] range].location > [someEntities[0] range].location) {
+                if([[nextEntityArray objectAtIndex:0] range].location > [[someEntities objectAtIndex:0] range].location) {
                     nextEntityArray = someEntities;
                     continue;
                 }
             }
             
-            [allEntities addObject:nextEntityArray[0]];
+            [allEntities addObject:[nextEntityArray objectAtIndex:0]];
             [nextEntityArray removeObjectAtIndex:0];
             
             if(nextEntityArray.count == 0) {
@@ -111,7 +111,8 @@
 @dynamic ID;
 
 - (NSRange)range {
-    return NSMakeRange([self.representation[@"pos"] unsignedIntegerValue], [self.representation[@"len"] unsignedIntegerValue]);
+    return NSMakeRange([[self.representation objectForKey:@"pos"] unsignedIntegerValue],
+                       [[self.representation objectForKey:@"len"] unsignedIntegerValue]);
 }
 
 - (ANResourceID)userID {
