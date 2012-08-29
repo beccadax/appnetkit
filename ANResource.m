@@ -11,6 +11,8 @@
 #import "ANSession.h"
 #import "ANSession+ANResource_Private.h"
 
+#import <objc/runtime.h>
+
 NSString * const ANResourceDidUpdateNotification = @"ANResourceDidUpdate";
 
 @implementation ANResource
@@ -59,7 +61,10 @@ NSString * const ANResourceDidUpdateNotification = @"ANResourceDidUpdate";
     }
     
     [self willChangeValueForKey:@"representation"];
+    
     _representation = representation;
+    objc_removeAssociatedObjects(self);
+    
     [NSNotificationCenter.defaultCenter postNotificationName:ANResourceDidUpdateNotification object:self];
     [self didChangeValueForKey:@"representation"];
 }
