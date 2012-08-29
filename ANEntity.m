@@ -8,6 +8,8 @@
 
 #import "ANEntity.h"
 
+#import <objc/runtime.h>
+
 @interface ANEntity ()
 
 + (NSArray*)entitiesWithRepresentations:(NSArray*)reps session:(ANSession*)session;
@@ -39,16 +41,24 @@
 }
 
 - (NSArray *)all {
-    NSArray * groupedEntities = @[ self.mentions, self.tags, self.links, ];
-    NSMutableArray * allEntities = [NSMutableArray new];
+    NSArray * ret = objc_getAssociatedObject(self, _cmd);
     
-    for(NSArray * entities in groupedEntities) {
-        [allEntities addObjectsFromArray:entities];
+    if(!ret) {
+        NSArray * groupedEntities = @[ self.mentions, self.tags, self.links, ];
+        NSMutableArray * allEntities = [NSMutableArray new];
+        
+        for(NSArray * entities in groupedEntities) {
+            [allEntities addObjectsFromArray:entities];
+        }
+        
+        ret = [allEntities sortedArrayUsingDescriptors:@[
+                [[NSSortDescriptor alloc] initWithKey:@"_location" ascending:YES],
+                [[NSSortDescriptor alloc] initWithKey:@"type" ascending:YES] ]];
+        
+        objc_setAssociatedObject(self, _cmd, ret, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
     
-    return [allEntities sortedArrayUsingDescriptors:@[
-            [[NSSortDescriptor alloc] initWithKey:@"_location" ascending:YES],
-            [[NSSortDescriptor alloc] initWithKey:@"type" ascending:YES] ]];
+    return ret;
 }
 @end
 
