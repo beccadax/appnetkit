@@ -12,6 +12,8 @@
 
 + (NSArray*)entitiesWithRepresentations:(NSArray*)reps session:(ANSession*)session;
 
+@property (readonly) ANResourceID ID;
+
 @end
 
 @interface ANMentionEntity : ANEntity @end
@@ -68,13 +70,14 @@
 @dynamic URL;
 @dynamic name;
 @dynamic text;
+@dynamic ID;
 
 - (NSRange)range {
     return NSMakeRange([self.representation[@"pos"] unsignedIntegerValue], [self.representation[@"len"] unsignedIntegerValue]);
 }
 
 - (ANResourceID)userID {
-    return [(id)self ID];
+    return self.ID;
 }
 
 @end
