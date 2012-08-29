@@ -125,9 +125,19 @@ static id ANBlockForGetterReturningType(NSString * name, NSString * propType) {
         Class class = ANClassFromObjectTypeEncoding(propType);
         
         if([class isSubclassOfClass:NSDate.class]) {
+            SEL _cmd = NSSelectorFromString(name);
+            
             return ^NSDate*(ANResource * self) {
-                id object = [self.representation objectForKey:key];
-                return [ANResource.dateFormatter dateFromString:object];
+                id object = objc_getAssociatedObject(self, _cmd);
+                
+                if(!object) {
+                    object = [self.representation objectForKey:key];
+                    object = [ANResource.dateFormatter dateFromString:object];
+                    
+                    objc_setAssociatedObject(self, _cmd, object, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+                }
+                
+                return object;
             };
         }
         else if([class isSubclassOfClass:NSTimeZone.class]) {
@@ -149,9 +159,19 @@ static id ANBlockForGetterReturningType(NSString * name, NSString * propType) {
             };
         }
         else if([class isSubclassOfClass:ANResource.class]) {
+            SEL _cmd = NSSelectorFromString(name);
+            
             return ^ANResource*(ANResource * self) {
-                id object = [self.representation objectForKey:key];
-                return [[class alloc] initWithRepresentation:object session:self.session];
+                id object = objc_getAssociatedObject(self, _cmd);
+                
+                if(!object) {
+                    object = [self.representation objectForKey:key];
+                    object = [[class alloc] initWithRepresentation:object session:self.session];
+                    
+                    objc_setAssociatedObject(self, _cmd, object, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+                }
+                
+                return object;
             };
         }
         else {
