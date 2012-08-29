@@ -128,7 +128,7 @@
 }
 
 - (NSString *)text {
-    return [NSString stringWithFormat:@"@%@", self.name];
+    return self.name.appNetUsernameString;
 }
 
 - (NSURL *)URL {
@@ -144,7 +144,7 @@
 }
 
 - (NSString *)text {
-    return [NSString stringWithFormat:@"#%@", self.name];
+    return self.name.appNetTagString;
 }
 
 - (NSURL *)URL {

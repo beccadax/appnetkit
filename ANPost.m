@@ -29,7 +29,7 @@
 - (ANDraft*)draftForward {
     ANDraft * draft = [ANDraft new];
     
-    draft.text = [NSString stringWithFormat:@"» @%@ %@", self.user.username, self.text];
+    draft.text = [NSString stringWithFormat:@"» %@ %@", self.user.username.appNetUsernameString, self.text];
     
     return draft;
 }

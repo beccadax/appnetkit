@@ -74,7 +74,7 @@ ANUserType ANUserTypeFromString(NSString * string) {
 - (ANDraft *)draftMention {
     ANDraft * draft = [ANDraft new];
     
-    draft.text = [NSString stringWithFormat:@"@%@ ", self.username];
+    draft.text = [NSString stringWithFormat:@"%@ ", self.username.appNetUsernameString];
     
     return draft;
 }

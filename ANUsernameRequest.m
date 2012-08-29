@@ -28,7 +28,7 @@
     [self sendRequestWithRepresentationCompletion:^(id rep, NSError *error) {
         if(!rep) {
             if(error.code == ANNotFoundError && [error.domain isEqualToString:ANErrorDomain]) {
-                NSString * message = [NSString stringWithFormat:NSLocalizedString(@"@%@ has not been registered by an App.net user.", @""), username];
+                NSString * message = [NSString stringWithFormat:NSLocalizedString(@"%@ has not been registered by an App.net user.", @""), username.appNetUsernameString];
                 error = [NSError errorWithDomain:ANErrorDomain code:ANNotFoundError userInfo:@{ NSLocalizedDescriptionKey: message, NSUnderlyingErrorKey: error }];
             }
         }
