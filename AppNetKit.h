@@ -50,6 +50,7 @@ typedef enum {
 
 typedef uint64_t ANResourceID;
 
+#import "NSString+AppNetExtensions.h"
 #import "ANCompletions.h"
 #import "ANAuthenticator.h"
 #import "ANSession.h"
