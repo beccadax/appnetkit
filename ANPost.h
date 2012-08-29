@@ -36,7 +36,11 @@
 - (void)deleteWithCompletion:(ANPostRequestCompletion)completion;
 
 - (ANDraft*)draftForward;
-- (ANDraft*)draftReply;
 - (ANDraft*)draftCopy;
+
+- (ANDraft*)draftReply;
+// The exception is usually the user who will post the draft.
+- (ANDraft*)draftReplyToAllExceptUser:(ANUser*)user;
+- (ANDraft*)draftReplyToAllExceptUsername:(NSString*)username;
 
 @end

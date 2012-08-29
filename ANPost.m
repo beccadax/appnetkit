@@ -34,6 +34,16 @@
     return draft;
 }
 
+- (ANDraft*)draftCopy {
+    ANDraft * draft = [ANDraft new];
+    
+    draft.text = self.text;
+    draft.replyTo = self.replyTo;
+    [draft.annotations setDictionary:self.annotations];
+    
+    return draft;
+}
+
 - (ANDraft*)draftReply {
     ANDraft * draft = [self.user draftMention];
     
@@ -42,12 +52,34 @@
     return draft;
 }
 
-- (ANDraft*)draftCopy {
+- (ANDraft*)draftReplyToAllExceptUser:(ANUser*)user {
+    NSMutableOrderedSet * usernames = [NSMutableOrderedSet orderedSetWithObject:self.user.username];
+    for(ANEntity * mention in self.entities.mentions) {
+        if(mention.userID != user.ID) {
+            [usernames addObject:mention.name.appNetUsernameString];
+        }
+    }
+    
     ANDraft * draft = [ANDraft new];
     
-    draft.text = self.text;
-    draft.replyTo = self.replyTo;
-    [draft.annotations setDictionary:self.annotations];
+    draft.text = [[usernames.array componentsJoinedByString:@" "] stringByAppendingString:@" "];
+    draft.replyTo = self.ID;
+    
+    return draft;
+}
+
+- (ANDraft*)draftReplyToAllExceptUsername:(NSString*)username {
+    NSMutableOrderedSet * usernames = [NSMutableOrderedSet orderedSetWithObject:self.user.username];
+    for(ANEntity * mention in self.entities.mentions) {
+        if(![mention.name isEqualToString:username]) {
+            [usernames addObject:mention.name.appNetUsernameString];
+        }
+    }
+    
+    ANDraft * draft = [ANDraft new];
+    
+    draft.text = [[usernames.array componentsJoinedByString:@" "] stringByAppendingString:@" "];
+    draft.replyTo = self.ID;
     
     return draft;
 }
