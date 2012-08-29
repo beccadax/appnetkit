@@ -72,6 +72,7 @@ static NSString * ANKeyForGetterSelector(NSString * name) {
     [key replaceOccurrencesOfString:@"URL" withString:@"_url" options:0 range:NSMakeRange(0, key.length)];
     [key replaceOccurrencesOfString:@"numberOf" withString:@"_num" options:0 range:NSMakeRange(0, key.length)];
     [key replaceOccurrencesOfString:@"userDescription" withString:@"description" options:0 range:NSMakeRange(0, key.length)];
+    [key replaceOccurrencesOfString:@"tag" withString:@"hashtag" options:0 range:NSMakeRange(0, key.length)];
     
     // Used to get at raw versions of processed fields.
     // Note that this will turn things like linkRepresentations into links.
