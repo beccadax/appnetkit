@@ -166,12 +166,20 @@ static id ANBlockForGetterReturningType(NSString * name, NSString * propType) {
             return [object boolValue];
         };
     }
-    else if([propType hasPrefix:@"Q"]) {            
+    else if([propType hasPrefix:@"Q"]) {
+        SEL _cmd = NSSelectorFromString(name);
+        
         return ^unsigned long long(ANResource * self) {
-            id object = [self.representation objectForKey:key];
+            id object = objc_getAssociatedObject(self, _cmd);
             
-            if([object isKindOfClass:NSString.class]) {
-                object = [ANResource.IDFormatter numberFromString:object];
+            if(!object) {
+                object = [self.representation objectForKey:key];
+                
+                if([object isKindOfClass:NSString.class]) {
+                    object = [ANResource.IDFormatter numberFromString:object];
+                }
+                
+                objc_setAssociatedObject(self, _cmd, object, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
             }
             
             return [object unsignedLongLongValue];
