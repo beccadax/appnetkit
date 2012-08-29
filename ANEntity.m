@@ -44,22 +44,50 @@
     NSArray * ret = objc_getAssociatedObject(self, _cmd);
     
     if(!ret) {
-        NSArray * groupedEntities = @[ self.mentions, self.tags, self.links, ];
         NSMutableArray * allEntities = [NSMutableArray new];
         
-        for(NSArray * entities in groupedEntities) {
-            [allEntities addObjectsFromArray:entities];
+        NSMutableArray * groupedEntities = @[
+            self.mentions.mutableCopy,
+            self.tags.mutableCopy,
+            self.links.mutableCopy,
+        ].mutableCopy;
+        
+        for(NSMutableArray * someEntities in groupedEntities.copy) {
+            if(someEntities.count == 0) {
+                [groupedEntities removeObject:someEntities];
+            }
         }
         
-        ret = [allEntities sortedArrayUsingDescriptors:@[
-                [[NSSortDescriptor alloc] initWithKey:@"_location" ascending:YES],
-                [[NSSortDescriptor alloc] initWithKey:@"type" ascending:YES] ]];
+        while(groupedEntities.count) {
+            NSMutableArray * nextEntityArray;
+            
+            for(NSMutableArray * someEntities in groupedEntities) {
+                if(!nextEntityArray) {
+                    nextEntityArray = someEntities;
+                    continue;
+                }
+                if([nextEntityArray[0] range].location > [someEntities[0] range].location) {
+                    nextEntityArray = someEntities;
+                    continue;
+                }
+            }
+            
+            [allEntities addObject:nextEntityArray[0]];
+            [nextEntityArray removeObjectAtIndex:0];
+            
+            if(nextEntityArray.count == 0) {
+                [groupedEntities removeObject:nextEntityArray];
+            }
+        }
+        
+        ret = allEntities.copy;
         
         objc_setAssociatedObject(self, _cmd, ret, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
     
     return ret;
 }
+
 @end
 
 @implementation ANEntity
