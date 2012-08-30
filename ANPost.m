@@ -53,7 +53,7 @@
 }
 
 - (ANDraft*)draftReplyToAllExceptUser:(ANUser*)user {
-    NSMutableOrderedSet * usernames = [NSMutableOrderedSet orderedSetWithObject:self.user.username];
+    NSMutableOrderedSet * usernames = [NSMutableOrderedSet orderedSetWithObject:self.user.username.appNetUsernameString];
     for(ANEntity * mention in self.entities.mentions) {
         if(mention.userID != user.ID) {
             [usernames addObject:mention.name.appNetUsernameString];
@@ -69,7 +69,7 @@
 }
 
 - (ANDraft*)draftReplyToAllExceptUsername:(NSString*)username {
-    NSMutableOrderedSet * usernames = [NSMutableOrderedSet orderedSetWithObject:self.user.username];
+    NSMutableOrderedSet * usernames = [NSMutableOrderedSet orderedSetWithObject:self.user.username.appNetUsernameString];
     for(ANEntity * mention in self.entities.mentions) {
         if(![mention.name isEqualToString:username]) {
             [usernames addObject:mention.name.appNetUsernameString];
