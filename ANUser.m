@@ -44,7 +44,6 @@ ANUserType ANUserTypeFromString(NSString * string) {
 
 @implementation ANUser
 
-@dynamic ID;
 @dynamic username;
 @dynamic name;
 @dynamic userDescriptionRepresentation;

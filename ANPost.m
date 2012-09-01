@@ -10,7 +10,6 @@
 
 @implementation ANPost
 
-@dynamic ID;
 @dynamic createdAt;
 @dynamic text;
 @dynamic HTML;

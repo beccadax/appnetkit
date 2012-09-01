@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ANResource.h"
+#import "ANIdentifiedResource.h"
 #import "ANCompletions.h"
 #import "AppNetKit.h"
 #import "ANUserDescription.h"
@@ -29,9 +29,8 @@ ANUserType ANUserTypeFromString(NSString * string);
 @class ANUserCounts;
 @class ANDraft;
 
-@interface ANUser : ANResource
+@interface ANUser : ANIdentifiedResource
 
-@property (readonly) ANResourceID ID;
 @property (readonly) NSString * username;
 @property (readonly) NSString * name;
 @property (readonly) ANUserDescription * userDescription;

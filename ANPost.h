@@ -6,15 +6,13 @@
 //  Copyright (c) 2012 Architechies. All rights reserved.
 //
 
-#import "ANResource.h"
+#import "ANIdentifiedResource.h"
 #import "ANSession.h"
 
 @class ANDraft;
 @class ANSource;
 
-@interface ANPost : ANResource <ANTextualResource>
-
-@property (readonly) ANResourceID ID;
+@interface ANPost : ANIdentifiedResource <ANTextualResource>
 
 @property (readonly) ANUser * user;
 @property (readonly) NSDictionary * userRepresentation;
