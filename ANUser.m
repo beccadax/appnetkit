@@ -66,10 +66,6 @@ ANUserType ANUserTypeFromString(NSString * string) {
     return ANUserTypeFromString(self.typeString);
 }
 
-//- (void)setType:(ANUserType)type {
-//    self.typeString = ANUserTypeToString(type);
-//}
-
 - (ANDraft *)draftMention {
     ANDraft * draft = [ANDraft new];
     
