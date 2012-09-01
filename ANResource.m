@@ -49,8 +49,6 @@ NSString * const ANResourceDidUpdateNotification = @"ANResourceDidUpdate";
     if((self = [super init])) {
         _session = session;
         _representation = rep.copy;
-        
-        self = [session uniqueResource:self];
     }
     return self;
 }

@@ -7,10 +7,19 @@
 //
 
 #import "ANIdentifiedResource.h"
+#import "ANSession.h"
+#import "ANSession+ANResource_Private.h"
 
 @implementation ANIdentifiedResource
 
 @dynamic ID;
+
+- (id)initWithRepresentation:(NSDictionary *)rep session:(ANSession *)session {
+    if((self = [super initWithRepresentation:rep session:session])) {
+        self = [session uniqueResource:self];
+    }
+    return self;
+}
 
 - (NSUInteger)hash {
     return (NSUInteger)self.ID ^ (NSUInteger)self.class;
