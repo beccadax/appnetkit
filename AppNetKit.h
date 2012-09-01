@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#import "ANDefines.h"
+
 extern NSString * const ANErrorDomain;
 extern NSString * const ANExplanationURLKey;
 
@@ -48,13 +50,12 @@ typedef enum {
     ANHTTPVersionNotSupportedError
 } ANErrorCode;
 
-typedef uint64_t ANResourceID;
-
 #import "NSString+AppNetExtensions.h"
 #import "ANCompletions.h"
 #import "ANAuthenticator.h"
 #import "ANSession.h"
 #import "ANUser.h"
 #import "ANPost.h"
+#import "ANEntity.h"
 #import "ANSource.h"
 #import "ANDraft.h"

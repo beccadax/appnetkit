@@ -35,5 +35,3 @@ extern NSString * const ANResourceDidUpdateNotification;
 + (NSNumberFormatter*)IDFormatter;
 
 @end
-
-#import "ANEntity.h"
