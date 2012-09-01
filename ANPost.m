@@ -99,16 +99,4 @@
     [self.session deletePostWithID:self.ID completion:completion];
 }
 
-- (NSUInteger)hash {
-    return (NSUInteger)self.ID ^ (NSUInteger)self.class;
-}
-
-- (BOOL)isEqual:(ANPost*)object {
-    if(self.class != object.class) {
-        return NO;
-    }
-    
-    return self.ID == object.ID;
-}
-
 @end

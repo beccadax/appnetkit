@@ -74,18 +74,6 @@ ANUserType ANUserTypeFromString(NSString * string) {
     return draft;
 }
 
-- (NSUInteger)hash {
-    return (NSUInteger)self.ID ^ (NSUInteger)self.class;
-}
-
-- (BOOL)isEqual:(ANUser*)object {
-    if(self.class != object.class) {
-        return NO;
-    }
-    
-    return self.ID == object.ID;
-}
-
 - (void)reloadWithCompletion:(ANUserRequestCompletion)completion {
     [self.session userWithID:self.ID completion:completion];
 }
