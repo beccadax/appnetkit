@@ -10,13 +10,23 @@
 
 @interface ANResponse ()
 
-@property (readonly) NSUInteger minID;
-@property (readonly) NSUInteger maxID;
-@property (readonly) BOOL more;
+@property (nonatomic,readonly) NSUInteger code;
+@property (nonatomic,readonly) NSUInteger minID;
+@property (nonatomic,readonly) NSUInteger maxID;
+@property (nonatomic,readonly) BOOL more;
 
 @end
 
 @implementation ANResponse
+
+@dynamic code;
+@dynamic minID;
+@dynamic maxID;
+@dynamic more;
+
+- (NSUInteger)statusCode {
+    return self.code;
+}
 
 - (ANResourceID)earliestID {
     return self.minID;

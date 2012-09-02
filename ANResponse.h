@@ -12,7 +12,7 @@
 
 @interface ANResponse : ANResource
 
-@property (nonatomic,readonly) NSUInteger code;
+@property (nonatomic,readonly) NSUInteger statusCode;
 
 @property (nonatomic,readonly) ANResourceID earliestID;
 @property (nonatomic,readonly) ANResourceID latestID;
