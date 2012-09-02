@@ -38,7 +38,7 @@
     
     draft.text = self.text;
     draft.replyTo = self.replyTo;
-    [draft.annotations setDictionary:self.annotations];
+    [draft.annotations setArray:self.annotationRepresentations];
     
     return draft;
 }

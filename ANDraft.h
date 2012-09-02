@@ -13,7 +13,7 @@
 
 @property (strong) NSString * text;
 @property (assign) ANResourceID replyTo;
-@property (readonly) NSMutableDictionary * annotations;
+@property (readonly) NSMutableArray * annotations;
 //@property (strong) NSArray * links;
 
 @property (readonly) NSDictionary * representation;

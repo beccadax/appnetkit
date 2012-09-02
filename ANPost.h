@@ -11,6 +11,7 @@
 
 @class ANDraft;
 @class ANSource;
+@class ANAnnotationSet;
 
 @interface ANPost : ANIdentifiedResource <ANTextualResource>
 
@@ -18,7 +19,9 @@
 @property (readonly) NSDictionary * userRepresentation;
 @property (readonly) NSDate * createdAt;
 
-@property (readonly) NSDictionary * annotations;
+@property (readonly) ANAnnotationSet * annotations;
+@property (readonly) NSArray * annotationRepresentations;
+
 @property (readonly) ANSource * source;
 @property (readonly) NSDictionary * sourceRepresentation;
 

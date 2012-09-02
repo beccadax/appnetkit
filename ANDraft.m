@@ -12,7 +12,7 @@
 
 - (id)init {
     if((self = [super init])) {
-        _annotations = [NSMutableDictionary new];
+        _annotations = [NSMutableArray new];
     }
     return self;
 }
@@ -25,7 +25,7 @@
         [dict setObject:[NSString stringWithFormat:@"%llu", self.replyTo] forKey:@"reply_to"];
     }
     if(self.annotations.count) {
-        [dict setObject:self.annotations forKey:@"annotations"];
+        [dict setObject:[self.annotations valueForKey:@"representation"] forKey:@"annotations"];
     }
     
     return dict.copy;
