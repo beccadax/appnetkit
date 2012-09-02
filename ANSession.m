@@ -72,17 +72,38 @@ NSInteger NetworkActivityCount;
     }
 }
 
+- (id)dataRepresentationForRepresentation:(id)rep response:(ANResponse**)response {
+    if(![rep isKindOfClass:NSDictionary.class]) {
+        *response = nil;
+        return rep;
+    }
+    
+    if(![rep objectForKey:@"meta"]) {
+        *response = nil;
+        return rep;
+    }
+
+    *response = [[ANResponse alloc] initWithRepresentation:[rep objectForKey:@"meta"] session:self];
+    return [rep objectForKey:@"data"];
+}
+
 - (void)completeUserRequest:(ANUserRequestCompletion)completion withRepresentation:(NSDictionary*)rep error:(NSError*)error {
+    ANResponse * response;
+    rep = [self dataRepresentationForRepresentation:rep response:&response];
+    
     if(rep) {
         ANUser * user = [[ANUser alloc] initWithRepresentation:rep session:self];
-        completion(nil, user, nil);
+        completion(response, user, nil);
     }
     else {
-        completion(nil, nil, error);
+        completion(response, nil, error);
     }
 }
 
 - (void)completeUserListRequest:(ANUserListRequestCompletion)completion withRepresentation:(NSArray*)rep error:(NSError*)error {
+    ANResponse * response;
+    rep = [self dataRepresentationForRepresentation:rep response:&response];
+
     if(rep) {
         NSMutableArray * users = [[NSMutableArray alloc] initWithCapacity:rep.count];
         for(NSDictionary * userRep in rep) {
@@ -90,24 +111,30 @@ NSInteger NetworkActivityCount;
             [users addObject:user];
         }
         
-        completion(nil, users.copy, nil);
+        completion(response, users.copy, nil);
     }
     else {
-        completion(nil, nil, error);
+        completion(response, nil, error);
     }
 }
 
 - (void)completePostRequest:(ANPostRequestCompletion)completion withRepresentation:(NSDictionary*)rep error:(NSError*)error {
+    ANResponse * response;
+    rep = [self dataRepresentationForRepresentation:rep response:&response];
+    
     if(rep) {
         ANPost * post = [[ANPost alloc] initWithRepresentation:rep session:self];
-        completion(nil, post, nil);
+        completion(response, post, nil);
     }
     else {
-        completion(nil, nil, error);
+        completion(response, nil, error);
     }
 }
 
 - (void)completePostListRequest:(ANPostListRequestCompletion)completion withRepresentation:(NSArray*)rep error:(NSError*)error {
+    ANResponse * response;
+    rep = [self dataRepresentationForRepresentation:rep response:&response];
+    
     if(rep) {
         NSMutableArray * posts = [[NSMutableArray alloc] initWithCapacity:rep.count];
         for(NSDictionary * postRep in rep) {
@@ -115,10 +142,10 @@ NSInteger NetworkActivityCount;
             [posts addObject:post];
         }
         
-        completion(nil, posts.copy, nil);
+        completion(response, posts.copy, nil);
     }
     else {
-        completion(nil, nil, error);
+        completion(response, nil, error);
     }
 }
 
