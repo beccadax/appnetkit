@@ -78,7 +78,12 @@
         return nil;
     }
     
-    return params.formBodyData;
+    NSError * error;
+    NSData * data = [NSJSONSerialization dataWithJSONObject:params options:0 error:&error];
+    
+    NSAssert(data, @"Params could not be serialized to JSON--error: %@", error.localizedDescription);
+    
+    return data;
 }
 
 - (NSError*)errorForHTTPRequest:(NSURLRequest*)req response:(NSHTTPURLResponse*)res {
@@ -95,7 +100,7 @@
     req.HTTPBody = self.body;
     
     if(req.HTTPBody) {
-        [req setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+        [req setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     }
     
     return req;
