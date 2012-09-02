@@ -38,7 +38,7 @@
     
     draft.text = self.text;
     draft.replyTo = self.replyTo;
-    [draft.annotations setArray:[self.annotations.annotations valueForKey:@"draftAnnotation"]];
+    [draft.annotations setArray:[self.annotations.all valueForKey:@"draftAnnotation"]];
     
     return draft;
 }

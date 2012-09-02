@@ -10,7 +10,7 @@
 #import "ANDraft.h"
 
 @implementation ANAnnotationSet {
-    NSArray * _annotations;
+    NSArray * _all;
     NSDictionary * _annotationsByType;
 }
 
@@ -24,15 +24,15 @@
     return self;
 }
 
-- (NSArray *)annotations {
-    if(!_annotations) {
+- (NSArray *)all {
+    if(!_all) {
         [self buildAnnotations];
     }
     
-    return _annotations;
+    return _all;
 }
 
-- (NSArray *)annotationTypes {
+- (NSArray *)types {
     if(!_annotationsByType) {
         [self buildAnnotations];
     }
@@ -63,7 +63,7 @@
         [[byType objectForKey:annotation.type] addObject:annotation];
     }
     
-    _annotations = annotations.copy;
+    _all = annotations.copy;
     _annotationsByType = byType.copy;
 }
 

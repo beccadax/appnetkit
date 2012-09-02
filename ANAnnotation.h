@@ -17,8 +17,8 @@
 @property (readonly) ANSession * session;
 @property (readonly) NSArray * representation;
 
-@property (readonly) NSArray * annotations;
-@property (readonly) NSArray * annotationTypes;
+@property (readonly) NSArray * all;
+@property (readonly) NSArray * types;
 
 - (NSArray*)annotationsOfType:(NSString*)type;
 
