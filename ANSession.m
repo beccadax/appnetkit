@@ -75,10 +75,10 @@ NSInteger NetworkActivityCount;
 - (void)completeUserRequest:(ANUserRequestCompletion)completion withRepresentation:(NSDictionary*)rep error:(NSError*)error {
     if(rep) {
         ANUser * user = [[ANUser alloc] initWithRepresentation:rep session:self];
-        completion(user, nil);
+        completion(nil, user, nil);
     }
     else {
-        completion(nil, error);
+        completion(nil, nil, error);
     }
 }
 
@@ -90,20 +90,20 @@ NSInteger NetworkActivityCount;
             [users addObject:user];
         }
         
-        completion(users.copy, nil);
+        completion(nil, users.copy, nil);
     }
     else {
-        completion(nil, error);
+        completion(nil, nil, error);
     }
 }
 
 - (void)completePostRequest:(ANPostRequestCompletion)completion withRepresentation:(NSDictionary*)rep error:(NSError*)error {
     if(rep) {
         ANPost * post = [[ANPost alloc] initWithRepresentation:rep session:self];
-        completion(post, nil);
+        completion(nil, post, nil);
     }
     else {
-        completion(nil, error);
+        completion(nil, nil, error);
     }
 }
 
@@ -115,10 +115,10 @@ NSInteger NetworkActivityCount;
             [posts addObject:post];
         }
         
-        completion(posts.copy, nil);
+        completion(nil, posts.copy, nil);
     }
     else {
-        completion(nil, error);
+        completion(nil, nil, error);
     }
 }
 

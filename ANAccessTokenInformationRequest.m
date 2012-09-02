@@ -29,8 +29,8 @@
         NSDictionary * userRep = [rep objectForKey:@"user"];
         
         // This isn't *quite* the same as any of the normal completions, but there are ways around that...
-        [self.session completeUserRequest:^(ANUser *user, NSError *error) {
-            completion(scopes, user, error);
+        [self.session completeUserRequest:^(ANResponse * response, ANUser *user, NSError *error) {
+            completion(response, scopes, user, error);
         } withRepresentation:userRep error:error];
     }];
 }

@@ -10,9 +10,10 @@
 
 @class ANUser;
 @class ANPost;
+@class ANResponse;
 
-typedef void (^ANAccessTokenInformationRequestCompletion)(NSArray * scopes, ANUser * user, NSError * error);
-typedef void (^ANUserRequestCompletion)(ANUser * user, NSError * error);
-typedef void (^ANUserListRequestCompletion)(NSArray * users, NSError * error);
-typedef void (^ANPostRequestCompletion)(ANPost * post, NSError * error);
-typedef void (^ANPostListRequestCompletion)(NSArray * posts, NSError * error);
+typedef void (^ANAccessTokenInformationRequestCompletion)(ANResponse * response, NSArray * scopes, ANUser * user, NSError * error);
+typedef void (^ANUserRequestCompletion)(ANResponse * response, ANUser * user, NSError * error);
+typedef void (^ANUserListRequestCompletion)(ANResponse * response, NSArray * users, NSError * error);
+typedef void (^ANPostRequestCompletion)(ANResponse * response, ANPost * post, NSError * error);
+typedef void (^ANPostListRequestCompletion)(ANResponse * response, NSArray * posts, NSError * error);
