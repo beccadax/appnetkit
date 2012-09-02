@@ -50,7 +50,13 @@ You can create your own session using `[[ANSession alloc] init]` as usual, but i
 
 ANSession includes methods to perform most requests on the App.net API, from "fetch a user with a specific name" (`-userWithUsername:completion:`) to "fetch all posts with a specific hashtag between these two post IDs" (`-postsWithTag:betweenID:andID:completion:`).
 
-These requests all take a completion handler—a block that will be called when the request has been completed. Completion handlers usually take two parameters. The first is the data you requested, as either a single ANResource object or an array of ANResource objects; the second is an NSError object. If the request succeeded, the first parameter should contain data and the second should be nil; if it failed, the second should contain an NSError object and the first should be nil.
+These requests all take a completion handler--a block that will be called when the request has been completed. Completion handlers usually take three parameters:
+
+1. An ANResponse object containing metadata about your request. This parameter will be nil unless your app has enabled the "response_envelope" migration.
+
+2. The data you requested, as either a single ANResource object or an array of ANResource objects. If the request failed, this parameter will be nil.
+
+3. An NSError object. If the request succeeded, this parameter will be nil.
 
 Some calls to retrieve posts take a pair of post IDs, and return only posts between those two IDs. The higher post ID should always be the first of those two parameters. If you don't want to provide one of these post IDs, pass the `ANUnspecifiedPostID` constant instead.
 
@@ -61,7 +67,7 @@ ANSession also manages UIApplication's network activity indicator. This should p
 ANResource, ANUser, and ANPost
 ----------------------------
 
-ANResource represents anything the server sends as a JSON object. Each ANResource has a .representation property, which contains the object's JSON data parsed into Objective-C dictionaries, arrays, strings, etc. Each resource type has properties that convert this raw data to appropriate data types--from NSString for text data to NSTimeZone for an ANUser's `timezone` property.
+ANResource represents anything the server sends as a JSON object. Each ANResource has a `representation` property, which contains the object's JSON data parsed into Objective-C dictionaries, arrays, strings, etc. Each resource type has properties that convert this raw data to appropriate data types--from NSString for text data to NSTimeZone for an ANUser's `timezone` property.
 
 Because ANResources represent data from the server, you cannot change them in any way, and you should not attempt to allocate them yourself. Instead, use ANRequest objects, ANSession methods, or helper methods on ANResource subclasses to retrieve them from App.net.
 
@@ -90,7 +96,7 @@ AppNetKit adds two methods to `NSString`. `-appNetUsernameString` prepends an @ 
 Author
 ======
 
-Brent Royal-Gordon, Architechies <brent@architechies.com>, @brent on App.net.
+Brent Royal-Gordon, Architechies <brent@architechies.com>, [@brent](http://alpha.app.net/brent) on App.net.
 
 Bugs
 ====
