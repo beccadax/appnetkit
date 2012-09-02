@@ -8,6 +8,8 @@
 
 #import "ANResource.h"
 
+@class ANDraftAnnotation;
+
 @interface ANAnnotationSet : NSObject
 
 - (id)initWithRepresentation:(id)rep session:(ANSession *)session;
@@ -26,5 +28,7 @@
 
 @property (readonly) NSString * type;
 @property (readonly) id value;
+
+- (ANDraftAnnotation*)draftAnnotation;
 
 @end

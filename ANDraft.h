@@ -21,3 +21,12 @@
 - (void)createPostViaSession:(ANSession*)session completion:(ANPostRequestCompletion)completion;
 
 @end
+
+@interface ANDraftAnnotation : NSObject
+
+@property (strong) NSString * type;
+@property (strong) id value;
+
+@property (readonly) NSDictionary * representation;
+
+@end

@@ -7,7 +7,7 @@
 //
 
 #import "ANAnnotation.h"
-#import <objc/runtime.h>
+#import "ANDraft.h"
 
 @implementation ANAnnotationSet {
     NSArray * _annotations;
@@ -73,5 +73,12 @@
 
 @dynamic type;
 @dynamic value;
+
+- (ANDraftAnnotation *)draftAnnotation {
+    ANDraftAnnotation * draft = [ANDraftAnnotation new];
+    draft.type = self.type;
+    draft.value = self.value;
+    return draft;
+}
 
 @end

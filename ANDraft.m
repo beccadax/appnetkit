@@ -36,3 +36,14 @@
 }
 
 @end
+
+@implementation ANDraftAnnotation
+
+- (NSDictionary *)representation {
+    return [NSDictionary dictionaryWithObjectsAndKeys:
+            self.type, @"type",
+            self.value, @"value",
+            nil];
+}
+
+@end
