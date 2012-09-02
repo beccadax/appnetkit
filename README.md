@@ -11,7 +11,7 @@ Synopsis
     ANSession.defaultSession.accessToken = myOAuthToken;
     
     // Get the latest posts in the user's incoming post stream...
-    [ANSession.defaultSession postsInStreamWithCompletion:^(NSArray * posts, NSError * error) {
+    [ANSession.defaultSession postsInStreamWithCompletion:^(ANResponse * response, NSArray * posts, NSError * error) {
         if(!posts) {
             [self doSomethingWithError:error];
             return;
@@ -25,7 +25,7 @@ Synopsis
         newPost.text = [newPost.text appendString:@"Me too!"];  // The default text includes an @mention
         
         // And post it.
-        [newPost createPostViaSession:ANSession.defaultSession completion:^(ANPost * post, NSError * error) {
+        [newPost createPostViaSession:ANSession.defaultSession completion:^(ANResponse * response, ANPost * post, NSError * error) {
             if(!post) {
                 [self doSomethingWithError:error];
             }
