@@ -14,9 +14,13 @@
 @property (assign) ANResourceID sinceID;
 @property (assign) ANResourceID beforeID;
 @property (assign) NSUInteger count;
+
 @property (assign) BOOL includeUser;
 @property (assign) BOOL includeAnnotations;
 @property (assign) BOOL includeReplies;
+@property (assign) BOOL includeDirectedPosts;
+@property (assign) BOOL includeMuted;
+@property (assign) BOOL includeDeleted;
 
 - (void)sendRequestWithCompletion:(ANPostListRequestCompletion)completion;
 

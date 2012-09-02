@@ -10,6 +10,13 @@
 
 @implementation ANPostsInUserStreamRequest
 
+- (id)initWithSession:(ANSession *)session {
+    if((self = [super initWithSession:session])) {
+        self.includeDirectedPosts = NO;
+    }
+    return self;
+}
+
 - (NSURL *)URL {
     return [NSURL URLWithString:@"posts/stream" relativeToURL:[self.session URLForStreamAPIVersion:ANStreamAPIVersion0]];
 }

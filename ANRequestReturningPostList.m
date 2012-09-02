@@ -18,6 +18,9 @@
         _includeUser = YES;
         _includeAnnotations = YES;
         _includeReplies = YES;
+        _includeDirectedPosts = YES;
+        _includeDeleted = YES;
+        _includeMuted = NO;
     }
     
     return self;
@@ -32,6 +35,9 @@
                                     [self stringForBoolean:self.includeUser], @"include_user",
                                     [self stringForBoolean:self.includeAnnotations], @"include_annotations",
                                     [self stringForBoolean:self.includeReplies], @"include_replies",
+                                    [self stringForBoolean:self.includeDirectedPosts], @"include_directed_posts",
+                                    [self stringForBoolean:self.includeDeleted], @"include_deleted",
+                                    [self stringForBoolean:self.includeMuted], @"include_muted",
                                     nil];
     
     if(self.count) {
