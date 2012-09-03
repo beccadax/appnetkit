@@ -24,14 +24,14 @@
 }
 
 - (void)sendRequestWithCompletion:(ANAccessTokenInformationRequestCompletion)completion {
-    [self sendRequestWithRepresentationCompletion:^(id rep, NSError *error) {
+    [self sendRequestWithRepresentationCompletion:^(ANResponse * response, id rep, NSError *error) {
         NSArray * scopes = [rep objectForKey:@"scopes"];
         NSDictionary * userRep = [rep objectForKey:@"user"];
         
         // This isn't *quite* the same as any of the normal completions, but there are ways around that...
         [self.session completeUserRequest:^(ANResponse * response, ANUser *user, NSError *error) {
             completion(response, scopes, user, error);
-        } withRepresentation:userRep error:error];
+        } withResponse:response representation:userRep error:error];
     }];
 }
 

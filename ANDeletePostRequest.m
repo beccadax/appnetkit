@@ -23,8 +23,8 @@
 }
 
 - (void)sendRequestWithCompletion:(ANPostRequestCompletion)completion {
-    [self sendRequestWithRepresentationCompletion:^(id rep, NSError *error) {
-        [self.session completePostRequest:completion withRepresentation:rep error:error];
+    [self sendRequestWithRepresentationCompletion:^(ANResponse * response, id rep, NSError *error) {
+        [self.session completePostRequest:completion withResponse:response representation:rep error:error];
     }];
 }
 

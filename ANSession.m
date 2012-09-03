@@ -16,7 +16,7 @@ NSInteger NetworkActivityCount;
 
 @interface ANSession ()
 
-@property (strong,nonatomic) NSMutableSet * resources;
+@property (strong,nonatomic) NSHashTable * resources;
 @property (strong,nonatomic) dispatch_queue_t resourceUniquingQueue;
 
 @end
@@ -44,7 +44,7 @@ NSInteger NetworkActivityCount;
 
 - (id)init {
     if((self = [super init])) {
-        _resources = [NSMutableSet new];
+        _resources = [NSHashTable weakObjectsHashTable];
         _resourceUniquingQueue = dispatch_queue_create("ANSession resource uniquing queue", DISPATCH_QUEUE_SERIAL);
     }
     return self;
@@ -72,25 +72,7 @@ NSInteger NetworkActivityCount;
     }
 }
 
-- (id)dataRepresentationForRepresentation:(id)rep response:(ANResponse**)response {
-    if(![rep isKindOfClass:NSDictionary.class]) {
-        *response = nil;
-        return rep;
-    }
-    
-    if(![rep objectForKey:@"meta"]) {
-        *response = nil;
-        return rep;
-    }
-
-    *response = [[ANResponse alloc] initWithRepresentation:[rep objectForKey:@"meta"] session:self];
-    return [rep objectForKey:@"data"];
-}
-
-- (void)completeUserRequest:(ANUserRequestCompletion)completion withRepresentation:(NSDictionary*)rep error:(NSError*)error {
-    ANResponse * response;
-    rep = [self dataRepresentationForRepresentation:rep response:&response];
-    
+- (void)completeUserRequest:(ANUserRequestCompletion)completion withResponse:(ANResponse*)response representation:(NSDictionary*)rep error:(NSError*)error {
     if(rep) {
         ANUser * user = [[ANUser alloc] initWithRepresentation:rep session:self];
         completion(response, user, nil);
@@ -100,10 +82,7 @@ NSInteger NetworkActivityCount;
     }
 }
 
-- (void)completeUserListRequest:(ANUserListRequestCompletion)completion withRepresentation:(NSArray*)rep error:(NSError*)error {
-    ANResponse * response;
-    rep = [self dataRepresentationForRepresentation:rep response:&response];
-
+- (void)completeUserListRequest:(ANUserListRequestCompletion)completion withResponse:(ANResponse*)response representation:(NSArray*)rep error:(NSError*)error {
     if(rep) {
         NSMutableArray * users = [[NSMutableArray alloc] initWithCapacity:rep.count];
         for(NSDictionary * userRep in rep) {
@@ -118,10 +97,7 @@ NSInteger NetworkActivityCount;
     }
 }
 
-- (void)completePostRequest:(ANPostRequestCompletion)completion withRepresentation:(NSDictionary*)rep error:(NSError*)error {
-    ANResponse * response;
-    rep = [self dataRepresentationForRepresentation:rep response:&response];
-    
+- (void)completePostRequest:(ANPostRequestCompletion)completion withResponse:(ANResponse*)response representation:(NSDictionary*)rep error:(NSError*)error {
     if(rep) {
         ANPost * post = [[ANPost alloc] initWithRepresentation:rep session:self];
         completion(response, post, nil);
@@ -131,10 +107,7 @@ NSInteger NetworkActivityCount;
     }
 }
 
-- (void)completePostListRequest:(ANPostListRequestCompletion)completion withRepresentation:(NSArray*)rep error:(NSError*)error {
-    ANResponse * response;
-    rep = [self dataRepresentationForRepresentation:rep response:&response];
-    
+- (void)completePostListRequest:(ANPostListRequestCompletion)completion withResponse:(ANResponse*)response representation:(NSArray*)rep error:(NSError*)error {
     if(rep) {
         NSMutableArray * posts = [[NSMutableArray alloc] initWithCapacity:rep.count];
         for(NSDictionary * postRep in rep) {

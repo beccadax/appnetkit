@@ -33,7 +33,7 @@ typedef enum {
 - (NSString*)pathWithFormat:(NSString*)format username:(NSString*)username;
 
 - (void)sendRequestWithDataCompletion:(void (^)(NSData * body, NSError * error))completion;
-- (void)sendRequestWithRepresentationCompletion:(void (^)(id rep, NSError * error))completion;
+- (void)sendRequestWithRepresentationCompletion:(void (^)(ANResponse * response, id rep, NSError * error))completion;
 
 @end
 

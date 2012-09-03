@@ -137,7 +137,7 @@
         }
         
         if(error) {
-            completion(nil, error);
+            completion(body, error);
             return;
         }
         
@@ -145,16 +145,37 @@
     }];
 }
 
-- (void)sendRequestWithRepresentationCompletion:(void (^)(id, NSError *))completion {
+- (id)dataRepresentationForRepresentation:(id)rep response:(ANResponse**)response {
+    if(![rep isKindOfClass:NSDictionary.class]) {
+        *response = nil;
+        return rep;
+    }
+    
+    if(![rep objectForKey:@"meta"]) {
+        *response = nil;
+        return rep;
+    }
+    
+    *response = [[ANResponse alloc] initWithRepresentation:[rep objectForKey:@"meta"] session:self.session];
+    return [rep objectForKey:@"data"];
+}
+
+- (void)sendRequestWithRepresentationCompletion:(void (^)(ANResponse *, id, NSError *))completion {
     [self sendRequestWithDataCompletion:^(NSData *body, NSError *error) {
-        if(!body) {
-            completion(nil, error);
-            return;
-        }
-        
         NSError * jsonError;
         id json = [NSJSONSerialization JSONObjectWithData:body options:0 error:&jsonError];
-        completion(json, jsonError);
+        
+        ANResponse * response;
+        json = [self dataRepresentationForRepresentation:json response:&response];
+        
+        if(!error) {
+            error = jsonError;
+        }
+        if(error) {
+            json = nil;
+        }
+        
+        completion(response, json, error);
     }];
 }
 
