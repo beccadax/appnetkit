@@ -16,7 +16,7 @@
 @property (readonly) NSMutableArray * annotations;
 //@property (strong) NSArray * links;
 
-@property (readonly) NSDictionary * representation;
+@property (copy) NSDictionary * representation;
 
 - (void)createPostViaSession:(ANSession*)session completion:(ANPostRequestCompletion)completion;
 
@@ -27,6 +27,6 @@
 @property (strong) NSString * type;
 @property (strong) id value;
 
-@property (readonly) NSDictionary * representation;
+@property (copy) NSDictionary * representation;
 
 @end

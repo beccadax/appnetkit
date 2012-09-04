@@ -7,6 +7,7 @@
 //
 
 #import "ANDraft.h"
+#import "ANResource.h"
 
 @implementation ANDraft
 
@@ -31,6 +32,24 @@
     return dict.copy;
 }
 
+- (void)setRepresentation:(NSDictionary *)dict {
+    self.text = [dict objectForKey:@"text"];
+    
+    self.replyTo = ANUnspecifiedPostID;
+    if([dict objectForKey:@"reply_to"]) {
+        self.replyTo = [ANResource.IDFormatter numberFromString:[dict objectForKey:@"reply_to"]].unsignedLongLongValue;
+    }
+    
+    [_annotations removeAllObjects];
+    if([dict objectForKey:@"annotations"]) {
+        for(NSDictionary * annotationRep in [dict objectForKey:@"annotations"]) {
+            ANDraftAnnotation * annotation = [ANDraftAnnotation new];
+            annotation.representation = annotationRep;
+            [_annotations addObject:	annotation];
+        }
+    }
+}
+
 - (void)createPostViaSession:(ANSession*)session completion:(ANPostRequestCompletion)completion {
     [session createPostFromDraft:self completion:completion];
 }
@@ -44,6 +63,11 @@
             self.type, @"type",
             self.value, @"value",
             nil];
+}
+
+- (void)setRepresentation:(NSDictionary *)dict {
+    self.type = [dict objectForKey:@"type"];
+    self.value = [dict objectForKey:@"value"];
 }
 
 @end
