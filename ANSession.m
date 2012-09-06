@@ -72,6 +72,10 @@ NSInteger NetworkActivityCount;
     }
 }
 
+- (NSString *)APIEndpointHost {
+    return [self URLForStreamAPIVersion:ANStreamAPIVersion0].host;
+}
+
 - (void)completeUserRequest:(ANUserRequestCompletion)completion withResponse:(ANResponse*)response representation:(NSDictionary*)rep error:(NSError*)error {
     if(rep) {
         ANUser * user = [[ANUser alloc] initWithRepresentation:rep session:self];

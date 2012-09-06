@@ -34,6 +34,7 @@ typedef enum {
 @property (strong) NSString * accessToken;
 
 - (NSURL*)URLForStreamAPIVersion:(ANStreamAPIVersion)version;
+@property (readonly,nonatomic) NSString * APIEndpointHost;
 
 - (void)completeUserRequest:(ANUserRequestCompletion)completion withResponse:(ANResponse*)response representation:(NSDictionary*)rep error:(NSError*)error;
 - (void)completeUserListRequest:(ANUserListRequestCompletion)completion withResponse:(ANResponse*)response representation:(NSArray*)rep error:(NSError*)error;
