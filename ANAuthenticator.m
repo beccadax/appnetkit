@@ -93,10 +93,11 @@ NSString * const ANScopeExport = @"export";
     }
     
     if(error) {
-        *error = [NSError errorWithDomain:ANErrorDomain code:[self errorCodeForDictionary:dict] userInfo:@{
-                NSLocalizedDescriptionKey: [dict objectForKey:@"error_description"],
-                ANExplanationURLKey: [NSURL URLWithString:[dict objectForKey:@"error_uri"]]
-                  }];
+        *error = [NSError errorWithDomain:ANErrorDomain code:[self errorCodeForDictionary:dict] userInfo:
+                  [NSDictionary dictionaryWithObjectsAndKeys:
+                   [[dict objectForKey:@"error_description"] stringByReplacingOccurrencesOfString:@"+" withString:@" "], NSLocalizedDescriptionKey,
+                   [NSURL URLWithString:[dict objectForKey:@"error_uri"]], ANExplanationURLKey,
+                   nil]];
     }
     
     return nil;
