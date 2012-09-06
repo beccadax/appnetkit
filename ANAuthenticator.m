@@ -31,7 +31,18 @@ NSString * const ANScopeExport = @"export";
 }
 
 - (NSString*)parametersForScopes:(NSArray *)scopes {
-    return [NSString stringWithFormat:@"client_id=%@&response_type=token&redirect_uri=%@&scope=%@%@", self.clientID, self.redirectURL.absoluteString, [scopes componentsJoinedByString:@"%20"], self.omitsPaymentOptions ? @"&adnview=appstore" : nil];
+    NSMutableDictionary * params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                    self.clientID, @"client_id",
+                                    @"token", @"response_type",
+                                    self.redirectURL.absoluteString, @"redirect_uri",
+                                    [scopes componentsJoinedByString:@" "], @"scope",
+                                    nil];
+    
+    if(self.omitsPaymentOptions) {
+        [params setObject:@"appstore" forKey:@"adnview"];
+    }
+    
+    return params.queryString;
 }
 
 - (NSURL *)URLToAuthenticateForScopes:(NSArray *)scopes {
