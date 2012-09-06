@@ -21,13 +21,26 @@ NSString * const ANScopeExport = @"export";
 
 - (id)initSingleton {
     if(self = [super init]) {
-        
+#if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
+        self.omitsPaymentOptions = YES;
+#else
+        self.omitsPaymentOptions = NO;
+#endif
     }
     return self;
 }
 
+- (NSString*)parametersForScopes:(NSArray *)scopes {
+    return [NSString stringWithFormat:@"client_id=%@&response_type=token&redirect_uri=%@&scope=%@%@", self.clientID, self.redirectURL.absoluteString, [scopes componentsJoinedByString:@"%20"], self.omitsPaymentOptions ? @"&adnview=appstore" : nil];
+}
+
 - (NSURL *)URLToAuthenticateForScopes:(NSArray *)scopes {
-    NSString * urlStr = [NSString stringWithFormat:@"https://alpha.app.net/oauth/authenticate?client_id=%@&response_type=token&redirect_uri=%@&scope=%@", self.clientID, self.redirectURL.absoluteString, [scopes componentsJoinedByString:@"%20"]];
+    NSString * urlStr = [NSString stringWithFormat:@"https://alpha.app.net/oauth/authenticate?%@", [self parametersForScopes:scopes]];
+    return [NSURL URLWithString:urlStr];
+}
+
+- (NSURL *)URLToAuthorizeForScopes:(NSArray *)scopes {
+    NSString * urlStr = [NSString stringWithFormat:@"https://alpha.app.net/oauth/authorize?%@", [self parametersForScopes:scopes]];
     return [NSURL URLWithString:urlStr];
 }
 

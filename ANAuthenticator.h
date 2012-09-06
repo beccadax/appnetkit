@@ -22,8 +22,10 @@ extern NSString * const ANScopeExport;
 
 @property (strong,nonatomic) NSString * clientID;
 @property (strong,nonatomic) NSURL * redirectURL;
+@property (assign,nonatomic) BOOL omitsPaymentOptions;
 
-- (NSURL*)URLToAuthenticateForScopes:(NSArray*)scopes;
+- (NSURL*)URLToAuthenticateForScopes:(NSArray*)scopes;  // Briefly shows a blank screen if the user has already logged in
+- (NSURL*)URLToAuthorizeForScopes:(NSArray *)scopes;    // Always shows a permission screen, even if the user has already logged in
 
 - (BOOL)isRedirectURL:(NSURL*)url;
 - (NSString*)accessTokenFromRedirectURL:(NSURL*)redirectURL error:(NSError**)error;
