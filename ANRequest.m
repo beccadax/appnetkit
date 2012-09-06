@@ -163,7 +163,7 @@
 - (void)sendRequestWithRepresentationCompletion:(void (^)(ANResponse *, id, NSError *))completion {
     [self sendRequestWithDataCompletion:^(NSData *body, NSError *error) {
         NSError * jsonError;
-        id json = [NSJSONSerialization JSONObjectWithData:body options:0 error:&jsonError];
+        id json = body == nil ? nil : [NSJSONSerialization JSONObjectWithData:body options:0 error:&jsonError];
         
         ANResponse * response;
         json = [self dataRepresentationForRepresentation:json response:&response];
