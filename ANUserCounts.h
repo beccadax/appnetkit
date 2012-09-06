@@ -10,8 +10,8 @@
 
 @interface ANUserCounts : ANResource
 
-@property (readonly) NSUInteger follows;
-@property (readonly) NSUInteger followedBy;
+@property (readonly) NSUInteger following;
+@property (readonly) NSUInteger followers;
 @property (readonly) NSUInteger posts;
 
 @end

@@ -10,8 +10,8 @@
 
 @implementation ANUserCounts
 
-@dynamic follows;
-@dynamic followedBy;
+@dynamic following;
+@dynamic followers;
 @dynamic posts;
 
 @end
