@@ -42,6 +42,9 @@
 @property (readonly) NSArray * starredBy;
 @property (readonly) NSArray * starredByRepresentation;
 
+- (void)starWithCompletion:(ANPostRequestCompletion)completion;
+- (void)unstarWithCompletion:(ANPostRequestCompletion)completion;
+
 - (ANDraft*)draftForward;
 - (ANDraft*)draftCopy;
 

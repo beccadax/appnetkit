@@ -43,4 +43,7 @@
 
 - (void)postsReplyingToPostWithID:(ANResourceID)ID betweenID:(ANResourceID)sinceID andID:(ANResourceID)beforeID completion:(ANPostListRequestCompletion)completion;
 
+- (void)starPostWithID:(ANResourceID)postID completion:(ANPostRequestCompletion)completion;
+- (void)unstarPostWithID:(ANResourceID)postID completion:(ANPostRequestCompletion)completion;
+
 @end

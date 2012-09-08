@@ -112,4 +112,12 @@
     [self.session deletePostWithID:self.ID completion:completion];
 }
 
+- (void)starWithCompletion:(ANPostRequestCompletion)completion {
+    [self.session starPostWithID:self.ID completion:completion];
+}
+
+- (void)unstarWithCompletion:(ANPostRequestCompletion)completion {
+    [self.session unstarPostWithID:self.ID completion:completion];
+}
+
 @end

@@ -26,6 +26,8 @@
 #import "ANMuteUserRequest.h"
 #import "ANUnmuteUserRequest.h"
 #import "ANUsernameRequest.h"
+#import "ANStarPostRequest.h"
+#import "ANUnstarPostRequest.h"
 
 @implementation ANSession (Requests)
 
@@ -197,6 +199,22 @@
     req.tag = tag;
     req.sinceID = sinceID;
     req.beforeID = beforeID;
+    
+    [req sendRequestWithCompletion:completion];
+}
+
+- (void)starPostWithID:(ANResourceID)postID completion:(ANPostRequestCompletion)completion {
+    ANStarPostRequest * req = [[ANStarPostRequest alloc] initWithSession:self];
+    
+    req.postID = postID;
+    
+    [req sendRequestWithCompletion:completion];
+}
+
+- (void)unstarPostWithID:(ANResourceID)postID completion:(ANPostRequestCompletion)completion {
+    ANUnstarPostRequest * req = [[ANUnstarPostRequest alloc] initWithSession:self];
+    
+    req.postID = postID;
     
     [req sendRequestWithCompletion:completion];
 }
