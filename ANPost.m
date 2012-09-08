@@ -24,6 +24,19 @@
 @dynamic userRepresentation;
 @dynamic source;
 @dynamic sourceRepresentation;
+@dynamic numberOfStars;
+@dynamic youStarred;
+@dynamic starredByRepresentation;
+
+- (NSArray *)starredBy {
+    NSMutableArray * array = [NSMutableArray new];
+    
+    for(NSDictionary * rep in self.starredByRepresentation) {
+        [array addObject:[[ANUser alloc] initWithRepresentation:rep session:self.session]];
+    }
+    
+    return array;
+}
 
 - (ANDraft*)draftForward {
     ANDraft * draft = [ANDraft new];

@@ -36,6 +36,12 @@
 @property (readonly,getter=isDeleted) BOOL deleted;
 - (void)deleteWithCompletion:(ANPostRequestCompletion)completion;
 
+@property (readonly) NSUInteger numberOfStars;
+@property (readonly) BOOL youStarred;
+
+@property (readonly) NSArray * starredBy;
+@property (readonly) NSArray * starredByRepresentation;
+
 - (ANDraft*)draftForward;
 - (ANDraft*)draftCopy;
 
