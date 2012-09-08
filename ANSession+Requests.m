@@ -221,10 +221,6 @@
     [req sendRequestWithCompletion:completion];
 }
 
-- (void)postsStarredByUserWithID:(ANResourceID)userID completion:(ANPostListRequestCompletion)completion {
-    [self postsStarredByUserWithID:userID betweenID:ANUnspecifiedPostID andID:ANUnspecifiedPostID completion:completion];
-}
-
 - (void)postsStarredByUserWithID:(ANResourceID)userID betweenID:(ANResourceID)sinceID andID:(ANResourceID)beforeID completion:(ANPostListRequestCompletion)completion {
     ANPostsStarredByUserRequest * req = [[ANPostsStarredByUserRequest alloc] initWithSession:self];
     
