@@ -120,4 +120,8 @@
     [self.session unstarPostWithID:self.ID completion:completion];
 }
 
+- (void)usersWithPostStarredWithCompletion:(ANUserListRequestCompletion)completion {
+    [self.session usersWithPostWithIDStarred:self.ID completion:completion];
+}
+
 @end

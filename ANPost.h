@@ -44,6 +44,7 @@
 
 - (void)starWithCompletion:(ANPostRequestCompletion)completion;
 - (void)unstarWithCompletion:(ANPostRequestCompletion)completion;
+- (void)usersWithPostStarredWithCompletion:(ANUserListRequestCompletion)completion;
 
 - (ANDraft*)draftForward;
 - (ANDraft*)draftCopy;

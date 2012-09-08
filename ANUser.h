@@ -74,6 +74,9 @@ ANUserType ANUserTypeFromString(NSString * string);
 - (void)postsWithCompletion:(ANPostListRequestCompletion)completion;
 - (void)postsBetweenID:(ANResourceID)sinceID andID:(ANResourceID)beforeID completion:(ANPostListRequestCompletion)completion;
 
+- (void)postsStarredByUserWithCompletion:(ANPostListRequestCompletion)completion;
+- (void)postsStarredByUserBetweenID:(ANResourceID)sinceID andID:(ANResourceID)beforeID completion:(ANPostListRequestCompletion)completion;
+
 - (void)postsMentioningUserWithCompletion:(ANPostListRequestCompletion)completion;
 - (void)postsMentioningUserBetweenID:(ANResourceID)sinceID andID:(ANResourceID)beforeID completion:(ANPostListRequestCompletion)completion;
 

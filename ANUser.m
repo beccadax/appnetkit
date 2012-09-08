@@ -110,6 +110,14 @@ ANUserType ANUserTypeFromString(NSString * string) {
     [self.session postsForUserWithID:self.ID betweenID:sinceID andID:beforeID completion:completion];
 }
 
+- (void)postsStarredByUserWithCompletion:(ANPostListRequestCompletion)completion {
+    [self postsStarredByUserBetweenID:ANUnspecifiedPostID andID:ANUnspecifiedPostID completion:completion];
+}
+
+- (void)postsStarredByUserBetweenID:(ANResourceID)sinceID andID:(ANResourceID)beforeID completion:(ANPostListRequestCompletion)completion {
+    [self.session postsStarredByUserWithID:self.ID betweenID:sinceID andID:beforeID completion:completion];
+}
+
 - (void)postsMentioningUserWithCompletion:(ANPostListRequestCompletion)completion {
     [self postsMentioningUserBetweenID:ANUnspecifiedPostID andID:ANUnspecifiedPostID completion:completion];
 }
