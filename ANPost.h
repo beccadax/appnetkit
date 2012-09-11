@@ -39,6 +39,7 @@
 @property (readonly) NSUInteger numberOfStars;
 @property (readonly) BOOL youStarred;
 
+// Note: will be nil unless your request has includeStarredBy = YES. (The default is NO.)
 @property (readonly) NSArray * starredBy;
 @property (readonly) NSArray * starredByRepresentation;
 

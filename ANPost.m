@@ -29,6 +29,10 @@
 @dynamic starredByRepresentation;
 
 - (NSArray *)starredBy {
+    if(self.starredByRepresentation == nil) {
+        return nil;
+    }
+    
     NSMutableArray * array = [NSMutableArray new];
     
     for(NSDictionary * rep in self.starredByRepresentation) {
