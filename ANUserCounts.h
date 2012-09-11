@@ -13,5 +13,6 @@
 @property (readonly) NSUInteger following;
 @property (readonly) NSUInteger followers;
 @property (readonly) NSUInteger posts;
+@property (readonly) NSUInteger stars;
 
 @end

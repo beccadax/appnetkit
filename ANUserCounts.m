@@ -13,5 +13,6 @@
 @dynamic following;
 @dynamic followers;
 @dynamic posts;
+@dynamic stars;
 
 @end
