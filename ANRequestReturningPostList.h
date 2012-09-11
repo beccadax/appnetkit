@@ -21,6 +21,7 @@
 @property (assign) BOOL includeDirectedPosts;
 @property (assign) BOOL includeMuted;
 @property (assign) BOOL includeDeleted;
+@property (assign) BOOL includeStarredBy;
 
 - (void)sendRequestWithCompletion:(ANPostListRequestCompletion)completion;
 

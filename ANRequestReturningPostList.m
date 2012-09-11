@@ -21,6 +21,7 @@
         _includeDirectedPosts = YES;
         _includeDeleted = YES;
         _includeMuted = NO;
+        _includeStarredBy = NO;
     }
     
     return self;
@@ -38,6 +39,7 @@
                                     [self stringForBoolean:self.includeDirectedPosts], @"include_directed_posts",
                                     [self stringForBoolean:self.includeDeleted], @"include_deleted",
                                     [self stringForBoolean:self.includeMuted], @"include_muted",
+                                    [self stringForBoolean:self.includeStarredBy], @"include_starred_by",
                                     nil];
     
     if(self.count) {
