@@ -28,7 +28,7 @@
 }
 
 - (NSString*)stringForBoolean:(BOOL)boolean {
-    return boolean ? @"True" : @"False";
+    return boolean ? @"1" : @"0";
 }
 
 - (NSDictionary *)parameters {
