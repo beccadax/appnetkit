@@ -25,6 +25,8 @@
 @property (readonly) ANSource * source;
 @property (readonly) NSDictionary * sourceRepresentation;
 
+@property (readonly) BOOL machineOnly;
+
 // Either repostOf.ID or just ID
 @property (readonly) ANResourceID originalID;
 

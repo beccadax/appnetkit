@@ -21,7 +21,13 @@
 - (NSDictionary *)representation {
     NSMutableDictionary * dict = [NSMutableDictionary new];
     
-    [dict setObject:self.text forKey:@"text"];
+    if(self.machineOnly) {
+        [dict setObject:@"1" forKey:@"machine_only"];
+    }
+    else {
+        [dict setObject:self.text forKey:@"text"];
+    }
+    
     if(self.replyTo) {
         [dict setObject:[NSString stringWithFormat:@"%llu", self.replyTo] forKey:@"reply_to"];
     }

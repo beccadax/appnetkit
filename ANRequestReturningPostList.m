@@ -22,6 +22,7 @@
         _includeDeleted = YES;
         _includeMuted = NO;
         _includeStarredBy = NO;
+        _includeMachine = NO;
         _includeReposters = NO;
     }
     
@@ -41,6 +42,7 @@
                                     [self stringForBoolean:self.includeDeleted], @"include_deleted",
                                     [self stringForBoolean:self.includeMuted], @"include_muted",
                                     [self stringForBoolean:self.includeStarredBy], @"include_starred_by",
+                                    [self stringForBoolean:self.includeMachine], @"include_machine",
                                     [self stringForBoolean:self.includeReposters], @"include_reposters",
                                     nil];
     

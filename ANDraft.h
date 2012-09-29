@@ -13,6 +13,7 @@
 
 @property (strong) NSString * text;
 @property (assign) ANResourceID replyTo;
+@property (assign) BOOL machineOnly;
 @property (readonly) NSMutableArray * annotations;
 //@property (strong) NSArray * links;
 

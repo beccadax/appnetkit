@@ -24,6 +24,7 @@
 @dynamic userRepresentation;
 @dynamic source;
 @dynamic sourceRepresentation;
+@dynamic machineOnly;
 @dynamic numberOfStars;
 @dynamic youStarred;
 @dynamic starredByRepresentation;
