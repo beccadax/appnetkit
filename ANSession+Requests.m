@@ -33,6 +33,7 @@
 #import "ANRepostPostRequest.h"
 #import "ANUnrepostPostRequest.h"
 #import "ANUsersWithPostRepostedRequest.h"
+#import "ANUsersMatchingSearchQueryRequest.h"
 
 @implementation ANSession (Requests)
 
@@ -54,6 +55,14 @@
     ANUsernameRequest * req = [[ANUsernameRequest alloc] initWithSession:self];
     
     req.username = username;
+    
+    [req sendRequestWithCompletion:completion];
+}
+
+- (void)usersMatchingSearchQuery:(NSString *)query completion:(ANUserListRequestCompletion)completion {
+    ANUsersMatchingSearchQueryRequest * req = [[ANUsersMatchingSearchQueryRequest alloc] initWithSession:self];
+    
+    req.query = query;
     
     [req sendRequestWithCompletion:completion];
 }

@@ -14,6 +14,7 @@
 
 - (void)userWithID:(ANResourceID)ID completion:(ANUserRequestCompletion)completion;
 - (void)userWithUsername:(NSString*)username completion:(ANUserRequestCompletion)completion;
+- (void)usersMatchingSearchQuery:(NSString*)query completion:(ANUserListRequestCompletion)completion;
 
 - (void)followUserWithID:(ANResourceID)ID completion:(ANUserRequestCompletion)completion;
 - (void)unfollowUserWithID:(ANResourceID)ID completion:(ANUserRequestCompletion)completion;
