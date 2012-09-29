@@ -145,6 +145,16 @@
     return self.ID;
 }
 
+- (void)repostWithCompletion:(ANPostRequestCompletion)completion {
+    [self.session repostPostWithID:self.originalID completion:completion];
+}
+
+- (void)unrepostWithCompletion:(ANPostRequestCompletion)completion {
+    [self.session unrepostPostWithID:self.originalID completion:completion];
+}
+
+- (void)usersWithPostRepostedWithCompletion:(ANUserListRequestCompletion)completion {
+    [self.session usersWithPostWithIDReposted:self.originalID completion:completion];
 }
 
 @end

@@ -49,4 +49,9 @@
 - (void)postsStarredByUserWithID:(ANResourceID)userID betweenID:(ANResourceID)sinceID andID:(ANResourceID)beforeID completion:(ANPostListRequestCompletion)completion;
 - (void)usersWithPostWithIDStarred:(ANResourceID)postID completion:(ANUserListRequestCompletion)completion;
 
+- (void)repostPostWithID:(ANResourceID)postID completion:(ANPostRequestCompletion)completion;
+- (void)unrepostPostWithID:(ANResourceID)postID completion:(ANPostRequestCompletion)completion;
+
+- (void)usersWithPostWithIDReposted:(ANResourceID)postID completion:(ANUserListRequestCompletion)completion;
+
 @end

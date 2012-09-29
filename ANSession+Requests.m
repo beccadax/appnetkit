@@ -30,6 +30,9 @@
 #import "ANUnstarPostRequest.h"
 #import "ANPostsStarredByUserRequest.h"
 #import "ANUsersWithPostStarredRequest.h"
+#import "ANRepostPostRequest.h"
+#import "ANUnrepostPostRequest.h"
+#import "ANUsersWithPostRepostedRequest.h"
 
 @implementation ANSession (Requests)
 
@@ -233,6 +236,30 @@
 
 - (void)usersWithPostWithIDStarred:(ANResourceID)postID completion:(ANUserListRequestCompletion)completion {
     ANUsersWithPostStarredRequest * req = [[ANUsersWithPostStarredRequest alloc] initWithSession:self];
+    
+    req.postID = postID;
+    
+    [req sendRequestWithCompletion:completion];
+}
+
+- (void)repostPostWithID:(ANResourceID)postID completion:(ANPostRequestCompletion)completion {
+    ANRepostPostRequest * req = [[ANRepostPostRequest alloc] initWithSession:self];
+    
+    req.postID = postID;
+    
+    [req sendRequestWithCompletion:completion];
+}
+
+- (void)unrepostPostWithID:(ANResourceID)postID completion:(ANPostRequestCompletion)completion {
+    ANUnrepostPostRequest * req = [[ANUnrepostPostRequest alloc] initWithSession:self];
+    
+    req.postID = postID;
+    
+    [req sendRequestWithCompletion:completion];
+}
+
+- (void)usersWithPostWithIDReposted:(ANResourceID)postID completion:(ANUserListRequestCompletion)completion {
+    ANUsersWithPostRepostedRequest * req = [[ANUsersWithPostRepostedRequest alloc] initWithSession:self];
     
     req.postID = postID;
     

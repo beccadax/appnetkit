@@ -59,6 +59,10 @@
 @property (readonly) ANPost * repostOf;
 @property (readonly) NSDictionary * repostOfRepresentation;
 
+- (void)repostWithCompletion:(ANPostRequestCompletion)completion;
+- (void)unrepostWithCompletion:(ANPostRequestCompletion)completion;
+- (void)usersWithPostRepostedWithCompletion:(ANUserListRequestCompletion)completion;
+
 - (ANDraft*)draftForward;
 - (ANDraft*)draftCopy;
 
