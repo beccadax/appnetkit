@@ -10,6 +10,7 @@
 
 @interface ANSource : ANResource
 
+@property (readonly) NSString * clientID;
 @property (readonly) NSString * name;
 @property (readonly) NSURL * link;
 

@@ -10,6 +10,7 @@
 
 @implementation ANSource
 
+@dynamic clientID;
 @dynamic name;
 @dynamic link;
 
