@@ -25,6 +25,9 @@
 @property (readonly) ANSource * source;
 @property (readonly) NSDictionary * sourceRepresentation;
 
+// Either repostOf.ID or just ID
+@property (readonly) ANResourceID originalID;
+
 @property (readonly) ANResourceID replyTo;
 - (void)postRepliedToWithCompletion:(ANPostRequestCompletion)completion;
 - (void)replyPostsWithCompletion:(ANPostListRequestCompletion)completion;

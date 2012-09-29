@@ -69,7 +69,7 @@
 - (ANDraft*)draftReply {
     ANDraft * draft = [self.user draftMention];
     
-    draft.replyTo = self.ID;
+    draft.replyTo = self.originalID;
     
     return draft;
 }
@@ -85,7 +85,7 @@
     ANDraft * draft = [ANDraft new];
     
     draft.text = [[usernames.array componentsJoinedByString:@" "] stringByAppendingString:@" "];
-    draft.replyTo = self.ID;
+    draft.replyTo = self.originalID;
     
     return draft;
 }
@@ -101,21 +101,21 @@
     ANDraft * draft = [ANDraft new];
     
     draft.text = [[usernames.array componentsJoinedByString:@" "] stringByAppendingString:@" "];
-    draft.replyTo = self.ID;
+    draft.replyTo = self.originalID;
     
     return draft;
 }
 
 - (void)postRepliedToWithCompletion:(ANPostRequestCompletion)completion {
-    [self.session postWithID:self.ID completion:completion];
+    [self.session postWithID:self.originalID completion:completion];
 }
 
 - (void)replyPostsWithCompletion:(ANPostListRequestCompletion)completion {
-    [self.session postsReplyingToPostWithID:self.ID betweenID:ANUnspecifiedPostID andID:ANUnspecifiedPostID completion:completion];
+    [self.session postsReplyingToPostWithID:self.originalID betweenID:ANUnspecifiedPostID andID:ANUnspecifiedPostID completion:completion];
 }
 
 - (void)postAtThreadRootWithCompletion:(ANPostRequestCompletion)completion {
-    [self.session postWithID:self.ID completion:completion];
+    [self.session postWithID:self.originalID completion:completion];
 }
 
 - (void)deleteWithCompletion:(ANPostRequestCompletion)completion {
@@ -123,15 +123,28 @@
 }
 
 - (void)starWithCompletion:(ANPostRequestCompletion)completion {
-    [self.session starPostWithID:self.ID completion:completion];
+    [self.session starPostWithID:self.originalID completion:completion];
 }
 
 - (void)unstarWithCompletion:(ANPostRequestCompletion)completion {
-    [self.session unstarPostWithID:self.ID completion:completion];
+    [self.session unstarPostWithID:self.originalID completion:completion];
 }
 
 - (void)usersWithPostStarredWithCompletion:(ANUserListRequestCompletion)completion {
-    [self.session usersWithPostWithIDStarred:self.ID completion:completion];
+    [self.session usersWithPostWithIDStarred:self.originalID completion:completion];
+}
+
++ (NSSet *)keyPathsForValuesAffectingOriginalID {
+    return [NSSet setWithObjects:@"ID", @"repostOf.ID", nil];
+}
+
+- (ANResourceID)originalID {
+    if(self.repostOf) {
+        return self.repostOf.ID;
+    }
+    return self.ID;
+}
+
 }
 
 @end
