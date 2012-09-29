@@ -27,6 +27,12 @@
 @dynamic numberOfStars;
 @dynamic youStarred;
 @dynamic starredByRepresentation;
+@dynamic numberOfReposts;
+@dynamic youReposted;
+@dynamic reposters;
+@dynamic repostersRepresentation;
+@dynamic repostOf;
+@dynamic repostOfRepresentation;
 
 - (NSArray *)starredBy {
     if(self.starredByRepresentation == nil) {

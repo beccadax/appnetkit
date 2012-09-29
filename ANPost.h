@@ -47,6 +47,15 @@
 - (void)unstarWithCompletion:(ANPostRequestCompletion)completion;
 - (void)usersWithPostStarredWithCompletion:(ANUserListRequestCompletion)completion;
 
+@property (readonly) NSUInteger numberOfReposts;
+@property (readonly) BOOL youReposted;
+
+@property (readonly) NSArray * reposters;
+@property (readonly) NSArray * repostersRepresentation;
+
+@property (readonly) ANPost * repostOf;
+@property (readonly) NSDictionary * repostOfRepresentation;
+
 - (ANDraft*)draftForward;
 - (ANDraft*)draftCopy;
 

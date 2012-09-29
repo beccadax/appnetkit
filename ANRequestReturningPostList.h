@@ -22,6 +22,7 @@
 @property (assign) BOOL includeMuted;
 @property (assign) BOOL includeDeleted;
 @property (assign) BOOL includeStarredBy;
+@property (assign) BOOL includeReposters;
 
 - (void)sendRequestWithCompletion:(ANPostListRequestCompletion)completion;
 
