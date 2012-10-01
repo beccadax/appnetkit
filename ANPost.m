@@ -7,6 +7,7 @@
 //
 
 #import "ANPost.h"
+#import <objc/runtime.h>
 
 @implementation ANPost
 
@@ -18,7 +19,7 @@
 @dynamic replyTo;
 @dynamic threadID;
 @dynamic numberOfReplies;
-@dynamic annotations;
+@dynamic annotationRepresentations;
 @dynamic deleted;
 @dynamic user;
 @dynamic userRepresentation;
@@ -34,6 +35,15 @@
 @dynamic repostersRepresentation;
 @dynamic repostOf;
 @dynamic repostOfRepresentation;
+
+- (ANAnnotationSet *)annotations {
+    ANAnnotationSet * annotations = objc_getAssociatedObject(self, _cmd);
+    if(!annotations) {
+        annotations = [[ANAnnotationSet alloc] initWithRepresentation:self.annotationRepresentations session:self.session];
+        objc_setAssociatedObject(self, _cmd, annotations, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    }
+    return annotations;
+}
 
 - (NSArray *)starredBy {
     if(self.starredByRepresentation == nil) {
