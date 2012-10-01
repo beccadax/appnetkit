@@ -9,6 +9,7 @@
 #import "ANResource.h"
 
 @class ANDraftAnnotation;
+extern NSString * const ANAnnotationTypeGeolocation;
 
 @interface ANAnnotationSet : NSObject
 
@@ -32,3 +33,15 @@
 - (ANDraftAnnotation*)draftAnnotation;
 
 @end
+
+#import "ANDefines.h"
+
+#if APPNETKIT_USE_CORE_LOCATION
+#import <CoreLocation/CoreLocation.h>
+
+@interface ANAnnotation (CLLocation)
+
+@property (readonly) CLLocation * geolocationValue;
+
+@end
+#endif

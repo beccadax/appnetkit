@@ -9,6 +9,8 @@
 #import "ANAnnotation.h"
 #import "ANDraft.h"
 
+NSString * const ANAnnotationTypeGeolocation = @"net.app.core.geolocation";
+
 @implementation ANAnnotationSet {
     NSArray * _all;
     NSDictionary * _annotationsByType;
@@ -82,3 +84,58 @@
 }
 
 @end
+
+#if APPNETKIT_USE_CORE_LOCATION
+@implementation ANAnnotation (CLLocation)
+
+- (CLLocationCoordinate2D)geolocationCoordinateValue {
+    double lat = [[self.value objectForKey:@"latitude"] doubleValue];
+    double lng = [[self.value objectForKey:@"longitude"] doubleValue];
+    
+    return CLLocationCoordinate2DMake(lat, lng);
+}
+
+- (CLLocationDistance)geolocationAltitudeValue {
+    NSNumber * alt = [self.value objectForKey:@"altitude"];
+    if(!alt) {
+        return 0;
+    }
+    
+    return alt.doubleValue;
+}
+
+- (CLLocationAccuracy)geolocationHorizontalAccuracyValue {
+    NSNumber * horiz = [self.value objectForKey:@"horizontal_accuracy"];
+    
+    if(!horiz) {
+        return 0;
+    }
+    
+    return horiz.doubleValue;
+}
+
+- (CLLocationAccuracy)geolocationVerticalAccuracyValue {
+    if(![self.value objectForKey:@"altitude"]) {
+        // Return a negative to indicate the corresponding field is invalid.
+        return -1;
+    }
+    
+    NSNumber * vert = [self.value objectForKey:@"vertical_accuracy"];
+    
+    if(!vert) {
+        return 0;
+    }
+    
+    return vert.doubleValue;
+}
+
+- (CLLocation *)geolocationValue {
+    if(![self.type isEqualToString:ANAnnotationTypeGeolocation]) {
+        return nil;
+    }
+    
+    return [[CLLocation alloc] initWithCoordinate:[self geolocationCoordinateValue] altitude:[self geolocationAltitudeValue] horizontalAccuracy:[self geolocationHorizontalAccuracyValue] verticalAccuracy:[self geolocationVerticalAccuracyValue] timestamp:nil];
+}
+
+@end
+#endif

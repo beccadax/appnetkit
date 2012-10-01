@@ -7,3 +7,7 @@
 //
 
 typedef uint64_t ANResourceID;
+
+#if !defined(APPNETKIT_USE_CORE_LOCATION)
+#define APPNETKIT_USE_CORE_LOCATION 1
+#endif
