@@ -77,3 +77,32 @@
 }
 
 @end
+
+#if APPNETKIT_USE_CORE_LOCATION
+
+@implementation ANDraftAnnotation (CLLocation)
+
++ (ANDraftAnnotation *)draftAnnotationWithGeolocationValue:(CLLocation *)location {
+    NSMutableDictionary * dict = [NSMutableDictionary new];
+    [dict setObject:[NSNumber numberWithDouble:location.coordinate.latitude] forKey:@"latitude"];
+    [dict setObject:[NSNumber numberWithDouble:location.coordinate.longitude] forKey:@"longitude"];
+    
+    if(location.verticalAccuracy >= 0) {
+        [dict setObject:[NSNumber numberWithDouble:location.altitude] forKey:@"altitude"];
+    }
+    if(location.verticalAccuracy > 0) {
+        [dict setObject:[NSNumber numberWithDouble:location.verticalAccuracy] forKey:@"vertical_accuracy"];
+    }
+    if(location.horizontalAccuracy > 0) {
+        [dict setObject:[NSNumber numberWithDouble:location.horizontalAccuracy] forKey:@"horizontal_accuracy"];
+    }
+    
+    ANDraftAnnotation * annotation = [ANDraftAnnotation new];
+    annotation.type = ANAnnotationTypeGeolocation;
+    annotation.value = dict.copy;
+    return annotation;
+}
+
+@end
+
+#endif
