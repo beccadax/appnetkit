@@ -24,7 +24,11 @@
 
 - (void)sendRequestWithCompletion:(ANPostRequestCompletion)completion {
     [self sendRequestWithRepresentationCompletion:^(ANResponse * response, id rep, NSError *error) {
-        [self.session completePostRequest:completion withResponse:response representation:rep error:error];
+        [self.session completePostRequest:^(ANResponse *response, ANPost *post, NSError *error) {
+            // We touch the reposted post to make sure its updates are seen.
+            [post repostOf];
+            completion(response, post, error);
+        } withResponse:response representation:rep error:error];
     }];
 }
 
