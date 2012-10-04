@@ -104,6 +104,11 @@ NSInteger NetworkActivityCount;
 - (void)completePostRequest:(ANPostRequestCompletion)completion withResponse:(ANResponse*)response representation:(NSDictionary*)rep error:(NSError*)error {
     if(rep) {
         ANPost * post = [[ANPost alloc] initWithRepresentation:rep session:self];
+        
+        // We touch these internal resources to make sure they're updated immediately (triggering an ANResourceDidUpdateNotification).
+        [post repostOf];
+        [post user];
+        
         completion(response, post, nil);
     }
     else {
@@ -116,6 +121,11 @@ NSInteger NetworkActivityCount;
         NSMutableArray * posts = [[NSMutableArray alloc] initWithCapacity:rep.count];
         for(NSDictionary * postRep in rep) {
             ANPost * post = [[ANPost alloc] initWithRepresentation:postRep session:self];
+            
+            // We touch these internal resources to make sure they're updated immediately (triggering an ANResourceDidUpdateNotification).
+            [post repostOf];
+            [post user];
+            
             [posts addObject:post];
         }
         
