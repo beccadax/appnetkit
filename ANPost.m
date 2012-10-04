@@ -12,6 +12,7 @@
 @implementation ANPost
 
 @dynamic createdAt;
+@dynamic canonicalURL;
 @dynamic text;
 @dynamic HTML;
 @dynamic entities;

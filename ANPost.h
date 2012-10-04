@@ -18,6 +18,7 @@
 @property (readonly) ANUser * user;
 @property (readonly) NSDictionary * userRepresentation;
 @property (readonly) NSDate * createdAt;
+@property (readonly) NSURL * canonicalURL;
 
 @property (readonly) ANAnnotationSet * annotations;
 @property (readonly) NSArray * annotationRepresentations;
