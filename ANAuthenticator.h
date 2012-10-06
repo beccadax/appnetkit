@@ -30,4 +30,6 @@ extern NSString * const ANScopeExport;
 - (BOOL)isRedirectURL:(NSURL*)url;
 - (NSString*)accessTokenFromRedirectURL:(NSURL*)redirectURL error:(NSError**)error;
 
+- (void)accessTokenWithPasswordGrantSecret:(NSString *)passwordGrantSecret username:(NSString *)username password:(NSString *)password scopes:(NSString *)scopes completion:(void (^)(NSString *accessToken, id rep, NSError * error))completion;
+
 @end
