@@ -32,11 +32,12 @@
     req.URL = self.URL;
     req.parameters = self.parameters;
     req.method = self.method;
+    req.parameterEncoding = self.parameterEncoding;
     
     return req;
 }
 
-@dynamic URL, parameters, method;
+@dynamic URL, parameters, method, parameterEncoding;
 
 - (NSString*)methodString {
     switch (self.method) {
@@ -77,12 +78,29 @@
     if(params.count == 0) {
         return nil;
     }
-    
-    NSError * error;
-    NSData * data = [NSJSONSerialization dataWithJSONObject:params options:0 error:&error];
-    
-    NSAssert(data, @"Params could not be serialized to JSON--error: %@", error.localizedDescription);
-    
+
+    NSData * data = nil;
+    NSError * error = nil;
+
+    switch (self.parameterEncoding) {
+        case ANRequestParameterEncodingURL:
+            {
+                NSMutableString *parameterString = [[NSMutableString alloc] init];
+                [params enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+                    [parameterString appendFormat:@"%@=%@&", [key urlEncodedString], [obj urlEncodedString]];
+                }];
+                [parameterString deleteCharactersInRange:NSMakeRange([parameterString length] - 1, 1)];
+                data = [parameterString dataUsingEncoding:NSUTF8StringEncoding];
+            }
+            break;
+
+        case ANRequestParameterEncodingJSON:
+        default:
+            data = [NSJSONSerialization dataWithJSONObject:params options:0 error:&error];
+            NSAssert(data, @"Params could not be serialized to JSON--error: %@", error.localizedDescription);
+            break;
+    }
+
     return data;
 }
 
@@ -100,7 +118,16 @@
     req.HTTPBody = self.body;
     
     if(req.HTTPBody) {
-        [req setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+        switch (self.parameterEncoding) {
+            case ANRequestParameterEncodingURL:
+                [req setValue:@"application/x-www-form-urlencoded; charset=UTF-8" forHTTPHeaderField:@"Content-Type"];
+                break;
+                
+            case ANRequestParameterEncodingJSON:
+            default:
+                [req setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+                break;
+        }
     }
     
     return req;
@@ -172,6 +199,10 @@
             error = jsonError;
         }
         if(error) {
+            NSMutableDictionary *userInfo = [error.userInfo mutableCopy];
+            [userInfo setObject:json forKey:@"json"];
+            error = [NSError errorWithDomain:error.domain code:error.code userInfo:userInfo];
+
             json = nil;
         }
         
@@ -183,6 +214,6 @@
 
 @implementation ANMutableRequest
 
-@synthesize URL, parameters, method;
+@synthesize URL, parameters, method, parameterEncoding;
 
 @end
