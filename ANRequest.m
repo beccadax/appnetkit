@@ -198,7 +198,7 @@
         if(!error) {
             error = jsonError;
         }
-        if(error) {
+        if(error && json) {
             NSMutableDictionary *userInfo = [error.userInfo mutableCopy];
             [userInfo setObject:json forKey:@"json"];
             error = [NSError errorWithDomain:error.domain code:error.code userInfo:userInfo];
