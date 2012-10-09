@@ -62,9 +62,11 @@ NSString * const ANResourceDidUpdateNotification = @"ANResourceDidUpdate";
     
     _representation = representation;
     objc_removeAssociatedObjects(self);
-    
-    [NSNotificationCenter.defaultCenter postNotificationName:ANResourceDidUpdateNotification object:self];
+        
     [self didChangeValueForKey:@"representation"];
+    
+    NSNotification * note = [NSNotification notificationWithName:ANResourceDidUpdateNotification object:self];
+    [NSNotificationQueue.defaultQueue enqueueNotification:note postingStyle:NSPostASAP coalesceMask:NSNotificationCoalescingOnName|NSNotificationCoalescingOnSender forModes:nil];
 }
 
 + (BOOL)automaticallyNotifiesObserversForKey:(NSString *)key {
