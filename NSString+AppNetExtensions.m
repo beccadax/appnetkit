@@ -18,14 +18,4 @@
     return [@"#" stringByAppendingString:self];
 }
 
-- (NSString *)urlEncodedString
-{
-    return (__bridge_transfer NSString *)CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault, (__bridge CFStringRef)self, NULL, CFSTR(":/?#[]@!$ &'()*+,;=\"<>%{}|\\^~`"), kCFStringEncodingUTF8);
-}
-
-- (NSString *)urlDecodedString
-{
-    return [self stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-}
-
 @end

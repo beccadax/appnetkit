@@ -84,14 +84,7 @@
 
     switch (self.parameterEncoding) {
         case ANRequestParameterEncodingURL:
-            {
-                NSMutableString *parameterString = [[NSMutableString alloc] init];
-                [params enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-                    [parameterString appendFormat:@"%@=%@&", [key urlEncodedString], [obj urlEncodedString]];
-                }];
-                [parameterString deleteCharactersInRange:NSMakeRange([parameterString length] - 1, 1)];
-                data = [parameterString dataUsingEncoding:NSUTF8StringEncoding];
-            }
+            data = params.formBodyData;
             break;
 
         case ANRequestParameterEncodingJSON:
