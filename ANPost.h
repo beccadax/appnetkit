@@ -28,7 +28,8 @@
 
 @property (readonly) BOOL machineOnly;
 
-// Either repostOf.ID or just ID
+// self.repostOf if this is a repost, self otherwise.
+@property (readonly) ANPost * originalPost;
 @property (readonly) ANResourceID originalID;
 
 @property (readonly) ANResourceID replyTo;

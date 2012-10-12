@@ -119,7 +119,7 @@
 }
 
 - (void)postRepliedToWithCompletion:(ANPostRequestCompletion)completion {
-    [self.session postWithID:self.originalID completion:completion];
+    [self.session postWithID:self.originalPost.replyTo completion:completion];
 }
 
 - (void)replyPostsWithCompletion:(ANPostListRequestCompletion)completion {
@@ -127,7 +127,7 @@
 }
 
 - (void)postAtThreadRootWithCompletion:(ANPostRequestCompletion)completion {
-    [self.session postWithID:self.originalID completion:completion];
+    [self.session postWithID:self.originalPost.threadID completion:completion];
 }
 
 - (void)deleteWithCompletion:(ANPostRequestCompletion)completion {
@@ -147,14 +147,22 @@
 }
 
 + (NSSet *)keyPathsForValuesAffectingOriginalID {
-    return [NSSet setWithObjects:@"ID", @"repostOf.ID", nil];
+    return [NSSet setWithObject:@"originalPost.ID"];
 }
 
 - (ANResourceID)originalID {
+    return self.originalPost.ID;
+}
+
++ (NSSet *)keyPathsForValuesAffectingOriginalPost {
+    return [NSSet setWithObject:@"repostOf"];
+}
+
+- (ANPost *)originalPost {
     if(self.repostOf) {
-        return self.repostOf.ID;
+        return self.repostOf;
     }
-    return self.ID;
+    return self;
 }
 
 - (void)repostWithCompletion:(ANPostRequestCompletion)completion {
