@@ -104,14 +104,15 @@ NSString * const ANScopeExport = @"export";
     return nil;
 }
 
-- (void)accessTokenWithPasswordGrantSecret:(NSString *)passwordGrantSecret username:(NSString *)username password:(NSString *)password scopes:(NSString *)scopes completion:(void (^)(NSString *accessToken, id rep, NSError * error))completion
-{
+- (void)accessTokenForScopes:(NSString *)scopes withUsername:(NSString *)username password:(NSString *)password completion:(void (^)(NSString *accessToken, id rep, NSError * error))completion {
+    NSAssert(self.passwordGrantSecret, @"You must set ANAuthenticator.passwordGrantSecret before calling -%@", NSStringFromSelector(_cmd));
+    
     ANSession *anSession = [ANSession defaultSession];
     ANMutableRequest *authRequest = [[ANMutableRequest alloc] initWithSession:anSession];
     authRequest.URL = [NSURL URLWithString:@"https://alpha.app.net/oauth/access_token"];
     authRequest.method = ANRequestMethodPost;
     authRequest.parameterEncoding = ANRequestParameterEncodingURL;
-    authRequest.parameters = @{@"client_id": self.clientID, @"password_grant_secret": passwordGrantSecret, @"grant_type": @"password", @"username": username, @"password": password, @"scope": scopes};
+    authRequest.parameters = @{@"client_id": self.clientID, @"password_grant_secret": self.passwordGrantSecret, @"grant_type": @"password", @"username": username, @"password": password, @"scope": scopes};
 
     [authRequest sendRequestWithRepresentationCompletion:^(ANResponse *response, id rep, NSError *error) {
         if (error)

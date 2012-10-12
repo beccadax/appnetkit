@@ -21,6 +21,9 @@ extern NSString * const ANScopeExport;
 + (ANAuthenticator*)sharedAuthenticator;
 
 @property (strong,nonatomic) NSString * clientID;
+
+#pragma mark OAuth authentication flow
+
 @property (strong,nonatomic) NSURL * redirectURL;
 @property (assign,nonatomic) BOOL omitsPaymentOptions;
 
@@ -30,6 +33,10 @@ extern NSString * const ANScopeExport;
 - (BOOL)isRedirectURL:(NSURL*)url;
 - (NSString*)accessTokenFromRedirectURL:(NSURL*)redirectURL error:(NSError**)error;
 
-- (void)accessTokenWithPasswordGrantSecret:(NSString *)passwordGrantSecret username:(NSString *)username password:(NSString *)password scopes:(NSString *)scopes completion:(void (^)(NSString *accessToken, id rep, NSError * error))completion;
+#pragma mark Password authentication flow
+
+@property (strong,nonatomic) NSString * passwordGrantSecret;
+
+- (void)accessTokenForScopes:(NSString *)scopes withUsername:(NSString *)username password:(NSString *)password completion:(void (^)(NSString *accessToken, id rep, NSError * error))completion;
 
 @end
