@@ -32,6 +32,10 @@ NSString * const ANScopeExport = @"export";
 }
 
 - (NSString*)parametersForScopes:(NSArray *)scopes {
+    NSParameterAssert(scopes);
+    NSAssert(self.clientID, @"ANAuthenticator.clientID not set");
+    NSAssert(self.redirectURL, @"ANAuthenticator.redirectURL not set");
+    
     NSMutableDictionary * params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                     self.clientID, @"client_id",
                                     @"token", @"response_type",
@@ -57,6 +61,7 @@ NSString * const ANScopeExport = @"export";
 }
 
 - (BOOL)isRedirectURL:(NSURL *)url {
+    NSAssert(self.redirectURL, @"ANAuthenticator.redirectURL has not been set");
     return [url.scheme isEqualToString:self.redirectURL.scheme] && [url.host isEqualToString:self.redirectURL.host] && [url.path isEqualToString:self.redirectURL.path];
 }
 
@@ -105,6 +110,7 @@ NSString * const ANScopeExport = @"export";
 }
 
 - (void)accessTokenForScopes:(NSString *)scopes withUsername:(NSString *)username password:(NSString *)password completion:(void (^)(NSString *accessToken, id rep, NSError * error))completion {
+    NSAssert(self.clientID, @"ANAuthenticator.clientID not set");
     NSAssert(self.passwordGrantSecret, @"You must set ANAuthenticator.passwordGrantSecret before calling -%@", NSStringFromSelector(_cmd));
     
     ANMutableRequest *authRequest = [[ANMutableRequest alloc] initWithSession:ANSession.defaultSession];
