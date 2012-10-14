@@ -138,10 +138,10 @@ NSString * const ANScopeExport = @"export";
                 [userInfo setObject:error forKey:NSUnderlyingErrorKey];
                 
                 if (errorText) { 
-                    [userInfo setObject:errorText forKey:@"error_text"];
+                    [userInfo setObject:errorText forKey:ANPasswordErrorTextKey];
                 }
                 if (errorTitle) {
-                    [userInfo setObject:errorText forKey:@"error_title"];
+                    [userInfo setObject:errorText forKey:ANPasswordErrorTitleKey];
                 }
 
                 error = [NSError errorWithDomain:ANErrorDomain code:ANGenericError userInfo:userInfo];
