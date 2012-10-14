@@ -31,6 +31,10 @@ NSString * const ANScopeExport = @"export";
     return self;
 }
 
+- (NSString*)parameterForScopes:(NSArray*)scopes {
+    return [scopes componentsJoinedByString:@" "];
+}
+
 - (NSString*)parametersForScopes:(NSArray *)scopes {
     NSParameterAssert(scopes);
     NSAssert(self.clientID, @"ANAuthenticator.clientID not set");
@@ -40,7 +44,7 @@ NSString * const ANScopeExport = @"export";
                                     self.clientID, @"client_id",
                                     @"token", @"response_type",
                                     self.redirectURL.absoluteString, @"redirect_uri",
-                                    [scopes componentsJoinedByString:@" "], @"scope",
+                                    [self parameterForScopes:scopes], @"scope",
                                     nil];
     
     if(self.omitsPaymentOptions) {
@@ -109,7 +113,7 @@ NSString * const ANScopeExport = @"export";
     return nil;
 }
 
-- (void)accessTokenForScopes:(NSString *)scopes withUsername:(NSString *)username password:(NSString *)password completion:(void (^)(NSString *accessToken, id rep, NSError * error))completion {
+- (void)accessTokenForScopes:(NSArray *)scopes withUsername:(NSString *)username password:(NSString *)password completion:(void (^)(NSString *accessToken, id rep, NSError * error))completion {
     NSAssert(self.clientID, @"ANAuthenticator.clientID not set");
     NSAssert(self.passwordGrantSecret, @"You must set ANAuthenticator.passwordGrantSecret before calling -%@", NSStringFromSelector(_cmd));
     
@@ -118,7 +122,7 @@ NSString * const ANScopeExport = @"export";
     authRequest.URL = [NSURL URLWithString:@"https://alpha.app.net/oauth/access_token"];
     authRequest.method = ANRequestMethodPost;
     authRequest.parameterEncoding = ANRequestParameterEncodingURL;
-    authRequest.parameters = [NSDictionary dictionaryWithObjectsAndKeys:@"password", @"grant_type", self.clientID, @"client_id", self.passwordGrantSecret, @"password_grant_secret", username, @"username", password, @"password", scopes, @"scopes", nil];
+    authRequest.parameters = [NSDictionary dictionaryWithObjectsAndKeys:@"password", @"grant_type", self.clientID, @"client_id", self.passwordGrantSecret, @"password_grant_secret", username, @"username", password, @"password", [self parameterForScopes:scopes], @"scopes", nil];
 
     [authRequest sendRequestWithRepresentationCompletion:^(ANResponse *response, id rep, NSError *error) {
         if (error) {

@@ -37,6 +37,6 @@ extern NSString * const ANScopeExport;
 
 @property (strong,nonatomic) NSString * passwordGrantSecret;
 
-- (void)accessTokenForScopes:(NSString *)scopes withUsername:(NSString *)username password:(NSString *)password completion:(void (^)(NSString *accessToken, id rep, NSError * error))completion;
+- (void)accessTokenForScopes:(NSArray *)scopes withUsername:(NSString *)username password:(NSString *)password completion:(void (^)(NSString *accessToken, id rep, NSError * error))completion;
 
 @end
