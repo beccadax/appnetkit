@@ -122,7 +122,7 @@ NSString * const ANScopeExport = @"export";
     authRequest.URL = [NSURL URLWithString:@"https://alpha.app.net/oauth/access_token"];
     authRequest.method = ANRequestMethodPost;
     authRequest.parameterEncoding = ANRequestParameterEncodingURL;
-    authRequest.parameters = [NSDictionary dictionaryWithObjectsAndKeys:@"password", @"grant_type", self.clientID, @"client_id", self.passwordGrantSecret, @"password_grant_secret", username, @"username", password, @"password", [self parameterForScopes:scopes], @"scopes", nil];
+    authRequest.parameters = [NSDictionary dictionaryWithObjectsAndKeys:@"password", @"grant_type", self.clientID, @"client_id", self.passwordGrantSecret, @"password_grant_secret", username, @"username", password, @"password", [self parameterForScopes:scopes], @"scope", nil];
 
     [authRequest sendRequestWithRepresentationCompletion:^(ANResponse *response, id rep, NSError *error) {
         if (error) {
