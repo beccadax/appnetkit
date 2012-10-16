@@ -37,7 +37,7 @@
     return req;
 }
 
-@dynamic URL, parameters, method, parameterEncoding;
+@dynamic URL, parameters, method;
 
 - (NSString*)methodString {
     switch (self.method) {
@@ -67,6 +67,10 @@
     }
     
     return [NSURL URLWithString:[NSString stringWithFormat:@"%@?%@", self.URL.absoluteString, params.queryString]];
+}
+
+- (ANRequestParameterEncoding)parameterEncoding {
+    return ANRequestParameterEncodingJSON;
 }
 
 - (NSData *)body {
