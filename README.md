@@ -98,6 +98,8 @@ Author
 
 Brent Royal-Gordon, Architechies <brent@architechies.com>, [@brent](http://alpha.app.net/brent) on App.net.
 
+Please let me know if you use AppNetKit in a project. I'm curious about what people will do with this!
+
 Bugs
 ====
 
@@ -110,6 +112,12 @@ If you find a problem, file an issue or write a patch and send it to me (prefera
 Copyright
 ========
 
-(C) 2012 Architechies.
+This software is licensed under the MIT license:
 
-License is TBD, but probably something like MIT or new BSD. Feel free to use this in a commercial app; you won't have to open-source your own work.
+Copyright (C) 2012 Architechies.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
