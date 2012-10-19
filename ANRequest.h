@@ -17,6 +17,11 @@ typedef enum {
     ANRequestMethodDelete
 } ANRequestMethod;
 
+typedef enum {
+    ANRequestParameterEncodingJSON,
+    ANRequestParameterEncodingURL
+} ANRequestParameterEncoding;
+
 @interface ANRequest : NSObject <NSMutableCopying>
 
 - (id)initWithSession:(ANSession*)session;
@@ -26,6 +31,7 @@ typedef enum {
 @property (readonly) NSURL * URL;
 @property (readonly) NSDictionary * parameters;
 @property (readonly) ANRequestMethod method;
+@property (readonly) ANRequestParameterEncoding parameterEncoding;
 
 @property (readonly) NSMutableURLRequest * URLRequest;
 
@@ -44,5 +50,6 @@ typedef enum {
 @property (readwrite,strong) NSURL * URL;
 @property (readwrite,strong) NSDictionary * parameters;
 @property (readwrite,assign) ANRequestMethod method;
+@property (readwrite,assign) ANRequestParameterEncoding parameterEncoding;
 
 @end

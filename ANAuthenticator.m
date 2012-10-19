@@ -9,6 +9,7 @@
 #import "ANAuthenticator.h"
 #import "AppNetKit.h"
 #import "NSDictionary+Parameters.h"
+#import "ANRequest.h"
 
 NSString * const ANScopeStream = @"stream";
 NSString * const ANScopeEmail = @"email";
@@ -101,6 +102,53 @@ NSString * const ANScopeExport = @"export";
     }
     
     return nil;
+}
+
+- (void)accessTokenWithPasswordGrantSecret:(NSString *)passwordGrantSecret username:(NSString *)username password:(NSString *)password scopes:(NSString *)scopes completion:(void (^)(NSString *accessToken, id rep, NSError * error))completion
+{
+    ANSession *anSession = [ANSession defaultSession];
+    ANMutableRequest *authRequest = [[ANMutableRequest alloc] initWithSession:anSession];
+    authRequest.URL = [NSURL URLWithString:@"https://alpha.app.net/oauth/access_token"];
+    authRequest.method = ANRequestMethodPost;
+    authRequest.parameterEncoding = ANRequestParameterEncodingURL;
+    authRequest.parameters = @{@"client_id": self.clientID, @"password_grant_secret": passwordGrantSecret, @"grant_type": @"password", @"username": username, @"password": password, @"scope": scopes};
+
+    [authRequest sendRequestWithRepresentationCompletion:^(ANResponse *response, id rep, NSError *error) {
+        if (error)
+        {
+            NSDictionary *errorResults = [error.userInfo objectForKey:@"json"];
+
+            if ([errorResults isKindOfClass:NSDictionary.class])
+            {
+                NSString *errorMessage = [errorResults objectForKey:@"error"];
+                NSString *errorText = [errorResults objectForKey:@"error_text"];
+                NSString *errorTitle = [errorResults objectForKey:@"error_title"];
+
+                NSMutableDictionary *userInfo = [[NSMutableDictionary alloc] init];
+                [userInfo setObject:errorMessage forKey:NSLocalizedDescriptionKey];
+                [userInfo setObject:error forKey:NSUnderlyingErrorKey];
+                if (errorText) [userInfo setObject:errorText forKey:@"error_text"];
+                if (errorTitle) [userInfo setObject:errorText forKey:@"error_title"];
+
+                error = [NSError errorWithDomain:ANErrorDomain code:0 userInfo:userInfo];
+            }
+
+            if (completion) {
+                completion(nil, nil, error);
+            }
+            return;
+        }
+
+        NSString *accessToken = nil;
+
+        if([rep isKindOfClass:NSDictionary.class]) {
+            accessToken = [(NSDictionary *)rep objectForKey:@"access_token"];
+        }
+
+        if (completion) {
+            completion(accessToken, rep, nil);
+        }
+    }];
 }
 
 #pragma mark Singleton machinery
