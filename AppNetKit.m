@@ -14,3 +14,5 @@
 
 NSString * const ANErrorDomain = @"ANErrorDomain";
 NSString * const ANExplanationURLKey = @"ANExplanationURL";
+NSString * const ANPasswordErrorTitleKey = @"error_title";
+NSString * const ANPasswordErrorTextKey = @"error_text";

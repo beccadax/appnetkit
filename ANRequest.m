@@ -32,6 +32,7 @@
     req.URL = self.URL;
     req.parameters = self.parameters;
     req.method = self.method;
+    req.parameterEncoding = self.parameterEncoding;
     
     return req;
 }
@@ -68,6 +69,10 @@
     return [NSURL URLWithString:[NSString stringWithFormat:@"%@?%@", self.URL.absoluteString, params.queryString]];
 }
 
+- (ANRequestParameterEncoding)parameterEncoding {
+    return ANRequestParameterEncodingJSON;
+}
+
 - (NSData *)body {
     if(self.method == ANRequestMethodGet) {
         return nil;
@@ -77,12 +82,22 @@
     if(params.count == 0) {
         return nil;
     }
-    
-    NSError * error;
-    NSData * data = [NSJSONSerialization dataWithJSONObject:params options:0 error:&error];
-    
-    NSAssert(data, @"Params could not be serialized to JSON--error: %@", error.localizedDescription);
-    
+
+    NSData * data = nil;
+    NSError * error = nil;
+
+    switch (self.parameterEncoding) {
+        case ANRequestParameterEncodingURL:
+            data = params.formBodyData;
+            break;
+
+        case ANRequestParameterEncodingJSON:
+        default:
+            data = [NSJSONSerialization dataWithJSONObject:params options:0 error:&error];
+            NSAssert(data, @"Params could not be serialized to JSON--error: %@", error.localizedDescription);
+            break;
+    }
+
     return data;
 }
 
@@ -100,7 +115,16 @@
     req.HTTPBody = self.body;
     
     if(req.HTTPBody) {
-        [req setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+        switch (self.parameterEncoding) {
+            case ANRequestParameterEncodingURL:
+                [req setValue:@"application/x-www-form-urlencoded; charset=UTF-8" forHTTPHeaderField:@"Content-Type"];
+                break;
+                
+            case ANRequestParameterEncodingJSON:
+            default:
+                [req setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+                break;
+        }
     }
     
     return req;
@@ -171,7 +195,11 @@
         if(!error) {
             error = jsonError;
         }
-        if(error) {
+        if(error && json) {
+            NSMutableDictionary *userInfo = [error.userInfo mutableCopy];
+            [userInfo setObject:json forKey:@"json"];
+            error = [NSError errorWithDomain:error.domain code:error.code userInfo:userInfo];
+
             json = nil;
         }
         
@@ -183,6 +211,6 @@
 
 @implementation ANMutableRequest
 
-@synthesize URL, parameters, method;
+@synthesize URL, parameters, method, parameterEncoding;
 
 @end

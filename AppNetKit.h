@@ -13,6 +13,10 @@
 extern NSString * const ANErrorDomain;
 extern NSString * const ANExplanationURLKey;
 
+// Used with password auth
+extern NSString * const ANPasswordErrorTitleKey;
+extern NSString * const ANPasswordErrorTextKey;
+
 typedef enum {
     ANGenericError,
     ANOAuthInvalidRequestError,
