@@ -78,44 +78,48 @@
     return draft;
 }
 
-- (ANDraft*)draftReply {
-    ANDraft * draft = [self.user draftMention];
+- (NSMutableOrderedSet*)mentionsForDirectReply {
+    NSMutableOrderedSet * mentions = self.repostOf ? [self.repostOf mentionsForDirectReply] : [NSMutableOrderedSet new];
     
+    [mentions addObject:self.user.username.appNetUsernameString];
+    
+    return mentions;
+}
+
+- (ANDraft*)draftReply {
+    ANDraft * draft = [ANDraft new];
+    
+    draft.text = [[self.mentionsForDirectReply.array componentsJoinedByString:@" "] stringByAppendingString:@" "];
     draft.replyTo = self.originalID;
+    
+    return draft;
+}
+
+- (ANDraft*)draftReplyToAllExcept:(BOOL (^)(ANEntity * mention))rejectionBlock {
+    ANDraft * draft = [self draftReply];
+    
+    NSMutableOrderedSet * usernames = self.mentionsForDirectReply;
+    for(ANEntity * mention in self.entities.mentions) {
+        if(!rejectionBlock(mention)) {
+            [usernames addObject:mention.name.appNetUsernameString];
+        }
+    }
+    
+    draft.text = [[usernames.array componentsJoinedByString:@" "] stringByAppendingString:@" "];
     
     return draft;
 }
 
 - (ANDraft*)draftReplyToAllExceptUser:(ANUser*)user {
-    NSMutableOrderedSet * usernames = [NSMutableOrderedSet orderedSetWithObject:self.user.username.appNetUsernameString];
-    for(ANEntity * mention in self.entities.mentions) {
-        if(mention.userID != user.ID) {
-            [usernames addObject:mention.name.appNetUsernameString];
-        }
-    }
-    
-    ANDraft * draft = [ANDraft new];
-    
-    draft.text = [[usernames.array componentsJoinedByString:@" "] stringByAppendingString:@" "];
-    draft.replyTo = self.originalID;
-    
-    return draft;
+    return [self draftReplyToAllExcept:^BOOL(ANEntity *mention) {
+        return mention.userID == user.ID;
+    }];
 }
 
 - (ANDraft*)draftReplyToAllExceptUsername:(NSString*)username {
-    NSMutableOrderedSet * usernames = [NSMutableOrderedSet orderedSetWithObject:self.user.username.appNetUsernameString];
-    for(ANEntity * mention in self.entities.mentions) {
-        if(![mention.name isEqualToString:username]) {
-            [usernames addObject:mention.name.appNetUsernameString];
-        }
-    }
-    
-    ANDraft * draft = [ANDraft new];
-    
-    draft.text = [[usernames.array componentsJoinedByString:@" "] stringByAppendingString:@" "];
-    draft.replyTo = self.originalID;
-    
-    return draft;
+    return [self draftReplyToAllExcept:^BOOL(ANEntity *mention) {
+        return [mention.name isEqualToString:username];
+    }];
 }
 
 - (void)postRepliedToWithCompletion:(ANPostRequestCompletion)completion {
