@@ -14,7 +14,8 @@
 typedef enum {
     ANRequestMethodGet,
     ANRequestMethodPost,
-    ANRequestMethodDelete
+    ANRequestMethodDelete,
+    ANRequestMethodPut
 } ANRequestMethod;
 
 typedef enum {

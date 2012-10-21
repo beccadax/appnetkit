@@ -50,6 +50,9 @@
         case ANRequestMethodDelete:
             return @"DELETE";
             
+        case ANRequestMethodPut:
+            return @"PUT";
+            
         default:
             NSAssert(NO, @"Unknown method %d", self.method);
             return nil;
