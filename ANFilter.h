@@ -8,7 +8,8 @@
 
 #import "ANIdentifiedResource.h"
 
-//@class ANDraftFilter;
+@class ANDraftFilter;
+@class ANDraftFilterClause;
 
 typedef enum {
     ANFilterMatchPolicyIncludeAny,
@@ -30,7 +31,7 @@ extern ANFilterMatchPolicy ANFilterMatchPolicyFromString(NSString * string);
 @property (nonatomic,readonly) ANFilterMatchPolicy matchPolicy;
 @property (nonatomic,readonly) NSString * matchPolicyRepresentation;
 
-//- (ANDraftFilter*)draftFilter;
+- (ANDraftFilter*)draftFilter;
 
 @end
 
@@ -66,5 +67,28 @@ extern ANFilterClauseOperator ANFilterClauseOperatorFromString(NSString * string
 
 @property (nonatomic,readonly) NSString * field;
 @property (nonatomic,readonly) id value;
+
+- (ANDraftFilterClause*)draftFilterClause;
+
+@end
+
+@interface ANDraftFilter : NSObject
+
+@property (nonatomic,readwrite) NSString * name;
+@property (nonatomic,readonly) NSMutableArray * clauses;
+@property (nonatomic,readwrite) ANFilterMatchPolicy matchPolicy;
+
+@property (nonatomic,copy) NSDictionary * representation;
+
+@end
+
+@interface ANDraftFilterClause : NSObject
+
+@property (nonatomic,assign) ANFilterClauseObjectType objectType;
+@property (nonatomic,assign) ANFilterClauseOperator operator;
+@property (nonatomic,strong) NSString * field;
+@property (nonatomic,strong) id value;
+
+@property (nonatomic,copy) NSDictionary * representation;
 
 @end

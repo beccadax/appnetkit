@@ -36,6 +36,12 @@
     return ANFilterMatchPolicyFromString(self.matchPolicyRepresentation);
 }
 
+- (ANDraftFilter *)draftFilter {
+    ANDraftFilter * draft = [ANDraftFilter new];
+    draft.representation = self.representation;
+    return draft;
+}
+
 @end
 
 @implementation ANFilterClause
@@ -59,6 +65,63 @@
 
 - (ANFilterClauseOperator)operator {
     return ANFilterClauseOperatorFromString(self.operatorRepresentation);
+}
+
+- (ANDraftFilterClause *)draftFilterClause {
+    ANDraftFilterClause * draftClause = [ANDraftFilterClause new];
+    draftClause.representation = self.representation;
+    return draftClause;
+}
+
+@end
+
+@implementation ANDraftFilter
+
+- (id)init {
+    if((self = [super init])) {
+        _clauses = [NSMutableArray new];
+    }
+    return self;
+}
+
+- (NSDictionary *)representation {
+    return @{
+    @"name": self.name,
+    @"clauses": [self.clauses valueForKey:@"representation"],
+    @"match_policy": ANStringFromFilterMatchPolicy(self.matchPolicy),
+    };
+}
+
+- (void)setRepresentation:(NSDictionary *)representation {
+    self.name = representation[@"name"];
+    self.matchPolicy = ANFilterMatchPolicyFromString(representation[@"match_policy"]);
+    
+    [self.clauses removeAllObjects];
+    for(NSDictionary * clauseRep in representation[@"clauses"]) {
+        ANDraftFilterClause * clause = [ANDraftFilterClause new];
+        clause.representation = clauseRep;
+        [self.clauses addObject:clause];
+    }
+}
+
+@end
+
+@implementation ANDraftFilterClause
+
+- (NSDictionary *)representation {
+    return @{
+    @"object_type": ANStringFromFilterClauseObjectType(self.objectType),
+    @"operator": ANStringFromFilterClauseOperator(self.operator),
+    @"field": self.field,
+    @"value": self.value
+    };
+}
+
+- (void)setRepresentation:(NSDictionary *)representation {
+    self.objectType = ANFilterClauseObjectTypeFromString(representation[@"object_type"]);
+    self.operator = ANFilterClauseOperatorFromString(representation[@"operator"]);
+    self.field = representation[@"field"];
+    self.value = representation[@"value"];
 }
 
 @end
