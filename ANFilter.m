@@ -7,6 +7,7 @@
 //
 
 #import "ANFilter.h"
+#import "ANSession+Requests.h"
 
 @implementation ANFilter
 
@@ -40,6 +41,14 @@
     ANDraftFilter * draft = [ANDraftFilter new];
     draft.representation = self.representation;
     return draft;
+}
+
+//- (void)updateFromDraft:(ANDraftFilter *)draftFilter completion:(ANFilterRequestCompletion)completion {
+//    [self.session updateFilterWithID:self.ID fromDraft:draftFilter completion:completion];
+//}
+
+- (void)deleteWithCompletion:(ANFilterRequestCompletion)completion {
+    [self.session deleteFilterWithID:self.ID completion:completion];
 }
 
 @end
@@ -102,6 +111,10 @@
         clause.representation = clauseRep;
         [self.clauses addObject:clause];
     }
+}
+
+- (void)createFilterViaSession:(ANSession *)session completion:(ANFilterRequestCompletion)completion {
+    [session createFilterFromDraft:self completion:completion];
 }
 
 @end

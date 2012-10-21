@@ -14,6 +14,7 @@
 @class ANFilter;
 @class ANResource;
 @class ANDraft;
+@class ANDraftFilter;
 
 extern const ANResourceID ANMeUserID;
 extern const ANResourceID ANUnspecifiedPostID;

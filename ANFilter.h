@@ -7,6 +7,7 @@
 //
 
 #import "ANIdentifiedResource.h"
+#import "ANCompletions.h"
 
 @class ANDraftFilter;
 @class ANDraftFilterClause;
@@ -30,6 +31,9 @@ extern ANFilterMatchPolicy ANFilterMatchPolicyFromString(NSString * string);
 
 @property (nonatomic,readonly) ANFilterMatchPolicy matchPolicy;
 @property (nonatomic,readonly) NSString * matchPolicyRepresentation;
+
+- (void)deleteWithCompletion:(ANFilterRequestCompletion)completion;
+//- (void)updateFromDraft:(ANDraftFilter*)draftFilter completion:(ANFilterRequestCompletion)completion;
 
 - (ANDraftFilter*)draftFilter;
 
@@ -79,6 +83,8 @@ extern ANFilterClauseOperator ANFilterClauseOperatorFromString(NSString * string
 @property (nonatomic,readwrite) ANFilterMatchPolicy matchPolicy;
 
 @property (nonatomic,copy) NSDictionary * representation;
+
+- (void)createFilterViaSession:(ANSession*)session completion:(ANFilterRequestCompletion)completion;
 
 @end
 

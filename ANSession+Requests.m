@@ -36,6 +36,9 @@
 #import "ANUsersMatchingSearchQueryRequest.h"
 #import "ANFiltersForCurrentUserRequest.h"
 #import "ANFilterRequest.h"
+#import "ANCreateFilterRequest.h"
+#import "ANDeleteFilterRequest.h"
+#import "ANDeleteFiltersForUserRequest.h"
 
 @implementation ANSession (Requests)
 
@@ -282,6 +285,11 @@
     [req sendRequestWithCompletion:completion];
 }
 
+- (void)deleteFiltersWithCompletion:(ANFilterListRequestCompletion)completion {
+    ANDeleteFiltersForUserRequest * req = [[ANDeleteFiltersForUserRequest alloc] initWithSession:self];
+    [req sendRequestWithCompletion:completion];
+}
+
 - (void)filterWithID:(ANResourceID)ID completion:(ANFilterRequestCompletion)completion {
     ANFilterRequest * req = [[ANFilterRequest alloc] initWithSession:self];
     
@@ -290,8 +298,22 @@
     [req sendRequestWithCompletion:completion];
 }
 
-//- (void)createFilterFromDraft:(ANDraftFilter*)draftFilter completion:(ANFilterRequestCompletion)completion;
-//- (void)deleteFilterWithID:(ANResourceID)ID completion:(ANFilterRequestCompletion)completion;
+- (void)createFilterFromDraft:(ANDraftFilter*)draftFilter completion:(ANFilterRequestCompletion)completion {
+    ANCreateFilterRequest * req = [[ANCreateFilterRequest alloc] initWithSession:self];
+    
+    req.draftFilter = draftFilter;
+    
+    [req sendRequestWithCompletion:completion];
+}
+
+- (void)deleteFilterWithID:(ANResourceID)ID completion:(ANFilterRequestCompletion)completion {
+    ANDeleteFilterRequest * req = [[ANDeleteFilterRequest alloc] initWithSession:self];
+    
+    req.filterID = ID;
+    
+    [req sendRequestWithCompletion:completion];
+}
+
 //- (void)updateFilterWithID:(ANResourceID)ID fromDraft:(ANDraftFilter*)draftFilter completion:(ANFilterRequestCompletion)completion;
 
 @end
