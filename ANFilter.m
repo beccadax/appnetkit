@@ -43,9 +43,9 @@
     return draft;
 }
 
-//- (void)updateFromDraft:(ANDraftFilter *)draftFilter completion:(ANFilterRequestCompletion)completion {
-//    [self.session updateFilterWithID:self.ID fromDraft:draftFilter completion:completion];
-//}
+- (void)updateFromDraft:(ANDraftFilter *)draftFilter completion:(ANFilterRequestCompletion)completion {
+    [self.session updateFilterWithID:self.ID fromDraft:draftFilter completion:completion];
+}
 
 - (void)deleteWithCompletion:(ANFilterRequestCompletion)completion {
     [self.session deleteFilterWithID:self.ID completion:completion];

@@ -61,6 +61,6 @@
 - (void)filterWithID:(ANResourceID)ID completion:(ANFilterRequestCompletion)completion;
 - (void)createFilterFromDraft:(ANDraftFilter*)draftFilter completion:(ANFilterRequestCompletion)completion;
 - (void)deleteFilterWithID:(ANResourceID)ID completion:(ANFilterRequestCompletion)completion;
-//- (void)updateFilterWithID:(ANResourceID)ID fromDraft:(ANDraftFilter*)draftFilter completion:(ANFilterRequestCompletion)completion;
+- (void)updateFilterWithID:(ANResourceID)ID fromDraft:(ANDraftFilter*)draftFilter completion:(ANFilterRequestCompletion)completion;
 
 @end

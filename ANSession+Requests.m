@@ -39,6 +39,7 @@
 #import "ANCreateFilterRequest.h"
 #import "ANDeleteFilterRequest.h"
 #import "ANDeleteFiltersForUserRequest.h"
+#import "ANUpdateFilterRequest.h"
 
 @implementation ANSession (Requests)
 
@@ -314,6 +315,13 @@
     [req sendRequestWithCompletion:completion];
 }
 
-//- (void)updateFilterWithID:(ANResourceID)ID fromDraft:(ANDraftFilter*)draftFilter completion:(ANFilterRequestCompletion)completion;
+- (void)updateFilterWithID:(ANResourceID)ID fromDraft:(ANDraftFilter*)draftFilter completion:(ANFilterRequestCompletion)completion {
+    ANUpdateFilterRequest * req = [[ANUpdateFilterRequest alloc] initWithSession:self];
+    
+    req.filterID = ID;
+    req.draftFilter = draftFilter;
+    
+    [req sendRequestWithCompletion:completion];
+}
 
 @end

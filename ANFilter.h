@@ -33,7 +33,7 @@ extern ANFilterMatchPolicy ANFilterMatchPolicyFromString(NSString * string);
 @property (nonatomic,readonly) NSString * matchPolicyRepresentation;
 
 - (void)deleteWithCompletion:(ANFilterRequestCompletion)completion;
-//- (void)updateFromDraft:(ANDraftFilter*)draftFilter completion:(ANFilterRequestCompletion)completion;
+- (void)updateFromDraft:(ANDraftFilter*)draftFilter completion:(ANFilterRequestCompletion)completion;
 
 - (ANDraftFilter*)draftFilter;
 
