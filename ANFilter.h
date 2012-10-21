@@ -8,6 +8,8 @@
 
 #import "ANIdentifiedResource.h"
 
+//@class ANDraftFilter;
+
 typedef enum {
     ANFilterMatchPolicyIncludeAny,
     ANFilterMatchPolicyIncludeAll,
@@ -27,6 +29,8 @@ extern ANFilterMatchPolicy ANFilterMatchPolicyFromString(NSString * string);
 
 @property (nonatomic,readonly) ANFilterMatchPolicy matchPolicy;
 @property (nonatomic,readonly) NSString * matchPolicyRepresentation;
+
+//- (ANDraftFilter*)draftFilter;
 
 @end
 

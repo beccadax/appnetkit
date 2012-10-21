@@ -136,6 +136,31 @@ NSInteger NetworkActivityCount;
     }
 }
 
+- (void)completeFilterRequest:(ANFilterRequestCompletion)completion withResponse:(ANResponse*)response representation:(NSDictionary*)rep error:(NSError*)error {
+    if(rep) {
+        ANFilter * filter = [[ANFilter alloc] initWithRepresentation:rep session:self];
+        completion(response, filter, nil);
+    }
+    else {
+        completion(response, nil, error);
+    }
+}
+
+- (void)completeFilterListRequest:(ANFilterListRequestCompletion)completion withResponse:(ANResponse*)response representation:(NSArray*)rep error:(NSError*)error {
+    if(rep) {
+        NSMutableArray * filters = [[NSMutableArray alloc] initWithCapacity:rep.count];
+        for(NSDictionary * filterRep in rep) {
+            ANFilter * filter = [[ANFilter alloc] initWithRepresentation:filterRep session:self];
+            [filters addObject:filter];
+        }
+        
+        completion(response, filters.copy, nil);
+    }
+    else {
+        completion(response, nil, error);
+    }
+}
+
 - (id)uniqueResource:(ANResource *)r {
     __block ANResource * resource = r;
     

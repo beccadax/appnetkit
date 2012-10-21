@@ -34,6 +34,8 @@
 #import "ANUnrepostPostRequest.h"
 #import "ANUsersWithPostRepostedRequest.h"
 #import "ANUsersMatchingSearchQueryRequest.h"
+#import "ANFiltersForCurrentUserRequest.h"
+#import "ANFilterRequest.h"
 
 @implementation ANSession (Requests)
 
@@ -274,5 +276,22 @@
     
     [req sendRequestWithCompletion:completion];
 }
+
+- (void)filtersWithCompletion:(ANFilterListRequestCompletion)completion {
+    ANFiltersForCurrentUserRequest * req = [[ANFiltersForCurrentUserRequest alloc] initWithSession:self];
+    [req sendRequestWithCompletion:completion];
+}
+
+- (void)filterWithID:(ANResourceID)ID completion:(ANFilterRequestCompletion)completion {
+    ANFilterRequest * req = [[ANFilterRequest alloc] initWithSession:self];
+    
+    req.filterID = ID;
+    
+    [req sendRequestWithCompletion:completion];
+}
+
+//- (void)createFilterFromDraft:(ANDraftFilter*)draftFilter completion:(ANFilterRequestCompletion)completion;
+//- (void)deleteFilterWithID:(ANResourceID)ID completion:(ANFilterRequestCompletion)completion;
+//- (void)updateFilterWithID:(ANResourceID)ID fromDraft:(ANDraftFilter*)draftFilter completion:(ANFilterRequestCompletion)completion;
 
 @end
