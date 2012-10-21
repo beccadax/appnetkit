@@ -47,9 +47,9 @@ typedef enum {
     ANFilterClauseOperatorEquals,
     ANFilterClauseOperatorMatches,
     ANFilterClauseOperatorLess,
-    ANFilterClauseOperatorLessOrEqual,
+    ANFilterClauseOperatorLessOrEquals,
     ANFilterClauseOperatorGreater,
-    ANFilterClauseOperatorGreaterOrEqual,
+    ANFilterClauseOperatorGreaterOrEquals,
     ANFilterClauseOperatorOneOf
 } ANFilterClauseOperator;
 

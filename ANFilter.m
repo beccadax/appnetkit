@@ -62,3 +62,105 @@
 }
 
 @end
+
+NSString * ANStringFromFilterMatchPolicy(ANFilterMatchPolicy matchPolicy) {
+    static NSDictionary * table;
+    static dispatch_once_t once;
+    
+    dispatch_once(&once, ^{
+        table = @{
+        @(ANFilterMatchPolicyIncludeAll): @"include_all",
+        @(ANFilterMatchPolicyIncludeAny): @"include_any",
+        @(ANFilterMatchPolicyExcludeAll): @"exclude_all",
+        @(ANFilterMatchPolicyExcludeAny): @"exclude_any",
+        };
+    });
+    
+    return table[@(matchPolicy)];
+}
+
+ANFilterMatchPolicy ANFilterMatchPolicyFromString(NSString * string) {
+    static NSDictionary * table;
+    static dispatch_once_t once;
+    
+    dispatch_once(&once, ^{
+        table = @{
+        @"include_all": @(ANFilterMatchPolicyIncludeAll),
+        @"include_any": @(ANFilterMatchPolicyIncludeAny),
+        @"exclude_all": @(ANFilterMatchPolicyExcludeAll),
+        @"exclude_any": @(ANFilterMatchPolicyExcludeAny),
+        };
+    });
+    
+    return [table[string] integerValue];
+}
+
+NSString * ANStringFromFilterClauseObjectType(ANFilterClauseObjectType objectType) {
+    static NSDictionary * table;
+    static dispatch_once_t once;
+    
+    dispatch_once(&once, ^{
+        table = @{
+        @(ANFilterClauseObjectTypePost): @"post",
+        @(ANFilterClauseObjectTypeStar): @"star",
+        @(ANFilterClauseObjectTypeUserFollow): @"user_follow",
+        };
+    });
+    
+    return table[@(objectType)];
+}
+
+ANFilterClauseObjectType ANFilterClauseObjectTypeFromString(NSString * string) {
+    static NSDictionary * table;
+    static dispatch_once_t once;
+    
+    dispatch_once(&once, ^{
+        table = @{
+        @"post": @(ANFilterClauseObjectTypePost),
+        @"star": @(ANFilterClauseObjectTypeStar),
+        @"user_follow": @(ANFilterClauseObjectTypeUserFollow),
+        };
+    });
+    
+    return [table[string] integerValue];
+}
+
+
+NSString * ANStringFromFilterClauseOperator(ANFilterClauseOperator operator) {
+    static NSDictionary * table;
+    static dispatch_once_t once;
+    
+    dispatch_once(&once, ^{
+        table = @{
+        @(ANFilterClauseOperatorEquals): @"equals",
+        @(ANFilterClauseOperatorGreater): @"gt",
+        @(ANFilterClauseOperatorGreaterOrEquals): @"ge",
+        @(ANFilterClauseOperatorLess): @"lt",
+        @(ANFilterClauseOperatorLessOrEquals): @"le",
+        @(ANFilterClauseOperatorMatches): @"matches",
+        @(ANFilterClauseOperatorOneOf): @"one_of",
+        };
+    });
+    
+    return table[@(operator)];
+}
+
+ANFilterClauseOperator ANFilterClauseOperatorFromString(NSString * string) {
+    static NSDictionary * table;
+    static dispatch_once_t once;
+    
+    dispatch_once(&once, ^{
+        table = @{
+        @"equals": @(ANFilterClauseOperatorEquals),
+        @"gt": @(ANFilterClauseOperatorGreater),
+        @"ge": @(ANFilterClauseOperatorGreaterOrEquals),
+        @"lt": @(ANFilterClauseOperatorLess),
+        @"le": @(ANFilterClauseOperatorLessOrEquals),
+        @"matches": @(ANFilterClauseOperatorMatches),
+        @"one_of": @(ANFilterClauseOperatorOneOf),
+        };
+    });
+    
+    return [table[string] integerValue];
+}
+
