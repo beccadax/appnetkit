@@ -22,7 +22,7 @@
     return ANRequestMethodGet;
 }
 
-- (BOOL)requiresAccessToken {
++ (BOOL)requiresAccessToken {
     return NO;
 }
 

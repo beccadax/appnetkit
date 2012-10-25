@@ -12,6 +12,8 @@
 
 @interface ANAuthenticatedRequest : ANRequest <NSMutableCopying>
 
++ (BOOL)requiresAccessToken;
+
 @property (readonly,assign) BOOL requiresAccessToken;
 
 @end
