@@ -14,4 +14,8 @@
     return [NSURL URLWithString:@"posts/stream/global" relativeToURL:[self.session URLForStreamAPIVersion:ANStreamAPIVersion0]];
 }
 
+- (BOOL)requiresAccessToken {
+    return NO;
+}
+
 @end

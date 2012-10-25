@@ -21,12 +21,19 @@
     return req;
 }
 
+- (BOOL)requiresAccessToken {
+    return YES;
+}
+
 - (NSMutableURLRequest *)URLRequest {
-    NSAssert(self.session.accessToken, @"Session's access token has not been set");
-    
     NSMutableURLRequest * req = super.URLRequest;
     
-    [req setValue:[NSString stringWithFormat:@"Bearer %@", self.session.accessToken] forHTTPHeaderField:@"Authorization"];
+    if(self.session.accessToken) {
+        [req setValue:[NSString stringWithFormat:@"Bearer %@", self.session.accessToken] forHTTPHeaderField:@"Authorization"];
+    }
+    else {
+        NSAssert(!self.requiresAccessToken, @"Session's access token has not been set");
+    }
     
     return req;
 }
