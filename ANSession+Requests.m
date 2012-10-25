@@ -34,6 +34,7 @@
 #import "ANUnrepostPostRequest.h"
 #import "ANUsersWithPostRepostedRequest.h"
 #import "ANUsersMatchingSearchQueryRequest.h"
+#import "ANPostsInUserUnifiedStreamRequest.h"
 
 @implementation ANSession (Requests)
 
@@ -173,6 +174,19 @@
 
 - (void)postsInStreamBetweenID:(ANResourceID)sinceID andID:(ANResourceID)beforeID completion:(ANPostListRequestCompletion)completion {
     ANPostsInUserStreamRequest * req = [[ANPostsInUserStreamRequest alloc] initWithSession:self];
+    
+    req.sinceID = sinceID;
+    req.beforeID = beforeID;
+    
+    [req sendRequestWithCompletion:completion];
+}
+
+- (void)postsInUnifiedStreamWithCompletion:(ANPostListRequestCompletion)completion {
+    [self postsInUnifiedStreamBetweenID:ANUnspecifiedPostID andID:ANUnspecifiedPostID completion:completion];
+}
+
+- (void)postsInUnifiedStreamBetweenID:(ANResourceID)sinceID andID:(ANResourceID)beforeID completion:(ANPostListRequestCompletion)completion {
+    ANPostsInUserUnifiedStreamRequest * req = [[ANPostsInUserUnifiedStreamRequest alloc] initWithSession:self];
     
     req.sinceID = sinceID;
     req.beforeID = beforeID;
