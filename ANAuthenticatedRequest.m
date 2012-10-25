@@ -21,8 +21,12 @@
     return req;
 }
 
-- (BOOL)requiresAccessToken {
++ (BOOL)requiresAccessToken {
     return YES;
+}
+
+- (BOOL)requiresAccessToken {
+    return self.class.requiresAccessToken;
 }
 
 - (NSMutableURLRequest *)URLRequest {
