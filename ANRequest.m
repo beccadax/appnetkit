@@ -163,6 +163,14 @@
             }
         }
         
+        if(error.code == NSURLErrorUserCancelledAuthentication && [error.domain isEqualToString:NSURLErrorDomain]) {
+            NSMutableDictionary * userInfo = error.userInfo.mutableCopy;
+            [userInfo setObject:NSLocalizedString(@"Your account is not allowed to perform this operation.", @"") forKey:NSLocalizedDescriptionKey];
+            [userInfo setObject:error forKey:NSUnderlyingErrorKey];
+            
+            error = [NSError errorWithDomain:error.domain code:error.code userInfo:userInfo.copy];
+        }
+        
         if(error) {
             completion(body, error);
             return;
