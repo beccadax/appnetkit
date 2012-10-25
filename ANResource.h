@@ -17,10 +17,10 @@ extern NSString * const ANResourceDidUpdateNotification;
 
 @protocol ANTextualResource <NSObject>
 
-@property (readonly) NSString * text;
-@property (readonly) NSString * HTML;
-@property (readonly) ANEntitySet * entities;
-@property (readonly) NSDictionary * entitiesRepresentation;
+@property (nonatomic,readonly) NSString * text;
+@property (nonatomic,readonly) NSString * HTML;
+@property (nonatomic,readonly) ANEntitySet * entities;
+@property (nonatomic,readonly) NSDictionary * entitiesRepresentation;
 
 @end
 

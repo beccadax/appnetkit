@@ -10,7 +10,11 @@
 
 #import "ANRequest.h"
 
-@interface ANAuthenticatedRequest : ANRequest <NSMutableCopying> @end
+@interface ANAuthenticatedRequest : ANRequest <NSMutableCopying>
+
+@property (readonly,assign) BOOL requiresAccessToken;
+
+@end
 
 @interface ANMutableAuthenticatedRequest : ANRequest
 

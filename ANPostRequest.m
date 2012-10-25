@@ -22,6 +22,10 @@
     return ANRequestMethodGet;
 }
 
+- (BOOL)requiresAccessToken {
+    return NO;
+}
+
 - (void)sendRequestWithCompletion:(ANPostRequestCompletion)completion {
     [self sendRequestWithRepresentationCompletion:^(ANResponse * response, id rep, NSError *error) {
         [self.session completePostRequest:completion withResponse:response representation:rep error:error];
