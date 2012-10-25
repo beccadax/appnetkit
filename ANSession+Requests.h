@@ -36,6 +36,9 @@
 - (void)postsInStreamWithCompletion:(ANPostListRequestCompletion)completion;
 - (void)postsInStreamBetweenID:(ANResourceID)sinceID andID:(ANResourceID)beforeID completion:(ANPostListRequestCompletion)completion;
 
+- (void)postsInUnifiedStreamWithCompletion:(ANPostListRequestCompletion)completion;
+- (void)postsInUnifiedStreamBetweenID:(ANResourceID)sinceID andID:(ANResourceID)beforeID completion:(ANPostListRequestCompletion)completion;
+
 - (void)postsInGlobalStreamWithCompletion:(ANPostListRequestCompletion)completion;
 - (void)postsInGlobalStreamBetweenID:(ANResourceID)sinceID andID:(ANResourceID)beforeID completion:(ANPostListRequestCompletion)completion;
 
