@@ -32,6 +32,7 @@ typedef enum {
 + (BOOL)isUsingNetwork;
 
 + (ANSession*)defaultSession;
++ (void)setDefaultSession:(ANSession*)defaultSession;
 
 @property (strong) NSString * accessToken;
 

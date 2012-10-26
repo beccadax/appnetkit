@@ -50,7 +50,7 @@ NSInteger NetworkActivityCount;
     return self;
 }
 
-+ (ANSession *)defaultSession {
++ (ANSession *)defaultDefaultSession {
     static ANSession * singleton;
     static dispatch_once_t once;
     
@@ -59,6 +59,16 @@ NSInteger NetworkActivityCount;
     });
     
     return singleton;
+}
+
+static ANSession * DefaultSession = nil;
+
++ (ANSession*)defaultSession {
+    return DefaultSession ?: [self defaultDefaultSession];
+}
+
++ (void)setDefaultSession:(ANSession*)defaultSession {
+    DefaultSession = defaultSession;
 }
 
 - (NSURL *)URLForStreamAPIVersion:(ANStreamAPIVersion)version {
