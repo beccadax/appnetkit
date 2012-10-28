@@ -23,6 +23,7 @@
 @dynamic minID;
 @dynamic maxID;
 @dynamic more;
+@dynamic errorMessage;
 
 - (NSUInteger)statusCode {
     return self.code;
