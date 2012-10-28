@@ -13,7 +13,7 @@
 
 @interface ANSession ()
 
-- (id)uniqueResource:(ANResource*)resource;
+- (id)uniqueResource:(ANIdentifiedResource*)resource;
 
 @end
 

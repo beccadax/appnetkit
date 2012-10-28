@@ -8,6 +8,7 @@
 
 #import "ANSession.h"
 #import "ANSession+ANResource_Private.h"
+#import "_ANIdentifiedResourceSet.h"
 
 const ANResourceID ANMeUserID = 0;
 const ANResourceID ANUnspecifiedPostID = 0;
@@ -16,7 +17,7 @@ NSInteger NetworkActivityCount;
 
 @interface ANSession ()
 
-@property (strong,nonatomic) NSHashTable * resources;
+@property (strong,nonatomic) _ANIdentifiedResourceSet * resourceSet;
 @property (strong,nonatomic) dispatch_queue_t resourceUniquingQueue;
 
 @end
@@ -44,7 +45,7 @@ NSInteger NetworkActivityCount;
 
 - (id)init {
     if((self = [super init])) {
-        _resources = [NSHashTable weakObjectsHashTable];
+        _resourceSet = [_ANIdentifiedResourceSet new];
         _resourceUniquingQueue = dispatch_queue_create("ANSession resource uniquing queue", DISPATCH_QUEUE_SERIAL);
     }
     return self;
@@ -171,20 +172,20 @@ static ANSession * DefaultSession = nil;
     }
 }
 
-- (id)uniqueResource:(ANResource *)r {
-    __block ANResource * resource = r;
+- (id)uniqueResource:(ANIdentifiedResource *)r {
+    __block ANIdentifiedResource * resource = r;
     
     // We do this in a queue so that only one thread can be adjusting the resource set at a time.
     dispatch_sync(self.resourceUniquingQueue, ^{
-        ANResource * existingResource = [self.resources member:resource];
+        ANIdentifiedResource * existingResource = [self.resourceSet existingResource:resource];
         
         if(existingResource) {
-            [self.resources removeObject:existingResource];
+            [self.resourceSet removeResource:existingResource];
             existingResource.representation = resource.representation;
             resource = existingResource;
         }
         
-        [self.resources addObject:resource];
+        [self.resourceSet addResource:resource];
     });
     
     return resource;
