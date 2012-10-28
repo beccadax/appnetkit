@@ -13,6 +13,7 @@
 @interface ANResponse : ANResource
 
 @property (nonatomic,readonly) NSUInteger statusCode;
+@property (nonatomic,readonly) NSString * errorMessage;
 
 @property (nonatomic,readonly) ANResourceID earliestID;
 @property (nonatomic,readonly) ANResourceID latestID;

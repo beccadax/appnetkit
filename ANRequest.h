@@ -14,7 +14,8 @@
 typedef enum {
     ANRequestMethodGet,
     ANRequestMethodPost,
-    ANRequestMethodDelete
+    ANRequestMethodDelete,
+    ANRequestMethodPut
 } ANRequestMethod;
 
 typedef enum {
@@ -26,7 +27,7 @@ typedef enum {
 
 - (id)initWithSession:(ANSession*)session;
 
-@property (readonly,weak) ANSession * session;
+@property (weak) ANSession * session;
 
 @property (readonly) NSURL * URL;
 @property (readonly) NSDictionary * parameters;

@@ -11,8 +11,10 @@
 
 @class ANUser;
 @class ANPost;
+@class ANFilter;
 @class ANResource;
 @class ANDraft;
+@class ANDraftFilter;
 
 extern const ANResourceID ANMeUserID;
 extern const ANResourceID ANUnspecifiedPostID;
@@ -30,6 +32,7 @@ typedef enum {
 + (BOOL)isUsingNetwork;
 
 + (ANSession*)defaultSession;
++ (void)setDefaultSession:(ANSession*)defaultSession;
 
 @property (strong) NSString * accessToken;
 
@@ -40,6 +43,8 @@ typedef enum {
 - (void)completeUserListRequest:(ANUserListRequestCompletion)completion withResponse:(ANResponse*)response representation:(NSArray*)rep error:(NSError*)error;
 - (void)completePostRequest:(ANPostRequestCompletion)completion withResponse:(ANResponse*)response representation:(NSDictionary*)rep error:(NSError*)error;
 - (void)completePostListRequest:(ANPostListRequestCompletion)completion withResponse:(ANResponse*)response representation:(NSArray*)rep error:(NSError*)error;
+- (void)completeFilterRequest:(ANFilterRequestCompletion)completion withResponse:(ANResponse*)response representation:(NSDictionary*)rep error:(NSError*)error;
+- (void)completeFilterListRequest:(ANFilterListRequestCompletion)completion withResponse:(ANResponse *)response representation:(NSDictionary *)rep error:(NSError *)error;
 
 @end
 

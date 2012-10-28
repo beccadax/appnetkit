@@ -10,6 +10,7 @@
 
 @class ANUser;
 @class ANPost;
+@class ANFilter;
 @class ANResponse;
 
 typedef void (^ANAccessTokenInformationRequestCompletion)(ANResponse * response, NSArray * scopes, ANUser * user, NSError * error);
@@ -17,3 +18,5 @@ typedef void (^ANUserRequestCompletion)(ANResponse * response, ANUser * user, NS
 typedef void (^ANUserListRequestCompletion)(ANResponse * response, NSArray * users, NSError * error);
 typedef void (^ANPostRequestCompletion)(ANResponse * response, ANPost * post, NSError * error);
 typedef void (^ANPostListRequestCompletion)(ANResponse * response, NSArray * posts, NSError * error);
+typedef void (^ANFilterRequestCompletion)(ANResponse * response, ANFilter * filter, NSError * error);
+typedef void (^ANFilterListRequestCompletion)(ANResponse * response, NSArray * filters, NSError * error);

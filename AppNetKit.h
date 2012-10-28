@@ -60,6 +60,7 @@ typedef enum {
 #import "ANSession.h"
 #import "ANUser.h"
 #import "ANPost.h"
+#import "ANFilter.h"
 #import "ANAnnotation.h"
 #import "ANEntity.h"
 #import "ANSource.h"

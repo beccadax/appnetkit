@@ -50,6 +50,9 @@
         case ANRequestMethodDelete:
             return @"DELETE";
             
+        case ANRequestMethodPut:
+            return @"PUT";
+            
         default:
             NSAssert(NO, @"Unknown method %d", self.method);
             return nil;
@@ -203,9 +206,17 @@
         if(!error) {
             error = jsonError;
         }
-        if(error && json) {
+        if(error && (response || json)) {
             NSMutableDictionary *userInfo = [error.userInfo mutableCopy];
-            [userInfo setObject:json forKey:@"json"];
+            
+            [userInfo setObject:error forKey:NSUnderlyingErrorKey];
+            if(json) {
+                [userInfo setObject:json forKey:@"json"];
+            }
+            if(response.errorMessage) {
+                [userInfo setObject:response.errorMessage forKey:NSLocalizedDescriptionKey];
+            }
+            
             error = [NSError errorWithDomain:error.domain code:error.code userInfo:userInfo];
 
             json = nil;
