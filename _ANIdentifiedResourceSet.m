@@ -8,7 +8,8 @@
 
 #import "_ANIdentifiedResourceSet.h"
 
-// Basically just a safer version of +[NSValue valueWithNonretainedObject:]
+// Basically just a zeroing weak version of +[NSValue valueWithNonretainedObject:]
+
 @interface _ANWeakReference : NSObject
 
 + (id)weakReferenceWithReferent:(id)referent;
@@ -17,6 +18,28 @@
 @property (nonatomic,readonly,weak) id referent;
 
 @end
+
+// 
+// We construct what amounts to a weakly-referencing mutable set from strong mutable dictionaries and weak reference objects.
+// 
+// The resources table is structured like so:
+//  @{
+//      @"ANPost": @{
+//          @1: [_ANWeakReference weakReferenceWithReferent:<ANPost with ID 1>],
+//          @2: [_ANWeakReference weakReferenceWithReferent:<ANPost with ID 2>],
+//          @3: [_ANWeakReference weakReferenceWithReferent:nil from __weak reference to now-dead object],
+//          ...
+//      },
+//      @"ANUser": @{
+//          ...
+//      },
+//      ...
+// }
+// 
+// Because clients of _ANIdentifiedResourceSet only ever see the referents, not the weak references, deallocated resources appear to have been deleted from the table, even though there are still nil'ed entries in the weak reference table for them.
+// 
+// A future version could occasionally purge these dead entries, but we are not currently doing that.
+// 
 
 @interface _ANIdentifiedResourceSet ()
 
