@@ -85,6 +85,22 @@ NSString * const ANAnnotationTypeGeolocation = @"net.app.core.geolocation";
 
 @end
 
+@implementation ANDraftAnnotation
+
+- (NSDictionary *)representation {
+    return [NSDictionary dictionaryWithObjectsAndKeys:
+            self.type, @"type",
+            self.value, @"value",
+            nil];
+}
+
+- (void)setRepresentation:(NSDictionary *)dict {
+    self.type = [dict objectForKey:@"type"];
+    self.value = [dict objectForKey:@"value"];
+}
+
+@end
+
 #if APPNETKIT_USE_CORE_LOCATION
 @implementation ANAnnotation (CLLocation)
 
@@ -138,4 +154,30 @@ NSString * const ANAnnotationTypeGeolocation = @"net.app.core.geolocation";
 }
 
 @end
+
+@implementation ANDraftAnnotation (CLLocation)
+
++ (ANDraftAnnotation *)draftAnnotationWithGeolocationValue:(CLLocation *)location {
+    NSMutableDictionary * dict = [NSMutableDictionary new];
+    [dict setObject:[NSNumber numberWithDouble:location.coordinate.latitude] forKey:@"latitude"];
+    [dict setObject:[NSNumber numberWithDouble:location.coordinate.longitude] forKey:@"longitude"];
+    
+    if(location.verticalAccuracy >= 0) {
+        [dict setObject:[NSNumber numberWithDouble:location.altitude] forKey:@"altitude"];
+    }
+    if(location.verticalAccuracy > 0) {
+        [dict setObject:[NSNumber numberWithDouble:location.verticalAccuracy] forKey:@"vertical_accuracy"];
+    }
+    if(location.horizontalAccuracy > 0) {
+        [dict setObject:[NSNumber numberWithDouble:location.horizontalAccuracy] forKey:@"horizontal_accuracy"];
+    }
+    
+    ANDraftAnnotation * annotation = [ANDraftAnnotation new];
+    annotation.type = ANAnnotationTypeGeolocation;
+    annotation.value = dict.copy;
+    return annotation;
+}
+
+@end
+
 #endif

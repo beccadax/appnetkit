@@ -22,24 +22,3 @@
 - (void)createPostViaSession:(ANSession*)session completion:(ANPostRequestCompletion)completion;
 
 @end
-
-@interface ANDraftAnnotation : NSObject
-
-@property (strong) NSString * type;
-@property (strong) id value;
-
-@property (copy) NSDictionary * representation;
-
-@end
-
-#import "ANDefines.h"
-#if APPNETKIT_USE_CORE_LOCATION
-#import <CoreLocation/CoreLocation.h>
-
-@interface ANDraftAnnotation (CLLocation)
-
-+ (ANDraftAnnotation*)draftAnnotationWithGeolocationValue:(CLLocation*)location;
-
-@end
-
-#endif
