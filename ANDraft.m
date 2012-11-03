@@ -14,6 +14,7 @@
 - (id)init {
     if((self = [super init])) {
         _annotations = [NSMutableArray new];
+        _entities = [ANDraftEntitySet new];
     }
     return self;
 }
@@ -35,6 +36,11 @@
         [dict setObject:[self.annotations valueForKey:@"representation"] forKey:@"annotations"];
     }
     
+    id entitiesRep = self.entities.representation;
+    if(entitiesRep) {
+        [dict setObject:entitiesRep forKey:@"entities"];
+    }
+    
     return dict.copy;
 }
 
@@ -46,14 +52,16 @@
         self.replyTo = [ANResource.IDFormatter numberFromString:[dict objectForKey:@"reply_to"]].unsignedLongLongValue;
     }
     
-    [_annotations removeAllObjects];
+    [self.annotations removeAllObjects];
     if([dict objectForKey:@"annotations"]) {
         for(NSDictionary * annotationRep in [dict objectForKey:@"annotations"]) {
             ANDraftAnnotation * annotation = [ANDraftAnnotation new];
             annotation.representation = annotationRep;
-            [_annotations addObject:	annotation];
+            [self.annotations addObject:annotation];
         }
     }
+    
+    self.entities.representation = [dict objectForKey:@"entities"];
 }
 
 - (void)createPostViaSession:(ANSession*)session completion:(ANPostRequestCompletion)completion {

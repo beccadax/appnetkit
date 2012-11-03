@@ -64,6 +64,7 @@
     ANDraft * draft = [ANDraft new];
     
     draft.text = [NSString stringWithFormat:@"» %@ %@", self.user.username.appNetUsernameString, self.text];
+    [draft.entities.links addObjectsFromArray:[self.entities.links valueForKey:@"draftEntity"]];
     
     return draft;
 }
@@ -74,6 +75,15 @@
     draft.text = self.text;
     draft.replyTo = self.replyTo;
     [draft.annotations setArray:[self.annotations.all valueForKey:@"draftAnnotation"]];
+    
+    draft.machineOnly = self.machineOnly;
+    
+    if(self.machineOnly) {
+        [draft.entities.mentions addObjectsFromArray:[self.entities.mentions valueForKey:@"draftEntity"]];
+    }
+    else {
+        [draft.entities.links addObjectsFromArray:[self.entities.links valueForKey:@"draftEntity"]];
+    }
     
     return draft;
 }

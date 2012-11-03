@@ -9,11 +9,16 @@
 #import "ANResource.h"
 #import "AppNetKit.h"
 
+extern const NSRange ANEntityNoRange;
+
 typedef enum {
     ANEntityTypeMention,
     ANEntityTypeTag,
     ANEntityTypeLink
 } ANEntityType;
+
+@class ANDraftEntitySet;
+@class ANDraftEntity;
 
 @interface ANEntitySet : ANResource
 
@@ -28,6 +33,8 @@ typedef enum {
 @property (readonly) NSArray * links;
 @property (readonly) NSArray * linkRepresentations;
 
+- (ANDraftEntitySet*)draftEntitySet;
+
 @end
 
 @interface ANEntity : ANResource
@@ -40,6 +47,37 @@ typedef enum {
 
 @property (readonly) NSURL * URL;
 @property (readonly) NSString * text;
+
+- (ANDraftEntity*)draftEntity;
+
+@end
+
+@interface ANDraftEntitySet : NSObject
+
+@property (readonly) NSMutableArray * links;
+@property (readonly) NSMutableArray * mentions;
+
+@property (copy) NSDictionary * representation;
+
+- (NSUInteger)addLinkEntityWithURL:(NSURL*)url range:(NSRange)range;
+
+- (NSUInteger)addMentionEntityForUsername:(NSString*)username;
+- (NSUInteger)addMentionEntityForUserID:(ANResourceID)userID;
+- (NSUInteger)addMentionEntityForUser:(ANUser*)user;
+
+- (void)removeAllEntities;
+
+@end
+
+@interface ANDraftEntity : NSObject
+
+@property (assign) NSRange range;
+
+@property (strong) NSURL * URL;
+@property (strong) NSString * name;
+@property (assign) ANResourceID userID;
+
+@property (copy) NSDictionary * representation;
 
 @end
 
