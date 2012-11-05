@@ -191,11 +191,25 @@
     [self postsInUnifiedStreamBetweenID:ANUnspecifiedPostID andID:ANUnspecifiedPostID completion:completion];
 }
 
+- (void)postsInUnifiedStreamWithCompletion:(ANPostListRequestCompletion)completion withCount:(int)count{
+    [self postsInUnifiedStreamBetweenID:ANUnspecifiedPostID andID:ANUnspecifiedPostID withCount:count completion:completion];
+}
+
 - (void)postsInUnifiedStreamBetweenID:(ANResourceID)sinceID andID:(ANResourceID)beforeID completion:(ANPostListRequestCompletion)completion {
     ANPostsInUserUnifiedStreamRequest * req = [[ANPostsInUserUnifiedStreamRequest alloc] initWithSession:self];
     
     req.sinceID = sinceID;
     req.beforeID = beforeID;
+    
+    [req sendRequestWithCompletion:completion];
+}
+
+- (void)postsInUnifiedStreamBetweenID:(ANResourceID)sinceID andID:(ANResourceID)beforeID withCount:(int)count completion:(ANPostListRequestCompletion)completion {
+    ANPostsInUserUnifiedStreamRequest * req = [[ANPostsInUserUnifiedStreamRequest alloc] initWithSession:self];
+    
+    req.sinceID = sinceID;
+    req.beforeID = beforeID;
+    req.count = count;
     
     [req sendRequestWithCompletion:completion];
 }
