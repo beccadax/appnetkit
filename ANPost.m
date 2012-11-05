@@ -169,6 +169,15 @@
     return self;
 }
 
+- (BOOL)isRepost {
+    if (self.repostOf.text == NULL){
+        return FALSE;
+    } else {
+        return TRUE;
+    }
+    
+}
+
 - (void)repostWithCompletion:(ANPostRequestCompletion)completion {
     [self.session repostPostWithID:self.originalID completion:completion];
 }
