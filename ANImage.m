@@ -15,7 +15,26 @@
 
 @end
 
+static CGFloat ImageScale = 0.0;
+
 @implementation ANImage
+
++ (CGFloat)imageScale {
+    if(ImageScale != 0.0) {
+        return ImageScale;
+    }
+    
+#if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
+    return UIScreen.mainScreen.scale;
+#else
+#pragma warning ANImage defaults to using 2.0 scale on the Mac--is there a better option?
+    return 2.0;
+#endif
+}
+
++ (void)setImageScale:(CGFloat)scale {
+    ImageScale = scale;
+}
 
 - (id)initWithRepresentation:(NSDictionary *)rep session:(ANSession *)session {
     if((self = [super initWithRepresentation:rep session:session])) {
@@ -28,8 +47,8 @@
 
 - (CGSize)nativeSize {
     CGSize size;
-    size.width = [[self.representation objectForKey:@"width"] doubleValue];
-    size.height = [[self.representation objectForKey:@"height"] doubleValue];
+    size.width = [[self.representation objectForKey:@"width"] doubleValue] / self.class.imageScale;
+    size.height = [[self.representation objectForKey:@"height"] doubleValue] / self.class.imageScale;
     return size;
 }
 
@@ -46,7 +65,12 @@
 }
 
 - (void)imageAtSize:(CGSize)size completion:(ANImageCompletion)completion {
-    ANFrameworkImage * image = [self.imageAtSize objectForKey:[NSValue valueWithCGSize:size]];
+    CGFloat scale = self.class.imageScale;
+    
+    size.width *= scale;
+    size.height *= scale;
+    
+    id image = [self.imageAtSize objectForKey:[NSValue valueWithCGSize:size]];
     if(image) {
         completion(image, nil);
         return;
@@ -73,7 +97,17 @@
             return;
         }
         
-        ANFrameworkImage * image = [[ANFrameworkImage alloc] initWithData:body];
+#if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
+        UIImage * image = [[UIImage alloc] initWithData:body scale:scale];
+#else
+        NSImage * image = [[NSImage alloc] initWithData:body];
+        
+        NSSize size = image.size;
+        size.width /= scale;
+        size.height /= scale;
+        image.size = size;
+#endif
+        
         if(image) {
             error = nil;
         }
