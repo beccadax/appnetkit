@@ -33,4 +33,8 @@
     return self.ID == object.ID;
 }
 
+- (NSString *)description {
+    return [NSString stringWithFormat:@"<%@: %p #%lld>", self.class, self, self.ID];
+}
+
 @end
