@@ -11,7 +11,7 @@
 #import "ANSession.h"
 #import "ANSession+ANResource_Private.h"
 
-#import <objc/runtime.h>
+#import "NSObject+AssociatedObject.h"
 
 NSString * const ANResourceDidUpdateNotification = @"ANResourceDidUpdate";
 
@@ -61,7 +61,7 @@ NSString * const ANResourceDidUpdateNotification = @"ANResourceDidUpdate";
     [self willChangeValueForKey:@"representation"];
     
     _representation = representation;
-    objc_removeAssociatedObjects(self);
+    [self removeAllAssociatedObjects];
         
     [self didChangeValueForKey:@"representation"];
     

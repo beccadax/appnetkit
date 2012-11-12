@@ -8,7 +8,7 @@
 
 #import "ANEntity.h"
 
-#import <objc/runtime.h>
+#import "NSObject+AssociatedObject.h"
 
 const NSRange ANEntityNoRange = (NSRange){ NSNotFound, 0 };
 
@@ -43,7 +43,8 @@ const NSRange ANEntityNoRange = (NSRange){ NSNotFound, 0 };
 }
 
 - (NSArray *)all {
-    NSArray * ret = objc_getAssociatedObject(self, _cmd);
+    // We use associated objects here because associated objects are cleared when the representation is set.
+    NSArray * ret = [self associatedObjectForKey:_cmd];
     
     if(!ret) {
         NSMutableArray * allEntities = [NSMutableArray new];
@@ -84,7 +85,7 @@ const NSRange ANEntityNoRange = (NSRange){ NSNotFound, 0 };
         
         ret = allEntities.copy;
         
-        objc_setAssociatedObject(self, _cmd, ret, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        [self setAssociatedObject:ret forKey:_cmd];
     }
     
     return ret;

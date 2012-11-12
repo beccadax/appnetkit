@@ -7,7 +7,7 @@
 //
 
 #import "ANPost.h"
-#import <objc/runtime.h>
+#import "NSObject+AssociatedObject.h"
 
 @implementation ANPost
 
@@ -38,10 +38,11 @@
 @dynamic repostOfRepresentation;
 
 - (ANAnnotationSet *)annotations {
-    ANAnnotationSet * annotations = objc_getAssociatedObject(self, _cmd);
+    // We use an associated object here so that setRepresentation: will clear it.
+    ANAnnotationSet * annotations = [self associatedObjectForKey:_cmd];
     if(!annotations) {
         annotations = [[ANAnnotationSet alloc] initWithRepresentation:self.annotationRepresentations session:self.session];
-        objc_setAssociatedObject(self, _cmd, annotations, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        [self setAssociatedObject:annotations forKey:_cmd];
     }
     return annotations;
 }

@@ -8,6 +8,7 @@
 
 #import "ANResource+Magic.h"
 #import <objc/runtime.h>
+#import "NSObject+AssociatedObject.h"
 
 // This category is responsible for ANResource's magically appearing accessors.
 //
@@ -128,13 +129,13 @@ static id ANBlockForGetterReturningType(NSString * name, NSString * propType) {
             SEL _cmd = NSSelectorFromString(name);
             
             return ^NSDate*(ANResource * self) {
-                id object = objc_getAssociatedObject(self, _cmd);
+                id object = [self associatedObjectForKey:_cmd];
                 
                 if(!object) {
                     object = [self.representation objectForKey:key];
                     object = [ANResource.dateFormatter dateFromString:object];
                     
-                    objc_setAssociatedObject(self, _cmd, object, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+                    [self setAssociatedObject:object forKey:_cmd];
                 }
                 
                 return object;
@@ -162,13 +163,13 @@ static id ANBlockForGetterReturningType(NSString * name, NSString * propType) {
             SEL _cmd = NSSelectorFromString(name);
             
             return ^ANResource*(ANResource * self) {
-                id object = objc_getAssociatedObject(self, _cmd);
+                id object = [self associatedObjectForKey:_cmd];
                 
                 if(!object) {
                     object = [self.representation objectForKey:key];
                     object = [[class alloc] initWithRepresentation:object session:self.session];
                     
-                    objc_setAssociatedObject(self, _cmd, object, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+                    [self setAssociatedObject:object forKey:_cmd];
                 }
                 
                 return object;
@@ -190,7 +191,7 @@ static id ANBlockForGetterReturningType(NSString * name, NSString * propType) {
         SEL _cmd = NSSelectorFromString(name);
         
         return ^unsigned long long(ANResource * self) {
-            id object = objc_getAssociatedObject(self, _cmd);
+            id object = [self associatedObjectForKey:_cmd];
             
             if(!object) {
                 object = [self.representation objectForKey:key];
@@ -199,7 +200,7 @@ static id ANBlockForGetterReturningType(NSString * name, NSString * propType) {
                     object = [ANResource.IDFormatter numberFromString:object];
                 }
                 
-                objc_setAssociatedObject(self, _cmd, object, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+                [self setAssociatedObject:object forKey:_cmd];
             }
             
             return [object unsignedLongLongValue];
