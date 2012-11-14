@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "ANResource.h"
 #import "ANDefines.h"
+#import "ANStreamMarker.h"
 
 @interface ANResponse : ANResource
 
@@ -18,5 +19,7 @@
 @property (nonatomic,readonly) ANResourceID earliestID;
 @property (nonatomic,readonly) ANResourceID latestID;
 @property (nonatomic,readonly) BOOL hasMore;
+
+@property (nonatomic,readonly) ANStreamMarker * marker;
 
 @end

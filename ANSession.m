@@ -172,6 +172,16 @@ static ANSession * DefaultSession = nil;
     }
 }
 
+- (void)completeStreamMarkerRequest:(ANStreamMarkerRequestCompletion)completion withResponse:(ANResponse *)response representation:(NSDictionary *)rep error:(NSError *)error {
+    if(rep) {
+        ANStreamMarker * marker = [[ANStreamMarker alloc] initWithRepresentation:rep session:self];
+        completion(response, marker, nil);
+    }
+    else {
+        completion(response, nil, error);
+    }
+}
+
 - (id)uniqueResource:(ANIdentifiedResource *)r {
     __block ANIdentifiedResource * resource = r;
     

@@ -41,6 +41,7 @@
 #import "ANDeleteFiltersForUserRequest.h"
 #import "ANUpdateFilterRequest.h"
 #import "ANPostsInUserUnifiedStreamRequest.h"
+#import "ANUpdateStreamMarkerRequest.h"
 
 @implementation ANSession (Requests)
 
@@ -334,6 +335,14 @@
     
     req.filterID = ID;
     req.draftFilter = draftFilter;
+    
+    [req sendRequestWithCompletion:completion];
+}
+
+- (void)updateStreamMarkerWithDraft:(ANDraftStreamMarker*)draftMarker completion:(ANStreamMarkerRequestCompletion)completion {
+    ANUpdateStreamMarkerRequest * req = [[ANUpdateStreamMarkerRequest alloc] initWithSession:self];
+    
+    req.draftMarker = draftMarker;
     
     [req sendRequestWithCompletion:completion];
 }

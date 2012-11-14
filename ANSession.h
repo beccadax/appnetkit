@@ -15,6 +15,7 @@
 @class ANResource;
 @class ANDraft;
 @class ANDraftFilter;
+@class ANDraftStreamMarker;
 
 extern const ANResourceID ANMeUserID;
 extern const ANResourceID ANUnspecifiedPostID;
@@ -45,6 +46,7 @@ typedef enum {
 - (void)completePostListRequest:(ANPostListRequestCompletion)completion withResponse:(ANResponse*)response representation:(NSArray*)rep error:(NSError*)error;
 - (void)completeFilterRequest:(ANFilterRequestCompletion)completion withResponse:(ANResponse*)response representation:(NSDictionary*)rep error:(NSError*)error;
 - (void)completeFilterListRequest:(ANFilterListRequestCompletion)completion withResponse:(ANResponse *)response representation:(NSDictionary *)rep error:(NSError *)error;
+- (void)completeStreamMarkerRequest:(ANStreamMarkerRequestCompletion)completion withResponse:(ANResponse *)response representation:(NSDictionary *)rep error:(NSError *)error;
 
 @end
 

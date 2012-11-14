@@ -66,4 +66,6 @@
 - (void)deleteFilterWithID:(ANResourceID)ID completion:(ANFilterRequestCompletion)completion;
 - (void)updateFilterWithID:(ANResourceID)ID fromDraft:(ANDraftFilter*)draftFilter completion:(ANFilterRequestCompletion)completion;
 
+- (void)updateStreamMarkerWithDraft:(ANDraftStreamMarker*)draftMarker completion:(ANStreamMarkerRequestCompletion)completion;
+
 @end
