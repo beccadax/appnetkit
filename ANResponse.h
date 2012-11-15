@@ -21,5 +21,6 @@
 @property (nonatomic,readonly) BOOL hasMore;
 
 @property (nonatomic,readonly) ANStreamMarker * marker;
+@property (nonatomic,readonly) NSDictionary * markerRepresentation;
 
 @end

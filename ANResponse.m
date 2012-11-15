@@ -25,6 +25,9 @@
 @dynamic more;
 @dynamic errorMessage;
 
+@dynamic marker;
+@dynamic markerRepresentation;
+
 - (NSUInteger)statusCode {
     return self.code;
 }
