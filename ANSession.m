@@ -18,7 +18,7 @@ NSInteger NetworkActivityCount;
 @interface ANSession ()
 
 @property (strong,nonatomic) _ANIdentifiedResourceSet * resourceSet;
-@property (strong,nonatomic) dispatch_queue_t resourceUniquingQueue;
+@property (nonatomic) dispatch_queue_t resourceUniquingQueue;
 
 @end
 
