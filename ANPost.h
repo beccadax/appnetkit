@@ -62,6 +62,7 @@
 
 @property (readonly) ANPost * repostOf;
 @property (readonly) NSDictionary * repostOfRepresentation;
+- (BOOL)isRepost;
 
 - (void)repostWithCompletion:(ANPostRequestCompletion)completion;
 - (void)unrepostWithCompletion:(ANPostRequestCompletion)completion;
