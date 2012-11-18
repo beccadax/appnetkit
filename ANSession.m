@@ -13,8 +13,6 @@
 const ANResourceID ANMeUserID = 0;
 const ANResourceID ANUnspecifiedPostID = 0;
 
-NSInteger NetworkActivityCount;
-
 @interface ANSession ()
 
 @property (strong,nonatomic) _ANIdentifiedResourceSet * resourceSet;
@@ -25,22 +23,19 @@ NSInteger NetworkActivityCount;
 @implementation ANSession
 
 + (void)beginNetworkActivity {
-    NetworkActivityCount++;
 #if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
     UIApplication.sharedApplication.networkActivityIndicatorVisible = self.isUsingNetwork;
 #endif
 }
 
 + (void)endNetworkActivity {
-    NetworkActivityCount--;
-    NSAssert(NetworkActivityCount >= 0, @"Network activity count underflow");
 #if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
     UIApplication.sharedApplication.networkActivityIndicatorVisible = self.isUsingNetwork;
 #endif
 }
 
 + (BOOL)isUsingNetwork {
-    return NetworkActivityCount > 0;
+    return UIApplication.sharedApplication.isNetworkActivityIndicatorVisible;
 }
 
 - (id)init {
